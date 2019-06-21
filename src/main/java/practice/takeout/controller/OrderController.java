@@ -43,7 +43,7 @@ public class OrderController {
     return "redirect:/order/{id}";
   }
 
-  @GetMapping("/order{id}")
+  @GetMapping("/order/{id}")
   public String getOrderPage(@PathVariable long id, Model model) {
     if (mealService.getMealById(id) == null) {
       return "error";
