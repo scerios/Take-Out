@@ -32,7 +32,7 @@ public class OrderController {
 
   @PostMapping("/order")
   public String sendOrder(Meal meal, RedirectAttributes redirectAttributes) {
-    if (meal.getTopping().equals("Smoked Tofu")) {
+    if (meal.getTopping().equals("Smoked tofu")) {
       meal.setType("vegetarian");
     } else {
       meal.setType("all");
