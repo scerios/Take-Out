@@ -14,7 +14,7 @@ public class OrderController {
     this.mealService = mealService;
   }
 
-  @GetMapping
+  @GetMapping("/")
   public String getIndex() {
     return "index";
   }
