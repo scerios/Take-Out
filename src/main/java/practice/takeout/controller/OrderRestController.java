@@ -4,9 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import practice.takeout.dto.MealDetailsDto;
 import practice.takeout.dto.OrderStatUpdDto;
 import practice.takeout.model.Meal;
 import practice.takeout.service.MealService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class OrderRestController {
@@ -34,5 +38,20 @@ public class OrderRestController {
 
   private boolean isStatUpdQueryValid(String status) {
     return status.equals("ordered") || status.equals("in progress") || status.equals("done");
+  }
+
+  @GetMapping("/api/orders")
+  public List<MealDetailsDto> getOrdersByQuery(@RequestParam String type, @RequestParam String status) {
+    List<MealDetailsDto> sortedList = new ArrayList<>();
+    switch (type) {
+      case "all":
+        mealService.getAllMealsByStatus(status).forEach(meal -> sortedList.add(mealService.MealToDto(meal)));
+        return sortedList;
+
+      case "vegetarian":
+        mealService.getAllMealsByTypeAndStatus(type, status).forEach(meal -> sortedList.add(mealService.MealToDto(meal)));
+        return sortedList;
+    }
+    return sortedList;
   }
 }
