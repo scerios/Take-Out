@@ -32,13 +32,14 @@ public class OrderController {
 
   @PostMapping("/order")
   public String sendOrder(Meal meal, RedirectAttributes redirectAttributes) {
-    mealService.addMeal(meal);
-    redirectAttributes.addAttribute("id", meal.getId());
     if (meal.getTopping().equals("Smoked Tofu")) {
       meal.setType("vegetarian");
     } else {
       meal.setType("all");
     }
+    meal.setStatus("ordered");
+    mealService.addMeal(meal);
+    redirectAttributes.addAttribute("id", meal.getId());
     return "redirect:/order/{id}";
   }
 
