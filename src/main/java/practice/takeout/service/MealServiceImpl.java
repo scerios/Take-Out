@@ -21,4 +21,10 @@ public class MealServiceImpl implements MealService {
   public Meal getMealById(long id) {
     return this.repository.findById(id).get();
   }
+
+  @Override
+  public Meal saveMeal(Meal meal) {
+    this.repository.save(meal);
+    return meal;
+  }
 }
