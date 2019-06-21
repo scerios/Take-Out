@@ -21,11 +21,18 @@ public class OrderRestController {
   public ResponseEntity setOrderStatus(@PathVariable long id, @RequestBody OrderStatUpdDto orderStatUpdDto) {
     if (mealService.getMealById(id) == null) {
       return new ResponseEntity(HttpStatus.BAD_REQUEST);
-    } else {
+    }
+    if (isStatUpdQueryValid(orderStatUpdDto.getStatus())) {
       Meal mealToUpdate = mealService.getMealById(id);
       mealToUpdate.setStatus(orderStatUpdDto.getStatus());
       mealService.saveMeal(mealToUpdate);
       return new ResponseEntity(HttpStatus.ACCEPTED);
+    } else {
+      return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
+  }
+
+  private boolean isStatUpdQueryValid(String status) {
+    return status.equals("ordered") || status.equals("in progress") || status.equals("done");
   }
 }
