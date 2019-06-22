@@ -1,7 +1,7 @@
 package practice.takeout.service;
 
 import org.springframework.stereotype.Service;
-import practice.takeout.model.Address;
+import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
 import practice.takeout.repository.CusRepository;
 
@@ -23,7 +23,7 @@ public class CusServiceImpl implements CusService {
   }
 
   @Override
-  public void addAddressToCus(long id, Address address) {
-    repository.findById(id).get().addCusAddress(address);
+  public void addDetailsToCus(long id, CusDetails cusDetails) {
+    repository.findById(id).get().addCusDetails(cusDetails);
   }
 }

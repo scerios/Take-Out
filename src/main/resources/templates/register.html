@@ -18,11 +18,11 @@
         </div>
         <label>Address:</label>
         <div>
-            <input type="number" name="postcode" th:field="*{address.postCode}" placeholder="postcode" required>
-            <input type="text" name="street" th:field="*{address.street}" placeholder="street" required>
-            <input type="number" name="floor" th:field="*{address.floor}" placeholder="floor (optional)">
-            <input type="text" name="door" th:field="*{address.door}" placeholder="door" required>
-            <input type="text" name="bell" th:field="*{address.bell}" placeholder="bell (optional)">
+            <input type="number" name="postcode" th:field="*{cusDetails.postCode}" placeholder="postcode" required>
+            <input type="text" name="street" th:field="*{cusDetails.street}" placeholder="street" required>
+            <input type="number" name="floor" th:field="*{cusDetails.floor}" placeholder="floor (optional)">
+            <input type="text" name="door" th:field="*{cusDetails.door}" placeholder="door" required>
+            <input type="text" name="bell" th:field="*{cusDetails.bell}" placeholder="bell (optional)">
         </div>
         <button type="submit">Register</button>
     </form>

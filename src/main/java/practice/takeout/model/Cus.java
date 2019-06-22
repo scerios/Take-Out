@@ -5,19 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@SequenceGenerator(name = "CUSTOMER_SEQ", sequenceName = "customer_sequence")
 @Table(name = "customers")
 public class Cus {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUSTOMER_SEQ")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   private String firstName;
   private String lastName;
   private String pwd;
 
   @OneToMany(mappedBy = "cus", cascade = CascadeType.ALL)
-  private List<Address> addressList;
+  private List<CusDetails> cusDetailsList;
 
   public Cus() {
   }
@@ -54,19 +53,19 @@ public class Cus {
     this.pwd = pwd;
   }
 
-  public List<Address> getAddressList() {
-    return addressList;
+  public List<CusDetails> getCusDetailsList() {
+    return cusDetailsList;
   }
 
-  public void setAddressList(List<Address> addressList) {
-    this.addressList = addressList;
+  public void setCusDetailsList(List<CusDetails> cusDetailsList) {
+    this.cusDetailsList = cusDetailsList;
   }
 
-  public void addCusAddress(Address address) {
-    if (addressList == null) {
-      addressList = new ArrayList<>();
+  public void addCusDetails(CusDetails cusDetails) {
+    if (cusDetailsList == null) {
+      cusDetailsList = new ArrayList<>();
     }
-    address.setCus(this);
-    addressList.add(address);
+    cusDetails.setCus(this);
+    cusDetailsList.add(cusDetails);
   }
 }

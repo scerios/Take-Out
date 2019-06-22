@@ -1,17 +1,14 @@
 package practice.takeout.model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 
 @Entity
-@SequenceGenerator(name = "ADDRESS_SEQ", sequenceName = "address_sequence")
-public class Address {
+@SequenceGenerator(name = "DETAILS_SEQUENCE", sequenceName = "DETAILS_SEQ")
+public class CusDetails {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADDRESS_SEQ")
-  @Column(name = "address_id")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DETAILS_SEQ")
+  @Column(name = "details_id")
   private long id;
   private int postCode;
   private String street;
@@ -23,7 +20,7 @@ public class Address {
   @JoinColumn(name = "cus_id", nullable = false)
   private Cus cus;
 
-  public Address() {
+  public CusDetails() {
   }
 
   public long getId() {

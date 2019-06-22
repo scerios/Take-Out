@@ -6,26 +6,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import practice.takeout.model.Address;
+import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
-import practice.takeout.service.AddressServiceImpl;
+import practice.takeout.service.CusDetailsServiceImpl;
 import practice.takeout.service.CusServiceImpl;
 
 @Controller
 public class ProfileController {
   private CusServiceImpl cusService;
-  private AddressServiceImpl addressService;
+  private CusDetailsServiceImpl cusDetailsService;
 
   @Autowired
-  public ProfileController(CusServiceImpl cusService, AddressServiceImpl addressService) {
+  public ProfileController(CusServiceImpl cusService, CusDetailsServiceImpl cusDetailsService) {
     this.cusService = cusService;
-    this.addressService = addressService;
+    this.cusDetailsService = cusDetailsService;
   }
 
   @ModelAttribute
   public void getPage(Model model) {
     model.addAttribute("cus", new Cus());
-    model.addAttribute("address", new Address());
+    model.addAttribute("cusDetails", new CusDetails());
   }
 
   @GetMapping("/register")
@@ -34,10 +34,10 @@ public class ProfileController {
   }
 
   @PostMapping("/register")
-  public String sendRegister(Cus cus, Address address) {
+  public String sendRegister(Cus cus, CusDetails cusDetails) {
     cusService.addCus(cus);
-    cusService.addAddressToCus(cus.getId(), address);
-    addressService.addAddress(address);
+    cusService.addDetailsToCus(cus.getId(), cusDetails);
+    cusDetailsService.addDetails(cusDetails);
     return "redirect:/";
   }
 }
