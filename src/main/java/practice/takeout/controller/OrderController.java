@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.takeout.model.Meal;
-import practice.takeout.service.MealServiceImpl;
+import practice.takeout.service.OrderServiceImpl;
 
 @Controller
 public class OrderController {
-  private MealServiceImpl mealService;
+  private OrderServiceImpl mealService;
 
   @Autowired
-  public OrderController(MealServiceImpl mealService) {
+  public OrderController(OrderServiceImpl mealService) {
     this.mealService = mealService;
   }
 

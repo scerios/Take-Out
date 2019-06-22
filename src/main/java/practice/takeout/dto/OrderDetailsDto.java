@@ -1,6 +1,6 @@
 package practice.takeout.dto;
 
-public class MealDetailsDto {
+public class OrderDetailsDto {
   private long id;
   private String name;
   private String base;

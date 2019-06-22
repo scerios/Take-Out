@@ -1,15 +1,15 @@
 package practice.takeout.service;
 
 import org.springframework.stereotype.Service;
-import practice.takeout.dto.MealDetailsDto;
+import practice.takeout.dto.OrderDetailsDto;
 import practice.takeout.model.Meal;
-import practice.takeout.repository.MealRepository;
+import practice.takeout.repository.OrderRepository;
 
 @Service
-public class MealServiceImpl implements MealService {
-  private MealRepository repository;
+public class OrderServiceImpl implements OrderService {
+  private OrderRepository repository;
 
-  public MealServiceImpl(MealRepository repository) {
+  public OrderServiceImpl(OrderRepository repository) {
     this.repository = repository;
   }
 
@@ -30,14 +30,14 @@ public class MealServiceImpl implements MealService {
   }
 
   @Override
-  public MealDetailsDto MealToDto(Meal meal) {
-    MealDetailsDto mealDetailsDto = new MealDetailsDto();
-    mealDetailsDto.setId(meal.getId());
-    mealDetailsDto.setName(meal.getName());
-    mealDetailsDto.setBase(meal.getBase());
-    mealDetailsDto.setTopping(meal.getTopping());
-    mealDetailsDto.setStatus(meal.getStatus());
-    return mealDetailsDto;
+  public OrderDetailsDto MealToDto(Meal meal) {
+    OrderDetailsDto orderDetailsDto = new OrderDetailsDto();
+    orderDetailsDto.setId(meal.getId());
+    orderDetailsDto.setName(meal.getName());
+    orderDetailsDto.setBase(meal.getBase());
+    orderDetailsDto.setTopping(meal.getTopping());
+    orderDetailsDto.setStatus(meal.getStatus());
+    return orderDetailsDto;
   }
 
   public Iterable<Meal> getAllMealsByStatus(String status) {
