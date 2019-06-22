@@ -2,39 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Csirke Takeout</title>
+    <title>Register</title>
 </head>
 <body>
-<h1>Welcome to Csirke Takeout!</h1>
-<h2>Please enter your info and choose your meal!</h2>
-<form th:object="${meal}" method="post" action="/order">
-    <label>Name:</label>
-    <div>
-        <input type="text" name="name" th:field="*{name}">
-    </div>
-    <label>Address:</label>
-    <div>
-        <input type="text" name="address" th:field="*{address}">
-    </div>
-    <label>Bases</label>
-    <div>
-        <input type="radio" value="Rice noodles" th:field="*{base}">Rice noodles
-    </div>
-    <div>
-        <input type="radio" value="Egg noodles" th:field="*{base}">Egg noodles
-    </div>
-    <div>
-        <input type="radio" value="White rice" th:field="*{base}">White rice
-    </div>
-    <label>Toppings</label>
-    <div>
-        <select th:field="*{topping}">
-            <option value="Chicken">Chicken</option>
-            <option value="Beef">Beef</option>
-            <option value="Smoked tofu">Smoked tofu</option>
-        </select>
-    </div>
-    <button type="submit">Order</button>
-</form>
+    <h1>Welcome to Burger Town!</h1>
+    <h2>Please log in to make orders.</h2>
+    <h2>Or <a href="register">register</a> if you haven't got already.</h2>
+    <form th:object="${customer}" method="post" action="/register">
+        <label>Name:</label>
+        <div>
+            <input type="text" name="name" th:field="*{name}" autofocus required>
+        </div>
+        <label>Password:</label>
+        <div>
+            <input type="password" name="password" th:field="*{password}" required>
+        </div>
+        <label>Address:</label>
+        <div>
+            <input type="number" name="postcode" th:field="*{postcode}" placeholder="postcode" required>
+            <input type="text" name="street" th:field="*{street}" placeholder="street" required>
+            <input type="number" name="floor" th:field="*{floor}" placeholder="floor (optional)">
+            <input type="text" name="door" th:field="*{door}" placeholder="door" required>
+            <input type="text" name="bell" th:field="*{bell}" placeholder="bell (optional)">
+        </div>
+        <button type="submit">Register</button>
+    </form>
 </body>
 </html>
