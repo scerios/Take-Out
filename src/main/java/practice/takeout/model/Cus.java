@@ -10,25 +10,34 @@ public class Cus {
   @Id
   @GeneratedValue
   private long id;
-  private String name;
-  private String password;
+  private String firstName;
+  private String lastName;
+  private String pwd;
 
   public Cus() {
   }
 
-  public String getName() {
-    return name;
+  public String getFirstName() {
+    return firstName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
   }
 
-  public String getPassword() {
-    return password;
+  public String getLastName() {
+    return lastName;
   }
 
-  public void setPassword(String password) {
-    this.password = password;
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public String getPwd() {
+    return pwd;
+  }
+
+  public void setPwd(String pwd) {
+    this.pwd = pwd;
   }
 }
