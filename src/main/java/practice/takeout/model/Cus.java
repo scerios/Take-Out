@@ -1,18 +1,23 @@
 package practice.takeout.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@SequenceGenerator(name = "CUSTOMER_SEQ", sequenceName = "customer_sequence")
+@Table(name = "customers")
 public class Cus {
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUSTOMER_SEQ")
   private long id;
   private String firstName;
   private String lastName;
   private String pwd;
+
+  @OneToMany(mappedBy = "cus", cascade = CascadeType.ALL)
+  private List<Address> addressList;
 
   public Cus() {
   }
@@ -47,5 +52,21 @@ public class Cus {
 
   public void setPwd(String pwd) {
     this.pwd = pwd;
+  }
+
+  public List<Address> getAddressList() {
+    return addressList;
+  }
+
+  public void setAddressList(List<Address> addressList) {
+    this.addressList = addressList;
+  }
+
+  public void addCusAddress(Address address) {
+    if (addressList == null) {
+      addressList = new ArrayList<>();
+    }
+    address.setCus(this);
+    addressList.add(address);
   }
 }
