@@ -11,10 +11,11 @@ public class CusDetails {
   @Column(name = "details_id")
   private long id;
   private int postCode;
-  private String street;
-  private int floor;
+  private String addressName;
+  private String addressType;
   private String door;
   private String bell;
+  private String email;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "cus_id", nullable = false)
@@ -39,20 +40,20 @@ public class CusDetails {
     this.postCode = postCode;
   }
 
-  public String getStreet() {
-    return street;
+  public String getAddressName() {
+    return addressName;
   }
 
-  public void setStreet(String street) {
-    this.street = street;
+  public void setAddressName(String addressName) {
+    this.addressName = addressName;
   }
 
-  public int getFloor() {
-    return floor;
+  public String getAddressType() {
+    return addressType;
   }
 
-  public void setFloor(int floor) {
-    this.floor = floor;
+  public void setAddressType(String addressType) {
+    this.addressType = addressType;
   }
 
   public String getDoor() {
@@ -69,6 +70,14 @@ public class CusDetails {
 
   public void setBell(String bell) {
     this.bell = bell;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public Cus getCus() {

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}">
     <meta charset="UTF-8">
     <title>Register</title>
 </head>
@@ -16,13 +17,25 @@
         <div>
             <input type="password" name="pwd" th:field="*{cus.pwd}" required>
         </div>
-        <label>Address:</label>
+        <label>E-mail:</label>
         <div>
-            <input type="number" name="postcode" th:field="*{cusDetails.postCode}" placeholder="postcode" required>
-            <input type="text" name="street" th:field="*{cusDetails.street}" placeholder="street" required>
-            <input type="number" name="floor" th:field="*{cusDetails.floor}" placeholder="floor (optional)">
-            <input type="text" name="door" th:field="*{cusDetails.door}" placeholder="door" required>
-            <input type="text" name="bell" th:field="*{cusDetails.bell}" placeholder="bell (optional)">
+            <input type="email" name="email" th:field="*{cusDetails.email}" required>
+        </div>
+        <div>
+            <label>Post code:</label>
+            <div>
+                <input type="number" name="postcode" th:field="*{cusDetails.postCode}" min="1000" max="9985">
+            </div>
+            <label>Address:</label>
+            <div>
+                <input type="text" name="addressName" th:field="*{cusDetails.addressName}" placeholder="Name" required>
+                <input type="text" name="addressType" th:field="*{cusDetails.addressType}" placeholder="road/street/lane" required>
+            </div>
+            <label>Number:</label>
+            <div>
+                <input type="text" name="door" th:field="*{cusDetails.door}" placeholder="door" required>
+                <input type="text" name="bell" th:field="*{cusDetails.bell}" placeholder="bell (optional)">
+            </div>
         </div>
         <button type="submit">Register</button>
     </form>
