@@ -6,23 +6,17 @@
 </head>
 <body>
     <h1>Please enter your details!</h1>
-    <form th:object="${customer}" method="post" action="/register">
+    <form th:object="${cus}" method="post" action="/register">
         <label>Name:</label>
         <div>
-            <input type="text" name="name" th:field="*{name}" autofocus required>
+            <input type="text" name="firstName" th:field="*{firstName}" autofocus required>
+            <input type="text" name="lastName" th:field="*{lastName}" required>
         </div>
         <label>Password:</label>
         <div>
-            <input type="password" name="password" th:field="*{password}" required>
-        </div>
-        <label>Address:</label>
-        <div>
-            <input type="number" name="postcode" th:field="*{postcode}" placeholder="postcode" required>
-            <input type="text" name="street" th:field="*{street}" placeholder="street" required>
-            <input type="number" name="floor" th:field="*{floor}" placeholder="floor (optional)">
-            <input type="text" name="door" th:field="*{door}" placeholder="door" required>
-            <input type="text" name="bell" th:field="*{bell}" placeholder="bell (optional)">
+            <input type="password" name="pwd" th:field="*{pwd}" required>
         </div>
         <button type="submit">Register</button>
+    </form>
 </body>
 </html>
