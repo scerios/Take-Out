@@ -11,37 +11,44 @@
         <label>Name:</label>
         <div>
             <input type="text" name="firstName" th:field="*{cus.firstName}" placeholder="First name" autofocus required>
+            <span>*</span>
             <input type="text" name="lastName" th:field="*{cus.lastName}" placeholder="Last name" required>
+            <span>*</span>
         </div>
         <label>Password:</label>
         <div>
             <input type="password" name="pwd" th:field="*{cus.pwd}" required>
+            <span>*</span>
         </div>
         <label>E-mail:</label>
         <div>
             <input type="email" name="email" th:field="*{cusDetails.email}" required>
+            <span>*</span>
             <p>(This will be your username!)</p>
-            <td>
-                <span th:if="${errorMsg == 'registered'}">This email has been already registered!</span>
-            </td>
+            <p th:if="${errorMsg == 'registered'}">This email has been already registered!</p>
         </div>
         <div>
             <label>Post code:</label>
             <div>
-                <input type="number" name="postcode" th:field="*{cusDetails.postCode}" min="1000" max="1999">
+                <input type="number" name="postcode" th:field="*{cusDetails.postCode}" min="1000" max="1999" required>
+                <span>*</span>
             </div>
             <label>Address:</label>
             <div>
                 <input type="text" name="addressName" th:field="*{cusDetails.addressName}" placeholder="Name" required>
+                <span>*</span>
                 <input type="text" name="addressType" th:field="*{cusDetails.addressType}" placeholder="road/street/lane" required>
+                <span>*</span>
             </div>
             <label>Number:</label>
             <div>
                 <input type="text" name="door" th:field="*{cusDetails.door}" placeholder="door" required>
+                <span>*</span>
                 <input type="text" name="bell" th:field="*{cusDetails.bell}" placeholder="bell (optional)">
             </div>
         </div>
         <button type="submit">Register</button>
+        <p>* - These fields are required.</p>
     </form>
 </body>
 </html>
