@@ -35,9 +35,13 @@ public class ProfileController {
 
   @PostMapping("/register")
   public String sendRegister(Cus cus, CusDetails cusDetails) {
-    cusService.addCus(cus);
-    cusService.addDetailsToCus(cus.getId(), cusDetails);
-    cusDetailsService.addDetails(cusDetails);
-    return "redirect:/";
+    if (!cusDetailsService.isEmailAlreadyRegistered(cusDetails.getEmail())) {
+      cusService.addCus(cus);
+      cusService.addDetailsToCus(cus.getId(), cusDetails);
+      cusDetailsService.addDetails(cusDetails);
+      return "redirect:/";
+    } else {
+      return "redirect:/register";
+    }
   }
 }
