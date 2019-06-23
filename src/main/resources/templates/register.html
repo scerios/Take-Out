@@ -19,7 +19,11 @@
         </div>
         <label>E-mail:</label>
         <div>
-            <input type="email" name="email" th:field="*{cusDetails.email}" required>(This will be your username!)
+            <input type="email" name="email" th:field="*{cusDetails.email}" required>
+            <p>(This will be your username!)</p>
+            <td>
+                <span th:if="${errorMsg == 'registered'}">This email has been already registered!</span>
+            </td>
         </div>
         <div>
             <label>Post code:</label>

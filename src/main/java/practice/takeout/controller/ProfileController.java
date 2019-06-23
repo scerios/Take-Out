@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
+import practice.takeout.model.ErrorMsg;
 import practice.takeout.service.CusDetailsServiceImpl;
 import practice.takeout.service.CusServiceImpl;
 
@@ -34,14 +36,16 @@ public class ProfileController {
   }
 
   @PostMapping("/register")
-  public String sendRegister(Cus cus, CusDetails cusDetails) {
-    if (!cusDetailsService.isEmailAlreadyRegistered(cusDetails.getEmail())) {
+  public String sendRegister(RedirectAttributes redirectAttributes, Cus cus, CusDetails cusDetails, ErrorMsg errorMsg) {
+    if (cusDetailsService.isEmailAlreadyRegistered(cusDetails.getEmail())) {
+      errorMsg.setErrorMsg("registered");
+      redirectAttributes.addFlashAttribute("errorMsg", errorMsg.getErrorMsg());
+      return "redirect:/register";
+    } else {
       cusService.addCus(cus);
       cusService.addDetailsToCus(cus.getId(), cusDetails);
       cusDetailsService.addDetails(cusDetails);
       return "redirect:/";
-    } else {
-      return "redirect:/register";
     }
   }
 }
