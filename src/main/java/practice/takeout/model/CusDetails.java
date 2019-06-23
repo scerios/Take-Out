@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class CusDetails {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DETAILS_SEQ")
+  @GeneratedValue(strategy = GenerationType.AUTO, generator = "DETAILS_SEQ")
   @Column(name = "details_id")
   private long id;
   private int postCode;
