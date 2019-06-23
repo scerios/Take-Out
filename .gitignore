@@ -27,5 +27,6 @@
 /.nb-gradle/
 HELP.md
 
-### Config file ###
+### Properties ###
 configs/Configuration.properties
+application.properties
