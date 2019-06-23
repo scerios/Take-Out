@@ -29,4 +29,4 @@ HELP.md
 
 ### Properties ###
 configs/Configuration.properties
-application.properties
+.src/main/resources/application.properties
