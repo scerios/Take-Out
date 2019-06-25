@@ -2,11 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Index</title>
 </head>
 <body>
     <h1>Welcome to Burger Town!</h1>
     <h2>Please log in to make orders.</h2>
     <h2>Or <a href="register">register</a> if you haven't got already.</h2>
+    <form th:action="@{/login}" method="get">
+        <label>Username (your email):</label>
+        <div>
+            <input type="email" name="email" th:field="*{cus.email}" autofocus required>
+        </div>
+        <label>Password:</label>
+        <div>
+            <input type="password" name="pwd" th:field="*{cus.pwd}" required>
+        </div>
+        <button type="submit">Log In</button>
+    </form>
 </body>
 </html>
