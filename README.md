@@ -1,5 +1,5 @@
 # Take-Out
-A website for ordering food from a restaurant.
+A website for ordering food from Burger Town.
 
 ## Checkstyle rules about field / method names:
 - password = `pwd`
