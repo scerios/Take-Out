@@ -36,9 +36,8 @@ public class CusServiceImpl implements CusService {
   }
 
   @Override
-  public String getDataFromDbByQuery(String query) {
-    String emailFoundByQuery = "";
-    String pwdFoundByQuery = "";
+  public String[] getDataFromDbByQuery(String query) {
+    String[] dataByQuery = new String[3];
     PreparedStatement ps;
     Connection conn;
     try {
@@ -47,11 +46,12 @@ public class CusServiceImpl implements CusService {
       ps = conn.prepareStatement(query);
       ResultSet rs = ps.executeQuery(query);
       while (rs.next()) {
-        if (query.substring(7, 10).equals("pwd")) {
-          pwdFoundByQuery = rs.getString("pwd");
-        } else {
-          emailFoundByQuery = rs.getString("email");
-        }
+        String id = Integer.toString(rs.getInt("id"));
+        dataByQuery[0] = id;
+        String email = rs.getString("email");
+        dataByQuery[1] = email;
+        String pwd = rs.getString("pwd");
+        dataByQuery[2] = pwd;
       }
       ps.close();
       conn.close();
@@ -63,11 +63,7 @@ public class CusServiceImpl implements CusService {
     } catch (Exception e) {
       throw new RuntimeException("Cannot identify the problem.");
     }
-    if (query.substring(7, 10).equals("pwd")) {
-      return pwdFoundByQuery;
-    } else {
-      return emailFoundByQuery;
-    }
+    return dataByQuery;
   }
 
   @Override
