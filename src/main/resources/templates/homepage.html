@@ -5,6 +5,15 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>Hello</h1>
+    <form th:action="@{/homepage/{id}(id=${cusDetails.id})}" method="get">
+        <div>
+            <table>
+                <tr>
+                    <td>Hello</td>
+                    <td th:text="*{cusDetails.getLastName()}"></td>
+                </tr>
+            </table>
+        </div>
+    </form>
 </body>
 </html>
