@@ -13,6 +13,7 @@ public class Cus {
   private long id;
   private String email;
   private String pwd;
+  private String pin;
 
   @OneToMany(mappedBy = "cus", cascade = CascadeType.ALL)
   private List<CusDetails> cusDetailsList;
@@ -42,6 +43,14 @@ public class Cus {
 
   public void setPwd(String pwd) {
     this.pwd = pwd;
+  }
+
+  public String getPin() {
+    return pin;
+  }
+
+  public void setPin(String pin) {
+    this.pin = pin;
   }
 
   public List<CusDetails> getCusDetailsList() {
