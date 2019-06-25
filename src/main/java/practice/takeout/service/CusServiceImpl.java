@@ -6,7 +6,6 @@ import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
 import practice.takeout.repository.CusRepository;
 import java.sql.*;
-;
 
 @Service
 public class CusServiceImpl implements CusService {
@@ -37,9 +36,9 @@ public class CusServiceImpl implements CusService {
   }
 
   @Override
-  public boolean isEmailAlreadyRegistered(String email) {
+  public String getEmailIfAlreadyRegistered(String email) {
     final String lookForEmail = "SELECT email FROM customers WHERE email = " + "\"" + email + "\"";
-    boolean isRegistered = false;
+    String emailFoundByQuery = "";
     PreparedStatement ps;
     Connection conn;
     try {
@@ -48,16 +47,17 @@ public class CusServiceImpl implements CusService {
       ps = conn.prepareStatement(lookForEmail);
       ResultSet rs = ps.executeQuery(lookForEmail);
       while (rs.next()) {
-        String result = rs.getString("email");
-        if (result.equals(email)) {
-          isRegistered = true;
-        }
+        emailFoundByQuery = rs.getString("email");
       }
       ps.close();
       conn.close();
+    } catch (ClassNotFoundException CNFe) {
+      throw new RuntimeException("JDBC Driver cannot be found.");
+    } catch (SQLException SQLe) {
+      throw new RuntimeException("SQL Database cannot be found.");
     } catch (Exception e) {
-      e.printStackTrace();
+      throw new RuntimeException("Cannot identify the problem.");
     }
-    return isRegistered;
+    return emailFoundByQuery;
   }
 }
