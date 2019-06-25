@@ -12,10 +12,12 @@
         <label>Username (your email):</label>
         <div>
             <input type="email" name="email" th:field="*{cus.email}" autofocus required>
+            <p th:if="${wrongEmail == 'wrongEmail'}">This email hasn't been registered!</p>
         </div>
         <label>Password:</label>
         <div>
             <input type="password" name="pwd" th:field="*{cus.pwd}" required>
+            <p th:if="${wrongPwd == 'wrongPwd'}">Password is incorrect!</p>
         </div>
         <button type="submit">Log In</button>
     </form>
