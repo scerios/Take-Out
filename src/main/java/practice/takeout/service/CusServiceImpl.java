@@ -69,4 +69,25 @@ public class CusServiceImpl implements CusService {
       return emailFoundByQuery;
     }
   }
+
+  @Override
+  public String generatePinForReference() {
+    int random = (int)(Math.random() * 8999999 + 1000000);
+    return Integer.toString(random);
+  }
+
+  @Override
+  public void setTempCusPin(long id, String pin) {
+    repository.findById(id).get().setPin(pin);
+  }
+
+  @Override
+  public String getTempCusPin(long id) {
+    return repository.findById(id).get().getPin();
+  }
+
+  @Override
+  public void delTempCusPin(long id) {
+    repository.findById(id).get().setPin(null);
+  }
 }
