@@ -10,9 +10,9 @@
     <form th:action="@{/register}" method="post">
         <label>Name:</label>
         <div>
-            <input type="text" name="firstName" th:field="*{cus.firstName}" placeholder="First name" autofocus required>
+            <input type="text" name="firstName" th:field="*{cusDetails.firstName}" placeholder="First name" autofocus required>
             <span>*</span>
-            <input type="text" name="lastName" th:field="*{cus.lastName}" placeholder="Last name" required>
+            <input type="text" name="lastName" th:field="*{cusDetails.lastName}" placeholder="Last name" required>
             <span>*</span>
         </div>
         <label>Password:</label>
@@ -22,7 +22,7 @@
         </div>
         <label>E-mail:</label>
         <div>
-            <input type="email" name="email" th:field="*{cusDetails.email}" required>
+            <input type="email" name="email" th:field="*{cus.email}" required>
             <span>*</span>
             <p>(This will be your username!)</p>
             <p th:if="${errorMsg == 'registered'}">This email has been already registered!</p>
