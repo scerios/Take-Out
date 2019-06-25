@@ -15,17 +15,17 @@
             <input type="text" name="lastName" th:field="*{cusDetails.lastName}" placeholder="Last name" required>
             <span>*</span>
         </div>
-        <label>Password:</label>
-        <div>
-            <input type="password" name="pwd" th:field="*{cus.pwd}" required>
-            <span>*</span>
-        </div>
         <label>E-mail:</label>
         <div>
             <input type="email" name="email" th:field="*{cus.email}" required>
             <span>*</span>
             <p>(This will be your username!)</p>
             <p th:if="${errorMsg == 'registered'}">This email has been already registered!</p>
+        </div>
+        <label>Password:</label>
+        <div>
+            <input type="password" name="pwd" th:field="*{cus.pwd}" required>
+            <span>*</span>
         </div>
         <div>
             <label>Post code:</label>
