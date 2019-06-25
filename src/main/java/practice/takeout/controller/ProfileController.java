@@ -3,9 +3,7 @@ package practice.takeout.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
@@ -36,12 +34,24 @@ public class ProfileController {
   }
 
   @GetMapping("/login")
-  public String logIn(Cus cus) {
-    final String query = "SELECT pwd FROM customers WHERE email = " + "\"" + cus.getEmail() + "\"" + ";";
-    if (cusService.getDataFromDbByQuery(query).equals(cus.getPwd())) {
-      return "homepage";
+  public String logIn(Cus cus, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+    final String getPwdByEmailQuery = "SELECT pwd FROM customers WHERE email = " + "\"" + cus.getEmail() + "\"" + ";";
+    final String getEmailByEmailQuery = "SELECT email FROM customers WHERE email = " + "\"" + cus.getEmail() + "\"" + ";";
+    if (cusService.getDataFromDbByQuery(getPwdByEmailQuery).equals(cus.getPwd())) {
+      String pin = cusService.generatePinForReference();
+      cusService.setTempCusPin(cus.getId(), pin);
+      redirectAttributes.addAttribute("id", cus.getId());
+      return "redirect:/homepage/{id}";
     } else {
-      return "redirect:/";
+      if (!cusService.getDataFromDbByQuery(getEmailByEmailQuery).equals(cus.getEmail())) {
+        errorMsg.setWrongEmail("wrongEmail");
+        redirectAttributes.addFlashAttribute("wrongEmail", errorMsg.getWrongEmail());
+        return "redirect:/";
+      } else {
+        errorMsg.setWrongPwd("wrongPwd");
+        redirectAttributes.addFlashAttribute("wrongPwd", errorMsg.getWrongPwd());
+        return "redirect:/";
+      }
     }
   }
 
@@ -54,8 +64,8 @@ public class ProfileController {
   public String sendRegister(RedirectAttributes redirectAttributes, Cus cus, CusDetails cusDetails, ErrorMsg errorMsg) {
     final String query = "SELECT email FROM customers WHERE email = " + "\"" + cus.getEmail() + "\"" + ";";
     if (cusService.getDataFromDbByQuery(query).equals(cus.getEmail())) {
-      errorMsg.setErrorMsg("registered");
-      redirectAttributes.addFlashAttribute("errorMsg", errorMsg.getErrorMsg());
+      errorMsg.setAlreadyRegistered("alreadyRegistered");
+      redirectAttributes.addFlashAttribute("alreadyRegistered", errorMsg.getAlreadyRegistered());
       return "redirect:/register";
     } else {
       cusService.addCus(cus);
