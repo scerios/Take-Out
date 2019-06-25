@@ -12,3 +12,4 @@ A website for ordering food from Burger Town.
 - options = `opt`
 - customer = `cus`
 - status = `stat`
+- temporary = `temp`
