@@ -37,7 +37,7 @@ public class ProfileController {
 
   @PostMapping("/register")
   public String sendRegister(RedirectAttributes redirectAttributes, Cus cus, CusDetails cusDetails, ErrorMsg errorMsg) {
-    if (cusService.isEmailAlreadyRegistered(cus.getEmail())) {
+    if (cusService.getEmailIfAlreadyRegistered(cus.getEmail()).equals(cus.getEmail())) {
       errorMsg.setErrorMsg("registered");
       redirectAttributes.addFlashAttribute("errorMsg", errorMsg.getErrorMsg());
       return "redirect:/register";
