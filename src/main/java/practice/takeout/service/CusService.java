@@ -7,5 +7,5 @@ public interface CusService {
   void addCus(Cus cus);
   Cus getCusById(long id);
   void addDetailsToCus(long id, CusDetails cusDetails);
-  String getEmailIfAlreadyRegistered(String email);
+  String getDataFromDbByQuery(String query);
 }

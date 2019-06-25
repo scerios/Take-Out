@@ -36,28 +36,37 @@ public class CusServiceImpl implements CusService {
   }
 
   @Override
-  public String getEmailIfAlreadyRegistered(String email) {
-    final String lookForEmail = "SELECT email FROM customers WHERE email = " + "\"" + email + "\"";
+  public String getDataFromDbByQuery(String query) {
     String emailFoundByQuery = "";
+    String pwdFoundByQuery = "";
     PreparedStatement ps;
     Connection conn;
     try {
       Class.forName(JDBC_DRIVER);
       conn = DriverManager.getConnection(DB_URL, USERNAME, PWD);
-      ps = conn.prepareStatement(lookForEmail);
-      ResultSet rs = ps.executeQuery(lookForEmail);
+      ps = conn.prepareStatement(query);
+      ResultSet rs = ps.executeQuery(query);
       while (rs.next()) {
-        emailFoundByQuery = rs.getString("email");
+        if (query.substring(7, 10).equals("pwd")) {
+          pwdFoundByQuery = rs.getString("pwd");
+        } else {
+          emailFoundByQuery = rs.getString("email");
+        }
       }
       ps.close();
       conn.close();
     } catch (ClassNotFoundException CNFe) {
       throw new RuntimeException("JDBC Driver cannot be found.");
     } catch (SQLException SQLe) {
+      SQLe.printStackTrace();
       throw new RuntimeException("SQL Database cannot be found.");
     } catch (Exception e) {
       throw new RuntimeException("Cannot identify the problem.");
     }
-    return emailFoundByQuery;
+    if (query.substring(7, 10).equals("pwd")) {
+      return pwdFoundByQuery;
+    } else {
+      return emailFoundByQuery;
+    }
   }
 }
