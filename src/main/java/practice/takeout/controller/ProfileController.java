@@ -58,6 +58,12 @@ public class ProfileController {
     }
   }
 
+  @GetMapping("/homepage/{id}")
+  public String getHomePage(@PathVariable long id, Model model) {
+    model.addAttribute("cusDetails", cusDetailsService.getDetailsById(id));
+    return "homepage";
+  }
+
   @GetMapping("/register")
   public String getRegisterPage() {
     return "register";
