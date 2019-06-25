@@ -20,7 +20,7 @@
             <input type="email" name="email" th:field="*{cus.email}" required>
             <span>*</span>
             <p>(This will be your username!)</p>
-            <p th:if="${errorMsg == 'registered'}">This email has been already registered!</p>
+            <p th:if="${alreadyRegistered == 'alreadyRegistered'}">This email has been already registered!</p>
         </div>
         <label>Password:</label>
         <div>
