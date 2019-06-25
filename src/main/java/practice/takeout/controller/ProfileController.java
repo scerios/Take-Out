@@ -35,15 +35,18 @@ public class ProfileController {
 
   @GetMapping("/login")
   public String logIn(Cus cus, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
-    final String getPwdByEmailQuery = "SELECT pwd FROM customers WHERE email = " + "\"" + cus.getEmail() + "\"" + ";";
-    final String getEmailByEmailQuery = "SELECT email FROM customers WHERE email = " + "\"" + cus.getEmail() + "\"" + ";";
-    if (cusService.getDataFromDbByQuery(getPwdByEmailQuery).equals(cus.getPwd())) {
+    final String query = "SELECT * FROM customers WHERE email = " + "\"" + cus.getEmail() + "\"" + ";";
+    String[] dataByQuery = cusService.getDataFromDbByQuery(query);
+    long id = Long.parseLong(dataByQuery[0]);
+    String email = dataByQuery[1];
+    String pwd = dataByQuery[2];
+    if (pwd.equals(cus.getPwd())) {
       String pin = cusService.generatePinForReference();
-      cusService.setTempCusPin(cus.getId(), pin);
-      redirectAttributes.addAttribute("id", cus.getId());
+      cusService.setTempCusPin(id, pin);
+      redirectAttributes.addAttribute("id", id);
       return "redirect:/homepage/{id}";
     } else {
-      if (!cusService.getDataFromDbByQuery(getEmailByEmailQuery).equals(cus.getEmail())) {
+      if (!email.equals(cus.getEmail())) {
         errorMsg.setWrongEmail("wrongEmail");
         redirectAttributes.addFlashAttribute("wrongEmail", errorMsg.getWrongEmail());
         return "redirect:/";
