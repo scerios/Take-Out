@@ -41,8 +41,6 @@ public class ProfileController {
     String email = dataByQuery[1];
     String pwd = dataByQuery[2];
     if (pwd.equals(cus.getPwd())) {
-      String pin = cusService.generatePinForReference();
-      cusService.setTempCusPin(id, pin);
       redirectAttributes.addAttribute("id", id);
       return "redirect:/homepage/{id}";
     } else {
