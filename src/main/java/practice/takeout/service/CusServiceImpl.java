@@ -20,6 +20,7 @@ public class CusServiceImpl implements CusService {
   CusServiceImpl(CusRepository repository) {
     this.repository = repository;
   }
+
   @Override
   public void addCus(Cus cus) {
     repository.save(cus);
@@ -68,7 +69,7 @@ public class CusServiceImpl implements CusService {
 
   @Override
   public String generatePinForReference() {
-    int random = (int)(Math.random() * 8999999 + 1000000);
+    int random = (int) (Math.random() * 8999999 + 1000000);
     return Integer.toString(random);
   }
 
