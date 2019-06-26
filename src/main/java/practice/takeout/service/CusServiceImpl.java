@@ -76,6 +76,7 @@ public class CusServiceImpl implements CusService {
   @Override
   public void setTempCusPin(long id, String pin) {
     repository.findById(id).get().setPin(pin);
+    repository.save(repository.findById(id).get());
   }
 
   @Override
@@ -86,5 +87,6 @@ public class CusServiceImpl implements CusService {
   @Override
   public void delTempCusPin(long id) {
     repository.findById(id).get().setPin(null);
+    repository.save(repository.findById(id).get());
   }
 }
