@@ -13,6 +13,7 @@ import practice.takeout.service.CusServiceImpl;
 
 @Controller
 public class ProfileController {
+  private final String query = "SELECT * FROM customers WHERE email = " + "\"";
   private CusServiceImpl cusService;
   private CusDetailsServiceImpl cusDetailsService;
 
@@ -35,8 +36,7 @@ public class ProfileController {
 
   @GetMapping("/login")
   public String logIn(Cus cus, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
-    final String query = "SELECT * FROM customers WHERE email = " + "\"" + cus.getEmail() + "\"" + ";";
-    String[] dataByQuery = cusService.getDataFromDbByQuery(query);
+    String[] dataByQuery = cusService.getDataFromDbByQuery(query + cus.getEmail() + "\"");
     long id = Long.parseLong(dataByQuery[0]);
     String email = dataByQuery[1];
     String pwd = dataByQuery[2];
@@ -71,8 +71,9 @@ public class ProfileController {
 
   @PostMapping("/register")
   public String sendRegister(RedirectAttributes redirectAttributes, Cus cus, CusDetails cusDetails, ErrorMsg errorMsg) {
-    final String query = "SELECT email FROM customers WHERE email = " + "\"" + cus.getEmail() + "\"" + ";";
-    if (cusService.getDataFromDbByQuery(query).equals(cus.getEmail())) {
+    String[] dataByQuery = cusService.getDataFromDbByQuery(query + cus.getEmail() + "\"");
+    String email = dataByQuery[1];
+    if (cus.getEmail().equals(email)) {
       errorMsg.setAlreadyRegistered("alreadyRegistered");
       redirectAttributes.addFlashAttribute("alreadyRegistered", errorMsg.getAlreadyRegistered());
       return "redirect:/register";
