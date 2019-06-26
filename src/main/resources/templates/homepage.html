@@ -5,15 +5,11 @@
     <title>Home</title>
 </head>
 <body>
-    <form th:action="@{/homepage/{id}(id=${cusDetails.id})}" method="get">
-        <div>
-            <table>
-                <tr>
-                    <td>Hello</td>
-                    <td th:text="*{cusDetails.getLastName()}"></td>
-                </tr>
-            </table>
-        </div>
-    </form>
+<form th:action="@{/homepage}" method="get">
+    <p th:text="*{cusDetails.getLastName()}"></p>
+</form>
+<form th:action="@{/endSession}" method="post">
+    <input type="submit" value="End Session">
+</form>
 </body>
 </html>
