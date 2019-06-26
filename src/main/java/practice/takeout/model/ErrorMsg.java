@@ -4,6 +4,7 @@ public class ErrorMsg {
   private String alreadyRegistered;
   private String wrongEmail;
   private String wrongPwd;
+  private String access;
 
   public String getAlreadyRegistered() {
     return alreadyRegistered;
@@ -27,5 +28,13 @@ public class ErrorMsg {
 
   public void setWrongPwd(String wrongPwd) {
     this.wrongPwd = wrongPwd;
+  }
+
+  public String getAccess() {
+    return access;
+  }
+
+  public void setAccess(String access) {
+    this.access = access;
   }
 }
