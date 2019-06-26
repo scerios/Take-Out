@@ -10,6 +10,8 @@ import practice.takeout.model.Cus;
 import practice.takeout.model.ErrorMsg;
 import practice.takeout.service.CusDetailsServiceImpl;
 import practice.takeout.service.CusServiceImpl;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class ProfileController {
@@ -35,16 +37,16 @@ public class ProfileController {
   }
 
   @GetMapping("/login")
-  public String logIn(Cus cus, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+  public String logIn(Cus cus, ErrorMsg errorMsg, RedirectAttributes redirectAttributes, HttpServletRequest request) {
     String[] dataByQuery = cusService.getDataFromDbByQuery(query + cus.getEmail() + "\"");
-    long id = Long.parseLong(dataByQuery[0]);
-    String email = dataByQuery[1];
-    String pwd = dataByQuery[2];
-    if (pwd.equals(cus.getPwd())) {
-      redirectAttributes.addAttribute("id", id);
-      return "redirect:/homepage/{id}";
+    long extractedId = Long.parseLong(dataByQuery[0]);
+    String extractedEmail = dataByQuery[1];
+    String extractedPwd = dataByQuery[2];
+    if (extractedPwd.equals(cus.getPwd())) {
+      request.getSession().setAttribute("CUS_SESSION_ID", extractedId);
+      return "redirect:/homepage";
     } else {
-      if (!email.equals(cus.getEmail())) {
+      if (!extractedEmail.equals(cus.getEmail())) {
         errorMsg.setWrongEmail("wrongEmail");
         redirectAttributes.addFlashAttribute("wrongEmail", errorMsg.getWrongEmail());
         return "redirect:/";
@@ -56,10 +58,18 @@ public class ProfileController {
     }
   }
 
-  @GetMapping("/homepage/{id}")
-  public String getHomePage(@PathVariable long id, Model model) {
+  @GetMapping("/homepage")
+  public String getHomePage(Model model, HttpSession session) {
+    long id = (long) session.getAttribute("CUS_SESSION_ID");
     model.addAttribute("cusDetails", cusDetailsService.getDetailsById(id));
     return "homepage";
+  }
+
+
+  @PostMapping("/endSession")
+  public String endSession(HttpServletRequest request) {
+    request.getSession().invalidate();
+    return "redirect:/";
   }
 
   @GetMapping("/register")
