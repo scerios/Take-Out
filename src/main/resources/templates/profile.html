@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <form th:action="@{/profile}" method="get">
+        <h1>Here you can change your details, add new delivery addresses or check your orders!</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>PostCode</th>
+                <th>Address Name</th>
+                <th>Type</th>
+                <th>Door</th>
+                <th>Bell</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cusDetails : ${details}">
+                <td><span th:text="${cusDetails.postCode}">PostCode</span></td>
+                <td><span th:text="${cusDetails.addressName}">Address Name</span></td>
+                <td><span th:text="${cusDetails.addressType}">Type</span></td>
+                <td><span th:text="${cusDetails.door}">Door</span></td>
+                <td><span th:text="${cusDetails.bell}">Bell</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>
