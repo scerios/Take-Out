@@ -30,11 +30,6 @@ public class ProfileController {
     model.addAttribute("cusDetails", new CusDetails());
   }
 
-  @GetMapping("/")
-  public String getIndexPage() {
-    return "index";
-  }
-
   @GetMapping("/login")
   public String logIn(Cus cus, ErrorMsg errorMsg, RedirectAttributes redirectAttributes, HttpServletRequest request) {
     String[] dataByQuery = cusService.getDataFromDbByQuery(cus.getEmail());
@@ -63,11 +58,6 @@ public class ProfileController {
     cusService.setIsLoggedIn(cusService.getCusSessionId(session), (byte) 0);
     request.getSession().invalidate();
     return "redirect:/";
-  }
-
-  @GetMapping("/register")
-  public String getRegisterPage() {
-    return "register";
   }
 
   @PostMapping("/register")
