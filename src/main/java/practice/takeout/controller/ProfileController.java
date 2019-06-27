@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class ProfileController {
-  private final String query = "SELECT * FROM customers WHERE email = " + "\"";
   private CusServiceImpl cusService;
   private CusDetailsServiceImpl cusDetailsService;
 
@@ -38,25 +37,22 @@ public class ProfileController {
 
   @GetMapping("/login")
   public String logIn(Cus cus, ErrorMsg errorMsg, RedirectAttributes redirectAttributes, HttpServletRequest request) {
-    String[] dataByQuery = cusService.getDataFromDbByQuery(query + cus.getEmail() + "\"");
+    String[] dataByQuery = cusService.getDataFromDbByQuery(cus.getEmail());
+    if (dataByQuery[1] == null) {
+      cusService.setWrongEmail(errorMsg, redirectAttributes);
+      return "redirect:/";
+    }
     long extractedId = Long.parseLong(dataByQuery[0]);
-    String extractedEmail = dataByQuery[1];
     String extractedPwd = dataByQuery[2];
     if (extractedPwd.equals(cus.getPwd())) {
       request.getSession().setAttribute("CUS_SESSION_ID", extractedId);
       return "redirect:/homepage";
     } else {
-      if (!extractedEmail.equals(cus.getEmail())) {
-        errorMsg.setWrongEmail("wrongEmail");
-        redirectAttributes.addFlashAttribute("wrongEmail", errorMsg.getWrongEmail());
-        return "redirect:/";
-      } else {
-        errorMsg.setWrongPwd("wrongPwd");
-        redirectAttributes.addFlashAttribute("wrongPwd", errorMsg.getWrongPwd());
-        return "redirect:/";
-      }
+      cusService.setWrongPwd(errorMsg, redirectAttributes);
+      return "redirect:/";
     }
   }
+
 
   @GetMapping("/homepage")
   public String getHomePage(Model model, HttpSession session, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
@@ -83,11 +79,10 @@ public class ProfileController {
 
   @PostMapping("/register")
   public String sendRegister(RedirectAttributes redirectAttributes, Cus cus, CusDetails cusDetails, ErrorMsg errorMsg) {
-    String[] dataByQuery = cusService.getDataFromDbByQuery(query + cus.getEmail() + "\"");
-    String email = dataByQuery[1];
-    if (cus.getEmail().equals(email)) {
-      errorMsg.setAlreadyRegistered("alreadyRegistered");
-      redirectAttributes.addFlashAttribute("alreadyRegistered", errorMsg.getAlreadyRegistered());
+    String[] dataByQuery = cusService.getDataFromDbByQuery(cus.getEmail());
+    String extractedEmail = dataByQuery[1];
+    if (cus.getEmail().equals(extractedEmail)) {
+      cusService.setAlreadyRegistered(errorMsg, redirectAttributes);
       return "redirect:/register";
     } else {
       cusService.addCus(cus);
