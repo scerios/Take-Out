@@ -2,6 +2,7 @@ package practice.takeout.model;
 
 public class ErrorMsg {
   private String alreadyRegistered;
+  private String alreadyLoggedIn;
   private String wrongEmail;
   private String wrongPwd;
   private String access;
@@ -12,6 +13,14 @@ public class ErrorMsg {
 
   public void setAlreadyRegistered(String alreadyRegistered) {
     this.alreadyRegistered = alreadyRegistered;
+  }
+
+  public String getAlreadyLoggedIn() {
+    return alreadyLoggedIn;
+  }
+
+  public void setAlreadyLoggedIn(String alreadyLoggedIn) {
+    this.alreadyLoggedIn = alreadyLoggedIn;
   }
 
   public String getWrongEmail() {
