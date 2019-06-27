@@ -40,7 +40,8 @@ public class CusServiceImpl implements CusService {
   }
 
   @Override
-  public String[] getDataFromDbByQuery(String query) {
+  public String[] getDataFromDbByQuery(String email) {
+    final String query = "SELECT * FROM customers WHERE email = " + "\"" + email + "\"";
     String[] dataByQuery = new String[3];
     PreparedStatement ps;
     Connection conn;
@@ -50,12 +51,12 @@ public class CusServiceImpl implements CusService {
       ps = conn.prepareStatement(query);
       ResultSet rs = ps.executeQuery(query);
       while (rs.next()) {
-        String id = Integer.toString(rs.getInt("id"));
-        dataByQuery[0] = id;
-        String email = rs.getString("email");
-        dataByQuery[1] = email;
-        String pwd = rs.getString("pwd");
-        dataByQuery[2] = pwd;
+        String extractedId = Integer.toString(rs.getInt("id"));
+        dataByQuery[0] = extractedId;
+        String extractedEmail = rs.getString("email");
+        dataByQuery[1] = extractedEmail;
+        String extractedPwd = rs.getString("pwd");
+        dataByQuery[2] = extractedPwd;
       }
       ps.close();
       conn.close();
@@ -68,6 +69,24 @@ public class CusServiceImpl implements CusService {
       throw new RuntimeException("Cannot identify the problem.");
     }
     return dataByQuery;
+  }
+
+  @Override
+  public void setAlreadyRegistered(ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+    errorMsg.setAlreadyRegistered("alreadyRegistered");
+    redirectAttributes.addFlashAttribute("alreadyRegistered", errorMsg.getAlreadyRegistered());
+  }
+
+  @Override
+  public void setWrongEmail(ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+    errorMsg.setWrongEmail("wrongEmail");
+    redirectAttributes.addFlashAttribute("wrongEmail", errorMsg.getWrongEmail());
+  }
+
+  @Override
+  public void setWrongPwd(ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+    errorMsg.setWrongPwd("wrongPwd");
+    redirectAttributes.addFlashAttribute("wrongPwd", errorMsg.getWrongPwd());
   }
 
   @Override

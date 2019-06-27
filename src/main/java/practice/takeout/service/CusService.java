@@ -10,7 +10,10 @@ public interface CusService {
   void addCus(Cus cus);
   Cus getCusById(long id);
   void addDetailsToCus(long id, CusDetails cusDetails);
-  String[] getDataFromDbByQuery(String query);
+  String[] getDataFromDbByQuery(String email);
+  void setAlreadyRegistered(ErrorMsg errorMsg, RedirectAttributes redirectAttributes);
+  void setWrongEmail(ErrorMsg errorMsg, RedirectAttributes redirectAttributes);
+  void setWrongPwd(ErrorMsg errorMsg, RedirectAttributes redirectAttributes);
   boolean isCusHasAccess(HttpSession session);
   void accessDenied(ErrorMsg errorMsg, RedirectAttributes redirectAttributes);
   long getCusSessionId(HttpSession session);
