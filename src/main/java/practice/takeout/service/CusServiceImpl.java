@@ -27,6 +27,8 @@ public class CusServiceImpl implements CusService {
   @Override
   public void addCus(Cus cus) {
     repository.save(cus);
+    repository.findById(cus.getId()).get().setIsLoggedIn((byte) 0);
+    repository.save(repository.findById(cus.getId()).get());
   }
 
   @Override
@@ -37,6 +39,17 @@ public class CusServiceImpl implements CusService {
   @Override
   public void addDetailsToCus(long id, CusDetails cusDetails) {
     repository.findById(id).get().addCusDetails(cusDetails);
+  }
+
+  @Override
+  public byte getIsLoggedIn(long id) {
+    return repository.findById(id).get().getIsLoggedIn();
+  }
+
+  @Override
+  public void setIsLoggedIn(long id, byte isLoggedIn) {
+    repository.findById(id).get().setIsLoggedIn(isLoggedIn);
+    repository.save(repository.findById(id).get());
   }
 
   @Override
@@ -75,6 +88,12 @@ public class CusServiceImpl implements CusService {
   public void setAlreadyRegistered(ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
     errorMsg.setAlreadyRegistered("alreadyRegistered");
     redirectAttributes.addFlashAttribute("alreadyRegistered", errorMsg.getAlreadyRegistered());
+  }
+
+  @Override
+  public void setAlreadyLoggedIn(ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+    errorMsg.setAlreadyLoggedIn("alreadyLoggedIn");
+    redirectAttributes.addFlashAttribute("alreadyLoggedIn", errorMsg.getAlreadyLoggedIn());
   }
 
   @Override
