@@ -15,6 +15,7 @@ public class Cus {
   private String lastName;
   private String email;
   private String pwd;
+  private byte isLoggedIn;
 
   @OneToMany(mappedBy = "cus", cascade = CascadeType.ALL)
   private List<CusDetails> cusDetailsList;
@@ -60,6 +61,14 @@ public class Cus {
 
   public void setPwd(String pwd) {
     this.pwd = pwd;
+  }
+
+  public byte getIsLoggedIn() {
+    return isLoggedIn;
+  }
+
+  public void setIsLoggedIn(byte isLoggedIn) {
+    this.isLoggedIn = isLoggedIn;
   }
 
   public List<CusDetails> getCusDetailsList() {
