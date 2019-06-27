@@ -59,10 +59,14 @@ public class ProfileController {
   }
 
   @GetMapping("/homepage")
-  public String getHomePage(Model model, HttpSession session) {
-    long id = (long) session.getAttribute("CUS_SESSION_ID");
-    model.addAttribute("cusDetails", cusDetailsService.getDetailsById(id));
-    return "homepage";
+  public String getHomePage(Model model, HttpSession session, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+    if (cusService.isCusHasAccess(session)) {
+      model.addAttribute("cusDetails", cusDetailsService.getDetailsById(cusService.getCusSessionId(session)));
+      return "homepage";
+    } else {
+      cusService.accessDenied(errorMsg, redirectAttributes);
+      return "redirect:/";
+    }
   }
 
 
