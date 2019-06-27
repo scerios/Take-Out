@@ -53,18 +53,17 @@ public class ProfileController {
     }
   }
 
-
   @GetMapping("/homepage")
   public String getHomePage(Model model, HttpSession session, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session)) {
-      model.addAttribute("cusDetails", cusDetailsService.getDetailsById(cusService.getCusSessionId(session)));
+//      model.addAttribute("cusDetails", cusDetailsService.getDetailsById(cusService.getCusSessionId(session)));
+      model.addAttribute("cusDetails", cusService.getCusById(cusService.getCusSessionId(session)));
       return "homepage";
     } else {
       cusService.accessDenied(errorMsg, redirectAttributes);
       return "redirect:/";
     }
   }
-
 
   @PostMapping("/endSession")
   public String endSession(HttpServletRequest request) {

@@ -10,12 +10,10 @@ public class CusDetails {
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "DETAILS_SEQ")
   @Column(name = "details_id")
   private long id;
-  private String firstName;
-  private String lastName;
   private int postCode;
   private String addressName;
   private String addressType;
-  private String door;
+  private int door;
   private String bell;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -31,22 +29,6 @@ public class CusDetails {
 
   public void setId(long id) {
     this.id = id;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
   }
 
   public int getPostCode() {
@@ -73,11 +55,11 @@ public class CusDetails {
     this.addressType = addressType;
   }
 
-  public String getDoor() {
+  public int getDoor() {
     return door;
   }
 
-  public void setDoor(String door) {
+  public void setDoor(int door) {
     this.door = door;
   }
 

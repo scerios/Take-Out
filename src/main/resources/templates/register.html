@@ -10,9 +10,9 @@
     <form th:action="@{/register}" method="post">
         <label>Name:</label>
         <div>
-            <input type="text" name="firstName" th:field="*{cusDetails.firstName}" placeholder="First name" autofocus required>
+            <input type="text" name="firstName" th:field="*{cus.firstName}" placeholder="First name" autofocus required>
             <span>*</span>
-            <input type="text" name="lastName" th:field="*{cusDetails.lastName}" placeholder="Last name" required>
+            <input type="text" name="lastName" th:field="*{cus.lastName}" placeholder="Last name" required>
             <span>*</span>
         </div>
         <label>E-mail:</label>
@@ -42,7 +42,7 @@
             </div>
             <label>Number:</label>
             <div>
-                <input type="text" name="door" th:field="*{cusDetails.door}" placeholder="door" required>
+                <input type="number" name="door" th:field="*{cusDetails.door}" min="1" max="500" placeholder="number" required>
                 <span>*</span>
                 <input type="text" name="bell" th:field="*{cusDetails.bell}" placeholder="bell (optional)">
             </div>
