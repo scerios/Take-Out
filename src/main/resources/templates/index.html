@@ -10,6 +10,8 @@
     <h2>Or <a href="register">register</a> if you haven't got already.</h2>
     <form th:action="@{/login}" method="get">
         <p th:if="${access == 'accessDenied'}">You must be logged in to access that page!</p>
+        <p th:if="${alreadyLoggedIn == 'alreadyLoggedIn'}">
+            You are already logged in! You cannot be logged in from 2 different computer at the same time!</p>
         <label>Username (your email):</label>
         <div>
             <input type="email" name="email" th:field="*{cus.email}" autofocus required>
