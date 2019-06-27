@@ -45,28 +45,22 @@ public class ProfileController {
     long extractedId = Long.parseLong(dataByQuery[0]);
     String extractedPwd = dataByQuery[2];
     if (extractedPwd.equals(cus.getPwd())) {
-      request.getSession().setAttribute("CUS_SESSION_ID", extractedId);
-      return "redirect:/homepage";
-    } else {
-      cusService.setWrongPwd(errorMsg, redirectAttributes);
+      if (cusService.getIsLoggedIn(extractedId) == 0) {
+        request.getSession().setAttribute("CUS_SESSION_ID", extractedId);
+        request.getSession().setMaxInactiveInterval(600);
+        cusService.setIsLoggedIn(extractedId, (byte) 1);
+        return "redirect:/homepage";
+      }
+      cusService.setAlreadyLoggedIn(errorMsg, redirectAttributes);
       return "redirect:/";
     }
-  }
-
-  @GetMapping("/homepage")
-  public String getHomePage(Model model, HttpSession session, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
-    if (cusService.isCusHasAccess(session)) {
-//      model.addAttribute("cusDetails", cusDetailsService.getDetailsById(cusService.getCusSessionId(session)));
-      model.addAttribute("cusDetails", cusService.getCusById(cusService.getCusSessionId(session)));
-      return "homepage";
-    } else {
-      cusService.accessDenied(errorMsg, redirectAttributes);
-      return "redirect:/";
-    }
+    cusService.setWrongPwd(errorMsg, redirectAttributes);
+    return "redirect:/";
   }
 
   @PostMapping("/endSession")
-  public String endSession(HttpServletRequest request) {
+  public String endSession(HttpServletRequest request, HttpSession session) {
+    cusService.setIsLoggedIn(cusService.getCusSessionId(session), (byte) 0);
     request.getSession().invalidate();
     return "redirect:/";
   }
