@@ -5,4 +5,5 @@ import practice.takeout.model.CusDetails;
 public interface CusDetailsService {
   void addDetails(CusDetails cusDetails);
   CusDetails getDetailsById(long id);
+  Iterable<CusDetails> findAllById(long id);
 }

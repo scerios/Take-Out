@@ -22,4 +22,9 @@ public class CusDetailsServiceImpl implements CusDetailsService {
     return repository.findById(id).get();
   }
 
+  @Override
+  public Iterable<CusDetails> findAllById(long id) {
+    return repository.findAllById(id);
+  }
+
 }
