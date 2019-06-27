@@ -1,10 +1,13 @@
 package practice.takeout.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.takeout.dataProvider.SystemDefaults;
 import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
+import practice.takeout.model.ErrorMsg;
 import practice.takeout.repository.CusRepository;
+import javax.servlet.http.HttpSession;
 import java.sql.*;
 
 @Service
@@ -65,5 +68,25 @@ public class CusServiceImpl implements CusService {
       throw new RuntimeException("Cannot identify the problem.");
     }
     return dataByQuery;
+  }
+
+  @Override
+  public boolean isCusHasAccess(HttpSession session) {
+    if (session.getAttribute("CUS_SESSION_ID") == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  @Override
+  public void accessDenied(ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+    errorMsg.setAccess("accessDenied");
+    redirectAttributes.addFlashAttribute("access", errorMsg.getAccess());
+  }
+
+  @Override
+  public long getCusSessionId(HttpSession session) {
+    return (long) session.getAttribute("CUS_SESSION_ID");
   }
 }
