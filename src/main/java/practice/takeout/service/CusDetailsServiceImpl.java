@@ -18,6 +18,11 @@ public class CusDetailsServiceImpl implements CusDetailsService {
   }
 
   @Override
+  public void deleteDetailsById(long id) {
+    repository.deleteById(id);
+  }
+
+  @Override
   public CusDetails getDetailsById(long id) {
     return repository.findById(id).get();
   }
