@@ -19,15 +19,17 @@
                 <th>Type</th>
                 <th>Door</th>
                 <th>Bell</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="cusDetails : ${details}">
-                <td><span th:text="${cusDetails.postCode}"></span></td>
-                <td><span th:text="${cusDetails.addressName}"></span></td>
-                <td><span th:text="${cusDetails.addressType}"></span></td>
-                <td><span th:text="${cusDetails.door}"></span></td>
-                <td><span th:text="${cusDetails.bell}"></span></td>
+            <tr th:each="cusDetails : ${details}" th:object="${cusDetails}">
+                <td><span th:text="*{getPostCode()}"></span></td>
+                <td><span th:text="*{getAddressName()}"></span></td>
+                <td><span th:text="*{getAddressType()}"></span></td>
+                <td><span th:text="*{getDoor()}"></span></td>
+                <td><span th:text="*{getBell()}"></span></td>
+                <td><a th:href="@{'/confirmDelete/' + ${cusDetails.id}}">Delete</a></td>
             </tr>
             </tbody>
         </table>
