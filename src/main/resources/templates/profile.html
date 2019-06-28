@@ -5,6 +5,10 @@
     <title>Profile</title>
 </head>
 <body>
+    <div>
+        <a href="homepage">Home</a>
+        <a href="profile">My profile</a>
+    </div>
     <form th:action="@{/profile}" method="get">
         <h1>Here you can change your details, add new delivery addresses or check your orders!</h1>
         <table>
@@ -27,6 +31,9 @@
             </tr>
             </tbody>
         </table>
+        <div>
+            <a href="addNewAddress">Add new address</a>
+        </div>
     </form>
 </body>
 </html>

@@ -27,6 +27,7 @@ public class IndexController {
   @ModelAttribute
   public void getPage(Model model) {
     model.addAttribute("cus", new Cus());
+    model.addAttribute("cusDetails", new CusDetails());
   }
 
   @GetMapping("/")
@@ -37,6 +38,16 @@ public class IndexController {
   @GetMapping("/register")
   public String getRegisterPage() {
     return "register";
+  }
+
+  @GetMapping("/addNewAddress")
+  public String getAddNewAddressPage(HttpSession session, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+    if (cusService.isCusHasAccess(session)) {
+      return "addNewAddress";
+    } else {
+      cusService.accessDenied(errorMsg, redirectAttributes);
+      return "redirect:/";
+    }
   }
 
   @GetMapping("/homepage")
@@ -53,7 +64,7 @@ public class IndexController {
   @GetMapping("/profile")
   public String getProfilePage(Model model, HttpSession session, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session)) {
-      model.addAttribute("details", cusDetailsService.findAllById(cusService.getCusSessionId(session)));
+      model.addAttribute("details", cusDetailsService.findAllByCus_Id(cusService.getCusSessionId(session)));
       return "profile";
     } else {
       cusService.accessDenied(errorMsg, redirectAttributes);

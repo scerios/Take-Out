@@ -73,4 +73,17 @@ public class ProfileController {
       return "redirect:/";
     }
   }
+
+  @PostMapping("/addNewAddress")
+  public String addNewAddress(CusDetails cusDetails, ErrorMsg errorMsg, RedirectAttributes redirectAttributes,
+                              HttpSession session) {
+    if (cusService.isCusHasAccess(session)) {
+      cusService.addDetailsToCus(cusService.getCusSessionId(session), cusDetails);
+      cusDetailsService.addDetails(cusDetails);
+      return "redirect:/profile";
+    } else {
+      cusService.accessDenied(errorMsg, redirectAttributes);
+      return "redirect:/";
+    }
+  }
 }
