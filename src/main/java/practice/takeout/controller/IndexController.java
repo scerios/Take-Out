@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.takeout.model.Cus;
 import practice.takeout.model.CusDetails;
@@ -62,10 +63,23 @@ public class IndexController {
   }
 
   @GetMapping("/profile")
-  public String getProfilePage(Model model, HttpSession session, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+  public String getProfilePage(Model model, HttpSession session, ErrorMsg errorMsg,
+                               RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session)) {
       model.addAttribute("details", cusDetailsService.findAllByCus_Id(cusService.getCusSessionId(session)));
       return "profile";
+    } else {
+      cusService.accessDenied(errorMsg, redirectAttributes);
+      return "redirect:/";
+    }
+  }
+
+  @GetMapping("/confirmDelete/{id}")
+  public String getConfirmDeletePage(@PathVariable long id, Model model, HttpSession session, ErrorMsg errorMsg,
+                                     RedirectAttributes redirectAttributes) {
+    if (cusService.isCusHasAccess(session)) {
+      model.addAttribute("cusDetails", cusDetailsService.getDetailsById(id));
+      return "confirmDelete";
     } else {
       cusService.accessDenied(errorMsg, redirectAttributes);
       return "redirect:/";
