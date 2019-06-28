@@ -6,5 +6,5 @@ import practice.takeout.model.CusDetails;
 
 @Repository
 public interface CusDetailsRepository extends CrudRepository<CusDetails, Long> {
-  Iterable<CusDetails> findAllById(long id);
+  Iterable<CusDetails> findAllByCus_Id(long id);
 }
