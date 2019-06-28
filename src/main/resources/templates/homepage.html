@@ -5,15 +5,15 @@
     <title>Home</title>
 </head>
 <body>
-<div>
-    <a href="homepage">Home</a>
-    <a href="profile">My profile</a>
-</div>
-<form th:action="@{/homepage}" method="get">
-    <h1>Hello <span th:text="*{cus.getLastName()}"></span></h1>
-</form>
-<form th:action="@{/endSession}" method="post">
-    <input type="submit" value="End Session">
-</form>
+    <div>
+        <a href="homepage">Home</a>
+        <a href="profile">My profile</a>
+    </div>
+    <form th:action="@{/homepage}" method="get">
+        <h1>Hello <span th:text="*{cus.getLastName()}"></span></h1>
+    </form>
+    <form th:action="@{/endSession}" method="post">
+        <input type="submit" value="End Session">
+    </form>
 </body>
 </html>
