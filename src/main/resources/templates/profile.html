@@ -29,7 +29,12 @@
                 <td><span th:text="*{getAddressType()}"></span></td>
                 <td><span th:text="*{getDoor()}"></span></td>
                 <td><span th:text="*{getBell()}"></span></td>
-                <td><a th:href="@{'/confirmDelete/' + ${cusDetails.id}}">Delete</a></td>
+                <td>
+                    <form th:action="@{/confirmDelete}" th:method="delete">
+                        <input type="hidden" th:attr="name='id'" th:value="${cusDetails.id}">
+                        <button type="submit">DELETE</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>

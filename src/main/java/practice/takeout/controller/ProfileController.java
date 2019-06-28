@@ -87,8 +87,8 @@ public class ProfileController {
     }
   }
 
-  @DeleteMapping("/confirmDelete/{id}")
-  public String confirmDelete(@PathVariable long id) {
+  @DeleteMapping("/confirmDelete")
+  public String confirmDelete(@RequestParam long id) {
     cusDetailsService.deleteDetailsById(id);
     return "redirect:/profile";
   }
