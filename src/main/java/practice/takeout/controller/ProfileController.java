@@ -36,21 +36,21 @@ public class ProfileController {
     if (dataByQuery[1] == null) {
       cusService.setWrongEmail(errorMsg, redirectAttributes);
       return "redirect:/";
-    }
-    long extractedId = Long.parseLong(dataByQuery[0]);
-    String extractedPwd = dataByQuery[2];
-    if (extractedPwd.equals(cus.getPwd())) {
+    } else if (dataByQuery[2].equals(cus.getPwd())) {
+      long extractedId = Long.parseLong(dataByQuery[0]);
       if (cusService.getIsLoggedIn(extractedId) == 0) {
         request.getSession().setAttribute("CUS_SESSION_ID", extractedId);
         request.getSession().setMaxInactiveInterval(600);
         cusService.setIsLoggedIn(extractedId, (byte) 1);
         return "redirect:/homepage";
+      } else {
+        cusService.setAlreadyLoggedIn(errorMsg, redirectAttributes);
+        return "redirect:/";
       }
-      cusService.setAlreadyLoggedIn(errorMsg, redirectAttributes);
+    } else {
+      cusService.setWrongPwd(errorMsg, redirectAttributes);
       return "redirect:/";
     }
-    cusService.setWrongPwd(errorMsg, redirectAttributes);
-    return "redirect:/";
   }
 
   @PostMapping("/endSession")
@@ -63,8 +63,7 @@ public class ProfileController {
   @PostMapping("/register")
   public String sendRegister(RedirectAttributes redirectAttributes, Cus cus, CusDetails cusDetails, ErrorMsg errorMsg) {
     String[] dataByQuery = cusService.getDataFromDbByQuery(cus.getEmail());
-    String extractedEmail = dataByQuery[1];
-    if (cus.getEmail().equals(extractedEmail)) {
+    if (cus.getEmail().equals(dataByQuery[1])) {
       cusService.setAlreadyRegistered(errorMsg, redirectAttributes);
       return "redirect:/register";
     } else {
