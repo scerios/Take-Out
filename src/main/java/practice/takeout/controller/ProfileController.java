@@ -88,8 +88,8 @@ public class ProfileController {
   }
 
   @DeleteMapping("/confirmDelete")
-  public String confirmDelete(@RequestParam long id) {
-    cusDetailsService.deleteDetailsById(id);
+  public String confirmDelete(HttpSession session) {
+    cusDetailsService.deleteDetailsById((int)session.getAttribute("ADDRESS_ID"));
     return "redirect:/profile";
   }
 }
