@@ -11,6 +11,7 @@ import practice.takeout.model.CusDetails;
 import practice.takeout.model.ErrorMsg;
 import practice.takeout.service.CusDetailsServiceImpl;
 import practice.takeout.service.CusServiceImpl;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -67,6 +68,19 @@ public class IndexController {
     if (cusService.isCusHasAccess(session)) {
       model.addAttribute("details", cusDetailsService.findAllByCus_Id(cusService.getCusSessionId(session)));
       return "profile";
+    } else {
+      cusService.accessDenied(errorMsg, redirectAttributes);
+      return "redirect:/";
+    }
+  }
+
+  @GetMapping("/confirmDelete")
+  public String getConfirmDeletePage(Model model, HttpSession session, HttpServletRequest request, ErrorMsg errorMsg,
+                                     RedirectAttributes redirectAttributes) {
+    if (cusService.isCusHasAccess(session)) {
+      request.getSession().setAttribute("ADDRESS_ID", request.getParameter("addressId"));
+      model.addAttribute("cusDetails", cusDetailsService.getDetailsById((int)session.getAttribute("ADDRESS_ID")));
+      return "confirmDelete";
     } else {
       cusService.accessDenied(errorMsg, redirectAttributes);
       return "redirect:/";
