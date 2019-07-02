@@ -1,7 +1,6 @@
 package practice.takeout.service;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import practice.takeout.dto.CusContactDto;
 import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
 import practice.takeout.model.ErrorMsg;
