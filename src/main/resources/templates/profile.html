@@ -3,16 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <script type="text/javascript">
-        function setAddressId() {
-            var addressId = document.getElementById("addressId").value;
-            alert(addressId);
-            addressId.submit();
-        }
-    </script>
 </head>
 <body>
-<div>
+    <div>
         <a href="homepage">Home</a>
         <a href="profile">My profile</a>
     </div>
@@ -36,8 +29,7 @@
                 <td><span th:text="*{getAddressType()}"></span></td>
                 <td><span th:text="*{getDoor()}"></span></td>
                 <td><span th:text="*{getBell()}"></span></td>
-                <td><a th:href="@{/confirmDelete}" onclick="setAddressId()">Delete</a></td>
-                <td><input id="addressId" type="hidden" th:value="${cusDetails.id}"></td>
+                <td><a th:href="@{/confirmDelete/{id}(id=${cusDetails.getId()})}">Delete</a></td>
             </tr>
             </tbody>
         </table>
