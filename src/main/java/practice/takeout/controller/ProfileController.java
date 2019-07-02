@@ -37,25 +37,17 @@ public class ProfileController {
       cusService.setWrongEmail(errorMsg, redirectAttributes);
       return "redirect:/";
     } else if (dataByQuery[2].equals(cus.getPwd())) {
-      long extractedId = Long.parseLong(dataByQuery[0]);
-      if (cusService.getIsLoggedIn(extractedId) == 0) {
-        request.getSession().setAttribute("CUS_SESSION_ID", extractedId);
-        request.getSession().setMaxInactiveInterval(600);
-        cusService.setIsLoggedIn(extractedId, (byte) 1);
-        return "redirect:/homepage";
-      } else {
-        cusService.setAlreadyLoggedIn(errorMsg, redirectAttributes);
-        return "redirect:/";
-      }
+      cusService.giveCusSessionById(Long.parseLong(dataByQuery[0]), request);
+      return "redirect:/homepage";
     } else {
       cusService.setWrongPwd(errorMsg, redirectAttributes);
       return "redirect:/";
     }
   }
 
+
   @PostMapping("/endSession")
-  public String endSession(HttpServletRequest request, HttpSession session) {
-    cusService.setIsLoggedIn(cusService.getCusSessionId(session), (byte) 0);
+  public String endSession(HttpServletRequest request) {
     request.getSession().invalidate();
     return "redirect:/";
   }
@@ -95,7 +87,7 @@ public class ProfileController {
 
   @PutMapping("/editContact")
   public String editContact(HttpSession session, Cus cus) {
-    cusService.updCusById((long)session.getAttribute("CUS_SESSION_ID"), cus);
+    cusService.updCusById((long) session.getAttribute("CUS_SESSION_ID"), cus);
     return "redirect:/profile";
   }
 }
