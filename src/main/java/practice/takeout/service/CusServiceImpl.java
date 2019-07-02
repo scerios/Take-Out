@@ -20,7 +20,6 @@ public class CusServiceImpl implements CusService {
   private final String USERNAME = defaults.getUserName();
   private final String PWD = defaults.getPwd();
 
-
   CusServiceImpl(CusRepository repository) {
     this.repository = repository;
   }
@@ -66,6 +65,15 @@ public class CusServiceImpl implements CusService {
     request.getSession().setAttribute("TEMP_SESSION_CUS_ADDRESS_NUMBER", cusDetails.getDoor());
     request.getSession().setAttribute("TEMP_SESSION_CUS_ADDRESS_BELL", cusDetails.getBell());
     request.getSession().setMaxInactiveInterval(120);
+  }
+
+  @Override
+  public Cus giveTempCusValues(HttpSession session) {
+    Cus cus = new Cus();
+    cus.setFirstName((String)session.getAttribute("TEMP_SESSION_CUS_FIRST_NAME"));
+    cus.setLastName((String)session.getAttribute("TEMP_SESSION_CUS_LAST_NAME"));
+    cus.setPhoneNumber((String)session.getAttribute("TEMP_SESSION_CUS_PHONE_NUMBER"));
+    return cus;
   }
 
   @Override
