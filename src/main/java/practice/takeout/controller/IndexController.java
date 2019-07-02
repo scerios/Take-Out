@@ -38,8 +38,15 @@ public class IndexController {
   }
 
   @GetMapping("/register")
-  public String getRegisterPage() {
-    return "register";
+  public String getRegisterPage(Model model, HttpSession session, HttpServletRequest request) {
+    if (session.isNew()) {
+      return "register";
+    } else {
+      model.addAttribute("cus", cusService.giveTempCusValues(session));
+      model.addAttribute("cusDetails", cusDetailsService.giveTempCusDetailsValues(session));
+      request.getSession().invalidate();
+      return "register";
+    }
   }
 
   @GetMapping("/addNewAddress")
@@ -76,13 +83,13 @@ public class IndexController {
     }
   }
 
-  @GetMapping("/confirmDelete/{id}")
-  public String getConfirmDeletePage(@PathVariable long id, Model model, HttpSession session, ErrorMsg errorMsg,
-                                     RedirectAttributes redirectAttributes) {
+  @GetMapping("/confirmDel/{id}")
+  public String getConfirmDelPage(@PathVariable long id, Model model, HttpSession session, ErrorMsg errorMsg,
+                                  RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session) &&
-        cusDetailsService.isCusHasAccessToDetails((long)session.getAttribute("CUS_SESSION_ID"), id)) {
+        cusDetailsService.isCusHasAccessToDetails((long) session.getAttribute("CUS_SESSION_ID"), id)) {
       model.addAttribute("cusDetails", cusDetailsService.getDetailsById(id));
-      return "confirmDelete";
+      return "confirmDel";
     } else {
       cusService.accessDenied(errorMsg, redirectAttributes);
       return "redirect:/profile";
@@ -93,7 +100,7 @@ public class IndexController {
   public String getEditContactPage(Model model, HttpSession session, ErrorMsg errorMsg,
                                    RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session)) {
-      model.addAttribute("cus", cusService.getCusById((long)session.getAttribute("CUS_SESSION_ID")));
+      model.addAttribute("cus", cusService.getCusById((long) session.getAttribute("CUS_SESSION_ID")));
       return "editContact";
     } else {
       cusService.accessDenied(errorMsg, redirectAttributes);
