@@ -11,6 +11,7 @@
     </div>
     <form th:action="@{/profile}" method="get">
         <h1>Here you can change your details, add new delivery addresses or check your orders!</h1>
+        <p th:if="${access == 'accessDenied'}">You are not authorized to access other customers details!</p>
         <table>
             <thead>
             <tr>
