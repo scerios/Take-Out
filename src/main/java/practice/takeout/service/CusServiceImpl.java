@@ -127,11 +127,7 @@ public class CusServiceImpl implements CusService {
 
   @Override
   public boolean isCusHasAccess(HttpSession session) {
-    if (session.getAttribute("CUS_SESSION_ID") == null) {
-      return false;
-    } else {
-      return true;
-    }
+    return (session.getAttribute("CUS_SESSION_ID") != null);
   }
 
   @Override
