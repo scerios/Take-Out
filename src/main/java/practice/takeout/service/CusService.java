@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 public interface CusService {
   void addCus(Cus cus);
-  void updCus(Cus cus);
+  void updCusById(long id, Cus cus);
   Cus getCusById(long id);
   void addDetailsToCus(long id, CusDetails cusDetails);
   byte getIsLoggedIn(long id);

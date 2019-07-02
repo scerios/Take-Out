@@ -95,11 +95,7 @@ public class ProfileController {
 
   @PutMapping("/editContact")
   public String editContact(HttpSession session, Cus cus) {
-    Cus cusToUpd = cusService.getCusById((long)session.getAttribute("CUS_SESSION_ID"));
-    cusToUpd.setFirstName(cus.getFirstName());
-    cusToUpd.setLastName(cus.getLastName());
-    cusToUpd.setPhoneNumber(cus.getPhoneNumber());
-    cusService.updCus(cusToUpd);
+    cusService.updCusById((long)session.getAttribute("CUS_SESSION_ID"), cus);
     return "redirect:/profile";
   }
 }
