@@ -31,7 +31,7 @@ public class ProfileController {
   }
 
   @PostMapping("/register")
-  public String sendRegister(Cus cus, CusDetails cusDetails, ErrorMsg errorMsg, HttpServletRequest request,
+  public String register(Cus cus, CusDetails cusDetails, ErrorMsg errorMsg, HttpServletRequest request,
                              RedirectAttributes redirectAttributes) {
     String[] dataByQuery = cusService.getDataFromDbByQuery(cus.getEmail());
     if (cus.getEmail().equals(dataByQuery[1])) {
@@ -80,8 +80,8 @@ public class ProfileController {
     }
   }
 
-  @DeleteMapping("/confirmDelete")
-  public String confirmDelete(@RequestParam long id) {
+  @DeleteMapping("/confirmDel")
+  public String confirmDel(@RequestParam long id) {
     cusDetailsService.deleteDetailsById(id);
     return "redirect:/profile";
   }
