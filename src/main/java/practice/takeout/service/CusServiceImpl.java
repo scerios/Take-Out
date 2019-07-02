@@ -32,6 +32,11 @@ public class CusServiceImpl implements CusService {
   }
 
   @Override
+  public void updCus(Cus cus) {
+    repository.save(cus);
+  }
+
+  @Override
   public Cus getCusById(long id) {
     return repository.findById(id).get();
   }
