@@ -4,7 +4,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
 import practice.takeout.model.ErrorMsg;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,11 +13,10 @@ public interface CusService {
   Cus getCusById(long id);
   void addDetailsToCus(long id, CusDetails cusDetails);
   void giveCusSessionById(long id, HttpServletRequest request);
-  byte getIsLoggedIn(long id);
-  void setIsLoggedIn(long id, byte isLoggedIn);
+  void giveCusTempSessionToRegister(Cus cus, CusDetails cusDetails, HttpServletRequest request);
+  void endCusSession(HttpServletRequest request);
   String[] getDataFromDbByQuery(String email);
   void setAlreadyRegistered(ErrorMsg errorMsg, RedirectAttributes redirectAttributes);
-  void setAlreadyLoggedIn(ErrorMsg errorMsg, RedirectAttributes redirectAttributes);
   void setWrongEmail(ErrorMsg errorMsg, RedirectAttributes redirectAttributes);
   void setWrongPwd(ErrorMsg errorMsg, RedirectAttributes redirectAttributes);
   boolean isCusHasAccess(HttpSession session);

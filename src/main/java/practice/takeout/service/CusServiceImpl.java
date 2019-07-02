@@ -7,7 +7,6 @@ import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
 import practice.takeout.model.ErrorMsg;
 import practice.takeout.repository.CusRepository;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.*;
@@ -29,8 +28,6 @@ public class CusServiceImpl implements CusService {
   @Override
   public void addCus(Cus cus) {
     repository.save(cus);
-    repository.findById(cus.getId()).get().setIsLoggedIn((byte) 0);
-    repository.save(repository.findById(cus.getId()).get());
   }
 
   @Override
@@ -59,14 +56,21 @@ public class CusServiceImpl implements CusService {
   }
 
   @Override
-  public byte getIsLoggedIn(long id) {
-    return repository.findById(id).get().getIsLoggedIn();
+  public void giveCusTempSessionToRegister(Cus cus, CusDetails cusDetails, HttpServletRequest request) {
+    request.getSession().setAttribute("TEMP_SESSION_CUS_FIRST_NAME", cus.getFirstName());
+    request.getSession().setAttribute("TEMP_SESSION_CUS_LAST_NAME", cus.getLastName());
+    request.getSession().setAttribute("TEMP_SESSION_CUS_PHONE_NUMBER", cus.getPhoneNumber());
+    request.getSession().setAttribute("TEMP_SESSION_CUS_POSTCODE", cusDetails.getPostCode());
+    request.getSession().setAttribute("TEMP_SESSION_CUS_ADDRESS_NAME", cusDetails.getAddressName());
+    request.getSession().setAttribute("TEMP_SESSION_CUS_ADDRESS_TYPE", cusDetails.getAddressType());
+    request.getSession().setAttribute("TEMP_SESSION_CUS_ADDRESS_NUMBER", cusDetails.getDoor());
+    request.getSession().setAttribute("TEMP_SESSION_CUS_ADDRESS_BELL", cusDetails.getBell());
+    request.getSession().setMaxInactiveInterval(120);
   }
 
   @Override
-  public void setIsLoggedIn(long id, byte isLoggedIn) {
-    repository.findById(id).get().setIsLoggedIn(isLoggedIn);
-    repository.save(repository.findById(id).get());
+  public void endCusSession(HttpServletRequest request) {
+    request.getSession().invalidate();
   }
 
   @Override
@@ -105,12 +109,6 @@ public class CusServiceImpl implements CusService {
   public void setAlreadyRegistered(ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
     errorMsg.setAlreadyRegistered("alreadyRegistered");
     redirectAttributes.addFlashAttribute("alreadyRegistered", errorMsg.getAlreadyRegistered());
-  }
-
-  @Override
-  public void setAlreadyLoggedIn(ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
-    errorMsg.setAlreadyLoggedIn("alreadyLoggedIn");
-    redirectAttributes.addFlashAttribute("alreadyLoggedIn", errorMsg.getAlreadyLoggedIn());
   }
 
   @Override
