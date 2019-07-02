@@ -30,6 +30,22 @@ public class ProfileController {
     model.addAttribute("cusDetails", new CusDetails());
   }
 
+  @PostMapping("/register")
+  public String sendRegister(Cus cus, CusDetails cusDetails, ErrorMsg errorMsg, HttpServletRequest request,
+                             RedirectAttributes redirectAttributes) {
+    String[] dataByQuery = cusService.getDataFromDbByQuery(cus.getEmail());
+    if (cus.getEmail().equals(dataByQuery[1])) {
+      cusService.setAlreadyRegistered(errorMsg, redirectAttributes);
+      cusService.giveCusTempSessionToRegister(cus, cusDetails, request);
+      return "redirect:/register";
+    } else {
+      cusService.addCus(cus);
+      cusService.addDetailsToCus(cus.getId(), cusDetails);
+      cusDetailsService.addDetails(cusDetails);
+      return "redirect:/";
+    }
+  }
+
   @GetMapping("/login")
   public String logIn(Cus cus, ErrorMsg errorMsg, RedirectAttributes redirectAttributes, HttpServletRequest request) {
     String[] dataByQuery = cusService.getDataFromDbByQuery(cus.getEmail());
@@ -45,25 +61,10 @@ public class ProfileController {
     }
   }
 
-
   @PostMapping("/endSession")
   public String endSession(HttpServletRequest request) {
-    request.getSession().invalidate();
+    cusService.endCusSession(request);
     return "redirect:/";
-  }
-
-  @PostMapping("/register")
-  public String sendRegister(RedirectAttributes redirectAttributes, Cus cus, CusDetails cusDetails, ErrorMsg errorMsg) {
-    String[] dataByQuery = cusService.getDataFromDbByQuery(cus.getEmail());
-    if (cus.getEmail().equals(dataByQuery[1])) {
-      cusService.setAlreadyRegistered(errorMsg, redirectAttributes);
-      return "redirect:/register";
-    } else {
-      cusService.addCus(cus);
-      cusService.addDetailsToCus(cus.getId(), cusDetails);
-      cusDetailsService.addDetails(cusDetails);
-      return "redirect:/";
-    }
   }
 
   @PostMapping("/addNewAddress")
