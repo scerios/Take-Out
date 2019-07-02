@@ -7,6 +7,8 @@ import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
 import practice.takeout.model.ErrorMsg;
 import practice.takeout.repository.CusRepository;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.*;
 
@@ -48,6 +50,12 @@ public class CusServiceImpl implements CusService {
   @Override
   public void addDetailsToCus(long id, CusDetails cusDetails) {
     repository.findById(id).get().addCusDetails(cusDetails);
+  }
+
+  @Override
+  public void giveCusSessionById(long id, HttpServletRequest request) {
+    request.getSession().setAttribute("CUS_SESSION_ID", id);
+    request.getSession().setMaxInactiveInterval(600);
   }
 
   @Override
