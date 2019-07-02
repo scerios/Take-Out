@@ -92,4 +92,14 @@ public class ProfileController {
     cusDetailsService.deleteDetailsById(id);
     return "redirect:/profile";
   }
+
+  @PutMapping("/editContact")
+  public String editContact(HttpSession session, Cus cus) {
+    Cus cusToUpd = cusService.getCusById((long)session.getAttribute("CUS_SESSION_ID"));
+    cusToUpd.setFirstName(cus.getFirstName());
+    cusToUpd.setLastName(cus.getLastName());
+    cusToUpd.setPhoneNumber(cus.getPhoneNumber());
+    cusService.updCus(cusToUpd);
+    return "redirect:/profile";
+  }
 }
