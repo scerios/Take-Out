@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}">
+    <meta charset="UTF-8">
+    <title>Edit my details</title>
+</head>
+<body>
+    <form th:action="@{/editContact}" th:object="${cus}" th:method="put">
+        <label>Name:</label>
+        <div>
+            <input type="text" name="firstName" th:value="*{getFirstName()}" placeholder="First name" required>
+            <input type="text" name="lastName" th:value="*{getLastName()}" placeholder="Last name" required>
+        </div>
+        <label>Phone number</label>
+        <div>
+            <input type="number" name="phoneNumber" th:value="*{getPhoneNumber()}" required>
+        </div>
+        <button type="submit">Update</button>
+    </form>
+    <a href="profile">Cancel</a>
+</body>
+</html>
