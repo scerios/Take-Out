@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import practice.takeout.dataProvider.SystemDefaults;
 import practice.takeout.model.CusDetails;
 import practice.takeout.repository.CusDetailsRepository;
+import javax.servlet.http.HttpSession;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,5 +72,16 @@ public class CusDetailsServiceImpl implements CusDetailsService {
       }
     }
     return false;
+  }
+
+  @Override
+  public CusDetails giveTempCusDetailsValues(HttpSession session) {
+    CusDetails cusDetails = new CusDetails();
+    cusDetails.setPostCode((int) session.getAttribute("TEMP_SESSION_CUS_POSTCODE"));
+    cusDetails.setAddressName((String) session.getAttribute("TEMP_SESSION_CUS_ADDRESS_NAME"));
+    cusDetails.setAddressType((String) session.getAttribute("TEMP_SESSION_CUS_ADDRESS_TYPE"));
+    cusDetails.setDoor((int) session.getAttribute("TEMP_SESSION_CUS_ADDRESS_NUMBER"));
+    cusDetails.setBell((String) session.getAttribute("TEMP_SESSION_CUS_ADDRESS_BELL"));
+    return cusDetails;
   }
 }
