@@ -67,6 +67,7 @@ public class IndexController {
   public String getProfilePage(Model model, HttpSession session, ErrorMsg errorMsg,
                                RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session)) {
+      model.addAttribute("cus", cusService.getCusById(cusService.getCusSessionId(session)));
       model.addAttribute("details", cusDetailsService.findAllByCus_Id(cusService.getCusSessionId(session)));
       return "profile";
     } else {
@@ -78,12 +79,25 @@ public class IndexController {
   @GetMapping("/confirmDelete/{id}")
   public String getConfirmDeletePage(@PathVariable long id, Model model, HttpSession session, ErrorMsg errorMsg,
                                      RedirectAttributes redirectAttributes) {
-    if (cusService.isCusHasAccess(session) && cusDetailsService.isCusHasAccessToDetails((long)session.getAttribute("CUS_SESSION_ID"), id)) {
+    if (cusService.isCusHasAccess(session) &&
+        cusDetailsService.isCusHasAccessToDetails((long)session.getAttribute("CUS_SESSION_ID"), id)) {
       model.addAttribute("cusDetails", cusDetailsService.getDetailsById(id));
       return "confirmDelete";
     } else {
       cusService.accessDenied(errorMsg, redirectAttributes);
       return "redirect:/profile";
+    }
+  }
+
+  @GetMapping("/editContact")
+  public String getEditContactPage(Model model, HttpSession session, ErrorMsg errorMsg,
+                                   RedirectAttributes redirectAttributes) {
+    if (cusService.isCusHasAccess(session)) {
+      model.addAttribute("cus", cusService.getCusById((long)session.getAttribute("CUS_SESSION_ID")));
+      return "editContact";
+    } else {
+      cusService.accessDenied(errorMsg, redirectAttributes);
+      return "redirect:/";
     }
   }
 }
