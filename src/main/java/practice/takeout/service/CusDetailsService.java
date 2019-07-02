@@ -7,4 +7,5 @@ public interface CusDetailsService {
   void deleteDetailsById(long id);
   CusDetails getDetailsById(long id);
   Iterable<CusDetails> findAllByCus_Id(long id);
+  boolean isCusHasAccessToDetails(long cusId, long cusDetailsId);
 }
