@@ -28,7 +28,7 @@ public class CusDetailsServiceImpl implements CusDetailsService {
   }
 
   @Override
-  public void deleteDetailsById(long id) {
+  public void delDetailsById(long id) {
     repository.deleteById(id);
   }
 

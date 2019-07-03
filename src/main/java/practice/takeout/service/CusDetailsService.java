@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 public interface CusDetailsService {
   void addDetails(CusDetails cusDetails);
 
-  void deleteDetailsById(long id);
+  void delDetailsById(long id);
 
   CusDetails getDetailsById(long id);
 
