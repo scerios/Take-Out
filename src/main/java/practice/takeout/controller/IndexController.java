@@ -39,7 +39,7 @@ public class IndexController {
 
   @GetMapping("/register")
   public String getRegisterPage(Model model, HttpSession session, HttpServletRequest request) {
-    if (session.isNew()) {
+    if (request.getSession().getMaxInactiveInterval() == 1800) {
       return "register";
     } else {
       model.addAttribute("cus", cusService.giveTempCusValues(session));
@@ -60,7 +60,8 @@ public class IndexController {
   }
 
   @GetMapping("/homepage")
-  public String getHomePage(Model model, HttpSession session, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+  public String getHomePage(Model model, HttpSession session, ErrorMsg errorMsg,
+                            RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session)) {
       model.addAttribute("cus", cusService.getCusById(cusService.getCusSessionId(session)));
       return "homepage";
@@ -90,9 +91,12 @@ public class IndexController {
         cusDetailsService.isCusHasAccessToDetails((long) session.getAttribute("CUS_SESSION_ID"), id)) {
       model.addAttribute("cusDetails", cusDetailsService.getDetailsById(id));
       return "confirmDel";
-    } else {
+    } else if (cusService.isCusHasAccess(session)) {
       cusService.accessDenied(errorMsg, redirectAttributes);
       return "redirect:/profile";
+    } else {
+      cusService.accessDenied(errorMsg, redirectAttributes);
+      return "redirect:/";
     }
   }
 
