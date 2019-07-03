@@ -32,7 +32,7 @@ public class ProfileController {
 
   @PostMapping("/register")
   public String register(Cus cus, CusDetails cusDetails, ErrorMsg errorMsg, HttpServletRequest request,
-                             RedirectAttributes redirectAttributes) {
+                         RedirectAttributes redirectAttributes) {
     String[] dataByQuery = cusService.getDataFromDbByQuery(cus.getEmail());
     if (cus.getEmail().equals(dataByQuery[1])) {
       cusService.setAlreadyRegistered(errorMsg, redirectAttributes);
@@ -68,21 +68,15 @@ public class ProfileController {
   }
 
   @PostMapping("/addNewAddress")
-  public String addNewAddress(CusDetails cusDetails, ErrorMsg errorMsg, RedirectAttributes redirectAttributes,
-                              HttpSession session) {
-    if (cusService.isCusHasAccess(session)) {
-      cusService.addDetailsToCus(cusService.getCusSessionId(session), cusDetails);
-      cusDetailsService.addDetails(cusDetails);
-      return "redirect:/profile";
-    } else {
-      cusService.accessDenied(errorMsg, redirectAttributes);
-      return "redirect:/";
-    }
+  public String addNewAddress(CusDetails cusDetails, HttpSession session) {
+    cusService.addDetailsToCus(cusService.getCusSessionId(session), cusDetails);
+    cusDetailsService.addDetails(cusDetails);
+    return "redirect:/profile";
   }
 
   @DeleteMapping("/confirmDel")
   public String confirmDel(@RequestParam long id) {
-    cusDetailsService.deleteDetailsById(id);
+    cusDetailsService.delDetailsById(id);
     return "redirect:/profile";
   }
 
