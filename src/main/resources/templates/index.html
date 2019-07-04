@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
     <meta charset="UTF-8">
     <title>Index</title>
 </head>
 <body>
-    <h1>Welcome to Burger Town!</h1>
-    <h2>Please log in to make orders.</h2>
-    <h2>Or <a href="register">register</a> if you haven't got already.</h2>
-    <form th:action="@{/login}" method="get">
-        <p th:if="${access == 'accessDenied'}">You must be logged in to access that page!</p>
-        <p th:if="${alreadyLoggedIn == 'alreadyLoggedIn'}">
-            You are already logged in! You cannot be logged in from 2 different computer at the same time!</p>
-        <label>Username (your email):</label>
-        <div>
-            <input type="email" name="email" th:field="*{cus.email}" autofocus required>
-            <p th:if="${wrongEmail == 'wrongEmail'}">This email hasn't been registered!</p>
-        </div>
-        <label>Password:</label>
-        <div>
-            <input type="password" name="pwd" th:field="*{cus.pwd}" required>
-            <p th:if="${wrongPwd == 'wrongPwd'}">Password is incorrect!</p>
-        </div>
-        <button type="submit">Log In</button>
-    </form>
+    <div id="greeting">
+        <h1>Welcome to Burger Town!</h1>
+    </div>
+    <div id="login">
+        <form th:action="@{/login}" method="get">
+            <p id="accessDenied" th:if="${access == 'accessDenied'}">You must be logged in to access that page!</p>
+            <p id="wrongEmail" th:if="${wrongEmail == 'wrongEmail'}">Email hasn't been registered!</p>
+            <p id="wrongPwd" th:if="${wrongPwd == 'wrongPwd'}">Password is incorrect!</p>
+            <label class="note">Username (your email):</label>
+            <div>
+                <input id="username" type="email" name="email" th:field="*{cus.email}" autofocus required>
+            </div>
+            <label class="note">Password:</label>
+            <div>
+                <input id="password" type="password" name="pwd" th:field="*{cus.pwd}" required>
+            </div>
+            <button id="submit" type="submit">Log In</button>
+            <a href="register" id="reglink">Register</a>
+        </form>
+    </div>
+
 </body>
 </html>
