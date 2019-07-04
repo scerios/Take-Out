@@ -6,53 +6,60 @@
     <title>Register</title>
 </head>
 <body>
-<h1>Please enter your details!</h1>
-    <form th:action="@{/register}" method="post">
-        <label>Name:</label>
-        <div>
-            <input type="text" name="firstName" th:value="*{cus.firstName}" placeholder="First name" autofocus required>
-            <span>*</span>
-            <input type="text" name="lastName" th:value="*{cus.lastName}" placeholder="Last name" required>
-            <span>*</span>
-        </div>
-        <label>E-mail:</label>
-        <div>
-            <input type="email" name="email" th:field="*{cus.email}" required>
-            <span>*</span>
-            <span> - This will be your username!</span>
-            <p th:if="${alreadyRegistered == 'alreadyRegistered'}">This email has been already registered! Choose another one!</p>
-        </div>
-        <label>Password:</label>
-        <div>
-            <input type="password" name="pwd" th:field="*{cus.pwd}" required>
-            <span>*</span>
-        </div>
-        <label>Phone number</label>
-        <div>
-            <input type="number" name="phoneNumber" th:value="*{cus.phoneNumber}" required>
-            <span>*</span>
-        </div>
-        <label>Post code:</label>
-        <div>
-            <input type="number" name="postCode" th:value="*{cusDetails.postCode}" min="1000" max="1999" required>
-            <span>*</span>
-        </div>
-        <label>Address:</label>
-        <div>
-            <input type="text" name="addressName" th:value="*{cusDetails.addressName}" placeholder="Name" required>
-            <span>*</span>
-            <input type="text" name="addressType" th:value="*{cusDetails.addressType}" placeholder="road/street/lane"
-                   required>
-            <span>*</span>
-        </div>
-        <label>Number:</label>
-        <div>
-            <input type="number" name="door" th:value="*{cusDetails.door}" min="1" max="500" placeholder="number" required>
-            <span>*</span>
-            <input type="text" name="bell" th:value="*{cusDetails.bell}" placeholder="bell (optional)">
-        </div>
-        <button type="submit">Register</button>
-        <p>* - These fields are required.</p>
-    </form>
+    <div id="greeting">
+    <h1>Please enter your details!</h1>
+    </div>
+    <div id="register">
+        <form th:action="@{/register}" method="post">
+            <div>
+                <label>Name:</label>
+                <input id="firstName" type="text" name="firstName" th:value="*{cus.firstName}" placeholder="first name" autofocus required>
+                <span class="star">*</span>
+                <input id="lastName" type="text" name="lastName" th:value="*{cus.lastName}" placeholder="last name" required>
+                <span class="star">*</span>
+            </div>
+            <div>
+                <label>E-mail:</label>
+                <input id="email" type="email" name="email" th:field="*{cus.email}" required>
+                <span class="star">*</span>
+                <span class="extraNote"> - This will be your username!</span>
+                <p id="error" th:if="${alreadyRegistered == 'alreadyRegistered'}">This email has been already registered! Choose another one!</p>
+            </div>
+            <div>
+                <label>Password:</label>
+                <input id="password" pattern=".{8,}" type="password" name="pwd" th:field="*{cus.pwd}" required>
+                <span class="star">*</span>
+            </div>
+            <div>
+                <label>Phone number:</label>
+                <input id="phoneNumber" pattern=".{11,}" type="number" name="phoneNumber" th:value="*{cus.phoneNumber}" required>
+                <span class="star">*</span>
+            </div>
+            <div>
+                <label>Post code:</label>
+                <input id="postCode" type="number" name="postCode" th:value="*{cusDetails.postCode}" min="1000" max="1999" required>
+                <span class="star">*</span>
+            </div>
+            <div>
+                <label>Address:</label>
+                <input id="addressName" type="text" name="addressName" th:value="*{cusDetails.addressName}" placeholder="name" required>
+                <span class="star">*</span>
+                <input id="addressType" type="text" name="addressType" th:value="*{cusDetails.addressType}" placeholder="road/street/lane"
+                       required>
+                <span class="star">*</span>
+            </div>
+            <div>
+                <label>Number:</label>
+                <input id="doorNumber" type="number" name="door" th:value="*{cusDetails.door}" min="1" max="500" placeholder="number" required>
+                <span class="star">*</span>
+                <input id="bell" type="text" name="bell" th:value="*{cusDetails.bell}" placeholder="bell (optional)">
+            </div>
+            <button id="submit" type="submit">Register</button>
+            <a href="/" id="cancel">Back to Index</a>
+            <div>
+                <span class="star">* </span><span class="note"> - These fields are required.</span>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
