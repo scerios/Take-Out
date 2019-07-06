@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navigation.css}">
     <meta charset="UTF-8">
     <title>Profile</title>
 </head>
 <body>
     <div>
-        <a href="homepage">Home</a>
-        <a href="profile">My profile</a>
+        <ul>
+            <li><a href="homepage">Home</a></li>
+            <li><a href="profile">My profile</a></li>
+        </ul>
     </div>
     <form th:action="@{/profile}" method="get">
-        <h1>Here you can change your details, add new delivery addresses or check your orders!</h1>
-        <p th:if="${access == 'accessDenied'}">You are not authorized to access other customers details!</p>
-        <span th:object="${cus}"><a th:href="@{/editContact}">Edit my details</a></span>
-        <table>
-            <thead>
-            <tr>
-                <th>PostCode</th>
-                <th>Address Name</th>
-                <th>Type</th>
-                <th>Door</th>
-                <th>Bell</th>
-                <th>Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="cusDetails : ${details}" th:object="${cusDetails}">
-                <td><span th:text="*{getPostCode()}"></span></td>
-                <td><span th:text="*{getAddressName()}"></span></td>
-                <td><span th:text="*{getAddressType()}"></span></td>
-                <td><span th:text="*{getDoor()}"></span></td>
-                <td><span th:text="*{getBell()}"></span></td>
-                <td><a th:href="@{/confirmDel/{id}(id=${cusDetails.getId()})}">Delete</a></td>
-            </tr>
-            </tbody>
-        </table>
-        <div>
-            <a href="addNewAddress">Add new address</a>
+        <h1 id="greeting">Here you can change your details, add new delivery addresses or check your orders!</h1>
+        <p id="error" th:if="${access == 'accessDenied'}">You are not authorized to access that page!</p>
+        <div class="userNav">
+            <span th:object="${cus}"><a th:href="@{/editContact}" id="editDetails"
+                                        class="buttons">Edit my details</a></span>
+            <a href="addNewAddress" id="newAddress" class="buttons">Add new address</a>
         </div>
-    </form>
+        <div class="container">
+            <table>
+                <thead>
+                <tr>
+                    <th>PostCode</th>
+                    <th>Address Name</th>
+                    <th>Type</th>
+                    <th>Door</th>
+                    <th>Bell</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cusDetails : ${details}" th:object="${cusDetails}">
+                    <td><span th:text="*{getPostCode()}"></span></td>
+                    <td><span th:text="*{getAddressName()}"></span></td>
+                    <td><span th:text="*{getAddressType()}"></span></td>
+                    <td><span th:text="*{getDoor()}"></span></td>
+                    <td><span th:text="*{getBell()}"></span></td>
+                    <td><a th:href="@{/confirmDel/{id}(id=${cusDetails.getId()})}" id="delete" class="buttons">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+</form>
 </body>
 </html>
