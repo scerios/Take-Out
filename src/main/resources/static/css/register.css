@@ -14,6 +14,7 @@ body{
 #register {
     width: 80%;
     margin: auto;
+    padding-left: 10px;
     font-size: 16px;
 }
 
@@ -41,50 +42,19 @@ input[type="number"] {
 input {
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-left: 60px;
     padding: 2px 5px;
     border-radius: 3px;
     border-color: rgb(29, 255, 29);
     width: 140px;
+    display: inline-block;
 }
 
-#lastName {
-    margin-left: 0px;
-}
-
-#email {
-    margin-left: 54px;
-    padding-right: 6px;
-}
-
-#password {
-    margin-left: 37px;
-    padding-right: 5px;
-}
-
-#phoneNumber {
-    margin-left: 6px;
-    padding-right: 5px;
-}
-
-#postCode {
-    margin-left: 37px;
-}
-#addressName {
-    margin-left: 46px;
-    padding-right: 5px;
-}
-
-#addressType {
-    margin-left: 0px;
-}
-
-#doorNumber {
-    margin-left: 46px;
-}
-
-#bell {
-    margin-left: 0px;
+label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 120px;
+    text-align: left;
 }
 
 .extraNote {
@@ -110,6 +80,7 @@ input {
 #submit {
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-left: 0;
     padding-top: 1px;
     padding-bottom: 1px;
     width: 70px;
@@ -129,7 +100,7 @@ input {
 #cancel {
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-left: 245px;
+    margin-left: 260px;
     padding-left: 9px;
     padding-right: 8px;
     border: 2px black solid;
