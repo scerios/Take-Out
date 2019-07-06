@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/userInput.css}">
     <meta charset="UTF-8">
     <title>Add new Address</title>
 </head>
@@ -11,24 +11,27 @@
             <label>Post code:</label>
             <div>
                 <input type="number" name="postcode" th:field="*{cusDetails.postCode}" autofocus min="1000" max="1999" required>
-                <span>*</span>
+                <span class="star">*</span>
             </div>
             <label>Address:</label>
             <div>
                 <input type="text" name="addressName" th:field="*{cusDetails.addressName}" placeholder="Name" required>
-                <span>*</span>
+                <span class="star">*</span>
                 <input type="text" name="addressType" th:field="*{cusDetails.addressType}" placeholder="road/street/lane" required>
-                <span>*</span>
+                <span class="star">*</span>
             </div>
             <label>Number:</label>
             <div>
                 <input type="number" name="door" th:field="*{cusDetails.door}" min="1" max="500" placeholder="number" required>
-                <span>*</span>
+                <span class="star">*</span>
                 <input type="text" name="bell" th:field="*{cusDetails.bell}" placeholder="bell (optional)">
             </div>
         </div>
-        <button type="submit">Register</button>
+        <button id="submit" type="submit">Register</button>
+        <a href="profile" id="cancel">Cancel</a>
+        <div>
+            <span class="star">* </span><span class="note"> - These fields are required.</span>
+        </div>
     </form>
-    <a href="profile">Cancel</a>
 </body>
 </html>

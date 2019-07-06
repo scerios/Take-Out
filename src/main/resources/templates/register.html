@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/userInput.css}">
     <meta charset="UTF-8">
     <title>Register</title>
 </head>
@@ -55,7 +55,7 @@
                 <input id="bell" type="text" name="bell" th:value="*{cusDetails.bell}" placeholder="bell (optional)">
             </div>
             <button id="submit" type="submit">Register</button>
-            <a href="/" id="cancel">Back to Index</a>
+            <a href="/" id="cancel">Cancel</a>
             <div>
                 <span class="star">* </span><span class="note"> - These fields are required.</span>
             </div>

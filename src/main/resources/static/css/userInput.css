@@ -15,7 +15,7 @@ body{
     width: 80%;
     margin: auto;
     padding-left: 10px;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 #error {
@@ -40,7 +40,7 @@ input[type="number"] {
 }
 
 input {
-    margin-top: 5px;
+    /*margin-top: 5px;*/
     margin-bottom: 5px;
     padding: 2px 5px;
     border-radius: 3px;
@@ -100,7 +100,7 @@ label {
 #cancel {
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-left: 260px;
+    margin-left: 305px;
     padding-left: 9px;
     padding-right: 8px;
     border: 2px black solid;

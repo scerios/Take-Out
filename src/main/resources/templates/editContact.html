@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/userInput.css}">
     <meta charset="UTF-8">
     <title>Edit my details</title>
 </head>
 <body>
     <form th:action="@{/editContact}" th:object="${cus}" th:method="put">
-        <label>Name:</label>
         <div>
+            <label>Name:</label>
             <input type="text" name="firstName" th:value="*{getFirstName()}" placeholder="First name" required>
+            <span class="star">*</span>
             <input type="text" name="lastName" th:value="*{getLastName()}" placeholder="Last name" required>
+            <span class="star">*</span>
         </div>
-        <label>Phone number</label>
         <div>
+            <label>Phone number:</label>
             <input type="number" name="phoneNumber" th:value="*{getPhoneNumber()}" required>
+            <span class="star">*</span>
         </div>
-        <button type="submit">Update</button>
+        <button id="submit" type="submit">Update</button>
+        <a href="profile" id="cancel">Cancel</a>
+        <div>
+            <span class="star">* </span><span class="note"> - These fields are required.</span>
+        </div>
     </form>
-    <a href="profile">Cancel</a>
 </body>
 </html>
