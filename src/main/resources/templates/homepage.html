@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navigation.css}">
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
 <body>
     <div>
-        <a href="homepage">Home</a>
-        <a href="profile">My profile</a>
+        <ul>
+            <li><a href="homepage">Home</a></li>
+            <li><a href="profile">My profile</a></li>
+        </ul>
     </div>
     <form th:action="@{/homepage}" th:object="${cus}" method="get">
-        <h1>Hello <span th:text="*{getLastName()}"></span></h1>
+        <h1 id="greeting">Hello <span th:text="*{getLastName()}"></span></h1>
     </form>
     <form th:action="@{/endSession}" method="post">
-        <button type="submit">Farewell</button>
+        <button type="submit" id="submit" class="buttons">Farewell</button>
     </form>
 </body>
 </html>
