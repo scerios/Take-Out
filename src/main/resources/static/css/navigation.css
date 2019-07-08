@@ -12,7 +12,7 @@ body {
     margin: auto;
     padding-top: 20px;
     font-size: 30px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: "Courier New";
     color: rgb(29, 255, 29);
 }
 
@@ -55,6 +55,10 @@ body {
     cursor: pointer;
 }
 
+.cusName {
+    font-size: 30px;
+}
+
 .buttons {
     margin-bottom: 5px;
     padding: 2px 15px;
@@ -79,12 +83,12 @@ body {
 
 .userNav {
     margin-left: auto;
-    margin-top: 10px;
+    margin-top: 50px;
 }
 
 ul {
     list-style-type: none;
-    margin: 0;
+    margin: -10px;
     padding: 0;
     overflow: hidden;
     background-color: rgb(29, 255, 29);
