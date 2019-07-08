@@ -105,7 +105,6 @@ public class CusServiceImpl implements CusService {
     } catch (ClassNotFoundException CNFe) {
       throw new RuntimeException("JDBC Driver cannot be found.");
     } catch (SQLException SQLe) {
-      SQLe.printStackTrace();
       throw new RuntimeException("SQL Database cannot be found.");
     } catch (Exception e) {
       throw new RuntimeException("Cannot identify the problem.");
