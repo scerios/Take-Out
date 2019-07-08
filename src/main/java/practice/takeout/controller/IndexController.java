@@ -111,4 +111,14 @@ public class IndexController {
       return "redirect:/";
     }
   }
+
+  @GetMapping("/order")
+  public String getOrderPage(HttpSession session, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+    if (cusService.isCusHasAccess(session)) {
+      return "order";
+    } else {
+      cusService.accessDenied(errorMsg, redirectAttributes);
+      return "redirect:/";
+    }
+  }
 }
