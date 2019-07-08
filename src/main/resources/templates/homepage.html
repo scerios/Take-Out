@@ -10,13 +10,16 @@
         <ul>
             <li><a href="homepage">Home</a></li>
             <li><a href="profile">My profile</a></li>
+            <li><a href="order">Order</a></li>
         </ul>
     </div>
     <form th:action="@{/homepage}" th:object="${cus}" method="get">
-        <h1 id="greeting">Hello <span th:text="*{getLastName()}"></span></h1>
+        <h1 id="greeting">Hello <span class="cusName" th:text="*{getLastName()}"></span>!</h1>
     </form>
-    <form th:action="@{/endSession}" method="post">
-        <button type="submit" id="submit" class="buttons">Farewell</button>
-    </form>
+    <div class="userNav">
+        <form th:action="@{/endSession}" method="post">
+            <button type="submit" id="submit" class="buttons">Farewell</button>
+        </form>
+    </div>
 </body>
 </html>
