@@ -7,6 +7,9 @@ public class ErrorMsg {
   private String wrongPwd;
   private String access;
 
+  public ErrorMsg() {
+  }
+
   public String getAlreadyRegistered() {
     return alreadyRegistered;
   }
