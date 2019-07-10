@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import practice.takeout.model.Burger;
 import practice.takeout.model.Cus;
 import practice.takeout.model.CusDetails;
 import practice.takeout.model.ErrorMsg;
@@ -30,6 +31,7 @@ public class IndexController {
   public void getPage(Model model) {
     model.addAttribute("cus", new Cus());
     model.addAttribute("cusDetails", new CusDetails());
+    model.addAttribute("burger", new Burger());
   }
 
   @GetMapping("/")
@@ -39,7 +41,7 @@ public class IndexController {
 
   @GetMapping("/register")
   public String getRegisterPage(Model model, HttpSession session, HttpServletRequest request) {
-    if (request.getSession().getMaxInactiveInterval() == 1800) {
+    if (request.getSession().getMaxInactiveInterval() == 1800 || request.getSession().getMaxInactiveInterval() == 600) {
       return "register";
     } else {
       model.addAttribute("cus", cusService.giveTempCusValues(session));
