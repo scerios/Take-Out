@@ -30,12 +30,9 @@ public class BurgerServiceImpl implements BurgerService {
   }
 
   @Override
-  public long getBurgerIdByQuery(String bun, String meat, String cheese, String sauce, byte onionMarmalade,
-                                 byte friedEgg, byte jalapenos, byte pineapple) {
+  public long getBurgerIdByQuery(String bun, String meat, String cheese, String sauce) {
     final String query = "SELECT burger_id FROM burgers WHERE bun = " + "\"" + bun + "\"" + "AND meat = " +
-        "\"" + meat + "\"" + "AND cheese = " + "\"" + cheese + "\"" + "AND sauce = " + "\"" + sauce + "\"" +
-        "AND onion_marmalade = " + "\"" + onionMarmalade + "\"" + "AND fried_egg = " + "\"" + friedEgg + "\""
-         + "AND jalapenos = " + "\"" + jalapenos + "\"" + "AND pineapple = " + "\"" + pineapple + "\"";
+        "\"" + meat + "\"" + "AND cheese = " + "\"" + cheese + "\"" + "AND sauce = " + "\"" + sauce + "\"";
     long extractedId = 0;
     PreparedStatement ps;
     Connection conn;

@@ -7,6 +7,5 @@ public interface BurgerService {
 
   Burger getBurgerById(long id);
 
-  long getBurgerIdByQuery(String bun, String meat, String cheese, String sauce, byte onionMarmalade, byte friedEgg,
-                          byte jalapenos, byte pineapple);
+  long getBurgerIdByQuery(String bun, String meat, String cheese, String sauce);
 }
