@@ -1,10 +1,10 @@
 package practice.takeout.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @SequenceGenerator(name = "BURGER_SEQUENCE", sequenceName = "BURGER_SEQ")
+@Table(name = "burgers")
 public class Burger {
 
   @Id
@@ -15,16 +15,8 @@ public class Burger {
   private String meat;
   private String cheese;
   private String sauce;
-  private List<String> extras;
   private int amount;
   private int price;
-
-  @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-  private Cart cart;
-
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "order_id", nullable = false)
-  private Order order;
 
   public Burger() {
   }
@@ -69,14 +61,6 @@ public class Burger {
     this.sauce = sauce;
   }
 
-  public List<String> getExtras() {
-    return extras;
-  }
-
-  public void setExtras(List<String> extras) {
-    this.extras = extras;
-  }
-
   public int getAmount() {
     return amount;
   }
@@ -91,21 +75,5 @@ public class Burger {
 
   public void setPrice(int price) {
     this.price = price;
-  }
-
-  public Cart getCart() {
-    return cart;
-  }
-
-  public void setCart(Cart cart) {
-    this.cart = cart;
-  }
-
-  public Order getOrder() {
-    return order;
-  }
-
-  public void setOrder(Order order) {
-    this.order = order;
   }
 }
