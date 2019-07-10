@@ -5,10 +5,12 @@ import java.util.List;
 
 @Entity
 @SequenceGenerator(name = "ORDER_SEQUENCE", sequenceName = "ORDER_SEQ")
+@Table(name = "orders")
 public class Order {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "ORDER_SEQ")
+  @Column(name = "order_id")
   private long id;
   private String status;
 
