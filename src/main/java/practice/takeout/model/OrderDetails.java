@@ -14,7 +14,6 @@ public class OrderDetails {
   private long orderId;
   @Column(name = "burger_id")
   private long burgerId;
-  @Column(name = "quantity")
   private int quantity;
 
   public OrderDetails() {
