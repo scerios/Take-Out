@@ -13,8 +13,8 @@ public class Order {
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "ORDER_SEQ")
   @Column(name = "order_id")
   private long id;
-  @Column(name = "cusDetails_id")
-  private long cusDetailsId;
+  @Column(name = "cus_id")
+  private long cusId;
   private String status;
   @CreationTimestamp
   @Column(name = "time_of_status_set")
@@ -32,12 +32,12 @@ public class Order {
     this.id = id;
   }
 
-  public long getCusDetailsId() {
-    return cusDetailsId;
+  public long getCusId() {
+    return cusId;
   }
 
-  public void setCusDetailsId(long cusDetailsId) {
-    this.cusDetailsId = cusDetailsId;
+  public void setCusId(long cusId) {
+    this.cusId = cusId;
   }
 
   public String getStatus() {
