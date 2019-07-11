@@ -15,7 +15,7 @@ public class Burger {
   private String meat;
   private String cheese;
   private String sauce;
-  private int price;
+  private double price;
 
   public Burger() {
   }
@@ -60,11 +60,11 @@ public class Burger {
     this.sauce = sauce;
   }
 
-  public int getPrice() {
+  public double getPrice() {
     return price;
   }
 
-  public void setPrice(int price) {
+  public void setPrice(double price) {
     this.price = price;
   }
 }

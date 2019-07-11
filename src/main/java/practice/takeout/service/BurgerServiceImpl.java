@@ -55,4 +55,9 @@ public class BurgerServiceImpl implements BurgerService {
     }
     return extractedId;
   }
+
+  @Override
+  public double getPriceById(long id) {
+    return repository.findById(id).get().getPrice();
+  }
 }

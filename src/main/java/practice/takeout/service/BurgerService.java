@@ -8,4 +8,6 @@ public interface BurgerService {
   Burger getBurgerById(long id);
 
   long getBurgerIdByQuery(String bun, String meat, String cheese, String sauce);
+
+  double getPriceById(long id);
 }
