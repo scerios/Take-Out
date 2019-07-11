@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import practice.takeout.model.Burger;
-import practice.takeout.model.Cus;
-import practice.takeout.model.CusDetails;
-import practice.takeout.model.ErrorMsg;
+import practice.takeout.model.*;
 import practice.takeout.service.CusDetailsServiceImpl;
 import practice.takeout.service.CusServiceImpl;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +28,7 @@ public class IndexController {
   public void getPage(Model model) {
     model.addAttribute("cus", new Cus());
     model.addAttribute("cusDetails", new CusDetails());
+    model.addAttribute("orderDetails", new OrderDetails());
     model.addAttribute("burger", new Burger());
   }
 
