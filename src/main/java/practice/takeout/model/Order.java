@@ -13,16 +13,12 @@ public class Order {
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "ORDER_SEQ")
   @Column(name = "order_id")
   private long id;
+  @Column(name = "customer_id")
+  private long cusId;
   private String status;
   @CreationTimestamp
   @Column(name = "time_of_status_set")
   private Date timeOfStatusSet;
-  @Column(name = "total_price")
-  private double totalPrice;
-
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "cus_id", nullable = false)
-  private Cus cus;
 
   public Order() {
   }
@@ -33,6 +29,14 @@ public class Order {
 
   public void setId(long id) {
     this.id = id;
+  }
+
+  public long getCusId() {
+    return cusId;
+  }
+
+  public void setCusId(long cusId) {
+    this.cusId = cusId;
   }
 
   public String getStatus() {
@@ -49,21 +53,5 @@ public class Order {
 
   public void setTimeOfStatusSet(Date timeOfStatusSet) {
     this.timeOfStatusSet = timeOfStatusSet;
-  }
-
-  public double getTotalPrice() {
-    return totalPrice;
-  }
-
-  public void setTotalPrice(double totalPrice) {
-    this.totalPrice = totalPrice;
-  }
-
-  public Cus getCus() {
-    return cus;
-  }
-
-  public void setCus(Cus cus) {
-    this.cus = cus;
   }
 }
