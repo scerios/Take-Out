@@ -19,6 +19,7 @@ public class Order {
   @CreationTimestamp
   @Column(name = "time_of_status_set")
   private Date timeOfStatusSet;
+  private int totalPrice;
 
   public Order() {
   }
@@ -53,5 +54,13 @@ public class Order {
 
   public void setTimeOfStatusSet(Date timeOfStatusSet) {
     this.timeOfStatusSet = timeOfStatusSet;
+  }
+
+  public int getTotalPrice() {
+    return totalPrice;
+  }
+
+  public void setTotalPrice(int totalPrice) {
+    this.totalPrice = totalPrice;
   }
 }
