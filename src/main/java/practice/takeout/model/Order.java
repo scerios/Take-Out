@@ -1,7 +1,8 @@
 package practice.takeout.model;
 
+import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @SequenceGenerator(name = "ORDER_SEQUENCE", sequenceName = "ORDER_SEQ")
@@ -12,10 +13,12 @@ public class Order {
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "ORDER_SEQ")
   @Column(name = "order_id")
   private long id;
+  @Column(name = "cusDetails_id")
+  private long cusDetailsId;
   private String status;
-
-  @OneToMany(mappedBy = "cus", cascade = CascadeType.ALL)
-  private List<Burger> burgerList;
+  @CreationTimestamp
+  @Column(name = "time_of_status_set")
+  private Date timeOfStatusSet;
 
   public Order() {
   }
@@ -28,6 +31,14 @@ public class Order {
     this.id = id;
   }
 
+  public long getCusDetailsId() {
+    return cusDetailsId;
+  }
+
+  public void setCusDetailsId(long cusDetailsId) {
+    this.cusDetailsId = cusDetailsId;
+  }
+
   public String getStatus() {
     return status;
   }
@@ -36,11 +47,11 @@ public class Order {
     this.status = status;
   }
 
-  public List<Burger> getBurgerList() {
-    return burgerList;
+  public Date getTimeOfStatusSet() {
+    return timeOfStatusSet;
   }
 
-  public void setBurgerList(List<Burger> burgerList) {
-    this.burgerList = burgerList;
+  public void setTimeOfStatusSet(Date timeOfStatusSet) {
+    this.timeOfStatusSet = timeOfStatusSet;
   }
 }
