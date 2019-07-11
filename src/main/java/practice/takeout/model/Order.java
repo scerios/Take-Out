@@ -19,6 +19,7 @@ public class Order {
   @CreationTimestamp
   @Column(name = "time_of_status_set")
   private Date timeOfStatusSet;
+  @Column(name = "total_price")
   private int totalPrice;
 
   public Order() {
