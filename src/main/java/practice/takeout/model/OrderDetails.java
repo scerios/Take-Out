@@ -14,7 +14,8 @@ public class OrderDetails {
   private long orderId;
   @Column(name = "burger_id")
   private long burgerId;
-  private int amountOfBurger;
+  @Column(name = "quantity")
+  private int quantity;
 
   public OrderDetails() {
   }
@@ -43,11 +44,11 @@ public class OrderDetails {
     this.burgerId = burgerId;
   }
 
-  public int getAmountOfBurger() {
-    return amountOfBurger;
+  public int getQuantity() {
+    return quantity;
   }
 
-  public void setAmountOfBurger(int amountOfBurger) {
-    this.amountOfBurger = amountOfBurger;
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
   }
 }
