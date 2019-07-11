@@ -18,7 +18,7 @@ public class Order {
   @Column(name = "time_of_status_set")
   private Date timeOfStatusSet;
   @Column(name = "total_price")
-  private int totalPrice;
+  private double totalPrice;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "cus_id", nullable = false)
@@ -51,11 +51,11 @@ public class Order {
     this.timeOfStatusSet = timeOfStatusSet;
   }
 
-  public int getTotalPrice() {
+  public double getTotalPrice() {
     return totalPrice;
   }
 
-  public void setTotalPrice(int totalPrice) {
+  public void setTotalPrice(double totalPrice) {
     this.totalPrice = totalPrice;
   }
 
