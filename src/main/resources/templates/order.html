@@ -45,7 +45,13 @@
             </div>
             <div class="quantity">
                 <label>Quantity:</label>
-                <input type="number" value="quantity" th:field="*{orderDetails.quantity}">
+                <select th:field="*{orderDetails.quantity}">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="3">4</option>
+                    <option value="3">5</option>
+                </select>
             </div>
         </div>
         <button id="submit" class="buttons" type="submit">Add to cart</button>
