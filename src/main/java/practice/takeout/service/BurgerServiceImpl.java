@@ -21,6 +21,44 @@ public class BurgerServiceImpl implements BurgerService {
 
   @Override
   public void addBurger(Burger burger) {
+    double price = 0;
+    switch (burger.getBun()) {
+      case "Ciabatta":
+        price = 1;
+        break;
+      case "Gluten Free":
+        price = 1.5;
+        break;
+      default:
+        price = 1.2;
+    }
+
+    switch (burger.getMeat()) {
+      case "Classic Beef":
+        price += 3;
+        break;
+      case "Chicken":
+        price += 2;
+        break;
+      case "Pulled Pork":
+        price += 2.5;
+        break;
+      case "Tofu":
+        price += 1.5;
+        break;
+    }
+
+    switch (burger.getCheese()) {
+      case "Camembert":
+        price += 2.3;
+        break;
+      case "Gorgonzola":
+        price += 2.6;
+        break;
+      default:
+        price += 2;
+    }
+    burger.setPrice(price);
     repository.save(burger);
   }
 
