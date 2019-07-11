@@ -13,35 +13,39 @@
             <li><a href="order">Order</a></li>
         </ul>
     </div>
-    <form th:action="@{/order}" th:object="${burger}" th:method="post">
+    <form th:action="@{/order}" th:method="post">
         <div class="container">
             <div class="ingredients">
                 <label>Bun:</label>
-                <input class="first" type="radio" value="Ciabatta" th:field="*{bun}"><span>Ciabatta - $1</span>
-                <input class="second" type="radio" value="Wheat-Rye" th:field="*{bun}"><span>Wheat-Rye - $1.2</span>
-                <input class="third" type="radio" value="Wholemeal" th:field="*{bun}"><span>Wholemeal - $1.2</span>
-                <input class="fourth" type="radio" value="Gluten Free" th:field="*{bun}"><span>Gluten Free - $1.5</span>
+                <input class="first" type="radio" value="Ciabatta" th:field="*{burger.bun}"><span>Ciabatta - $1</span>
+                <input class="second" type="radio" value="Wheat-Rye" th:field="*{burger.bun}"><span>Wheat-Rye - $1.2</span>
+                <input class="third" type="radio" value="Wholemeal" th:field="*{burger.bun}"><span>Wholemeal - $1.2</span>
+                <input class="fourth" type="radio" value="Gluten Free" th:field="*{burger.bun}"><span>Gluten Free - $1.5</span>
             </div>
             <div class="ingredients">
                 <label>Meat:</label>
-                <input class="first" type="radio" value="Classic Beef" th:field="*{meat}"><span>Classic Beef - $3</span>
-                <input class="second" type="radio" value="Chicken" th:field="*{meat}"><span>Chicken - $2</span>
-                <input class="third" type="radio" value="Pulled Pork" th:field="*{meat}"><span>Pulled Pork - $2.5</span>
-                <input class="fourth" type="radio" value="Tofu" th:field="*{meat}"><span>Tofu - $1.5</span>
+                <input class="first" type="radio" value="Classic Beef" th:field="*{burger.meat}"><span>Classic Beef - $3</span>
+                <input class="second" type="radio" value="Chicken" th:field="*{burger.meat}"><span>Chicken - $2</span>
+                <input class="third" type="radio" value="Pulled Pork" th:field="*{burger.meat}"><span>Pulled Pork - $2.5</span>
+                <input class="fourth" type="radio" value="Tofu" th:field="*{burger.meat}"><span>Tofu - $1.5</span>
             </div>
             <div class="ingredients">
                 <label>Cheese:</label>
-                <input class="first" type="radio" value="Cheddar" th:field="*{cheese}"><span>Cheddar - $2</span>
-                <input class="second" type="radio" value="Camembert" th:field="*{cheese}"><span>Camembert - $2.3</span>
-                <input class="third" type="radio" value="Gorgonzola" th:field="*{cheese}"><span>Gorgonzola - $2.6</span>
-                <input class="fourth" type="radio" value="Smoked Mozzarella" th:field="*{cheese}"><span>Smoked Mozzarella - $2</span>
+                <input class="first" type="radio" value="Cheddar" th:field="*{burger.cheese}"><span>Cheddar - $2</span>
+                <input class="second" type="radio" value="Camembert" th:field="*{burger.cheese}"><span>Camembert - $2.3</span>
+                <input class="third" type="radio" value="Gorgonzola" th:field="*{burger.cheese}"><span>Gorgonzola - $2.6</span>
+                <input class="fourth" type="radio" value="Smoked Mozzarella" th:field="*{burger.cheese}"><span>Smoked Mozzarella - $2</span>
             </div>
             <div class="ingredients">
                 <label>Sauce:</label>
-                <input class="first" type="radio" value="BBQ" th:field="*{sauce}"><span>BBQ</span>
-                <input class="second" type="radio" value="Wasabi-Pickle Mayo" th:field="*{sauce}"><span>Wasabi-Pickle Mayo</span>
-                <input class="third" type="radio" value="Truffle Mayo" th:field="*{sauce}"><span>Truffle Mayo</span>
-                <input class="fourth" type="radio" value="Chili" th:field="*{sauce}"><span>Chili</span>
+                <input class="first" type="radio" value="BBQ" th:field="*{burger.sauce}"><span>BBQ</span>
+                <input class="second" type="radio" value="Wasabi-Pickle Mayo" th:field="*{burger.sauce}"><span>Wasabi-Pickle Mayo</span>
+                <input class="third" type="radio" value="Truffle Mayo" th:field="*{burger.sauce}"><span>Truffle Mayo</span>
+                <input class="fourth" type="radio" value="Chili" th:field="*{burger.sauce}"><span>Chili</span>
+            </div>
+            <div class="quantity">
+                <label>Quantity:</label>
+                <input type="number" value="quantity" th:field="*{orderDetails.quantity}">
             </div>
         </div>
         <button id="submit" class="buttons" type="submit">Add to cart</button>
