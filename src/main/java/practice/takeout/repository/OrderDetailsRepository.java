@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import practice.takeout.model.OrderDetails;
 
 @Repository
-public interface OrderDetailsDepository extends CrudRepository<OrderDetails, Long> {
+public interface OrderDetailsRepository extends CrudRepository<OrderDetails, Long> {
 }
