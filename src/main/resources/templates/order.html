@@ -44,14 +44,18 @@
                 <input class="fourth" type="radio" value="Chili" th:field="*{burger.sauce}"><span>Chili</span>
             </div>
             <div class="quantity">
+                <div class="quantityLabel">
                 <label>Quantity:</label>
-                <select th:field="*{orderDetails.quantity}">
+                </div>
+                <div class="selectContainer">
+                <select id="quantitySelect" th:field="*{orderDetails.quantity}">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="3">4</option>
                     <option value="3">5</option>
                 </select>
+                </div>
             </div>
         </div>
         <button id="submit" class="buttons" type="submit">Add to cart</button>

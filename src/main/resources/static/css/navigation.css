@@ -56,6 +56,10 @@ body {
     cursor: pointer;
 }
 
+#submit {
+    margin-top: 10px;
+}
+
 .cusName {
     font-size: 30px;
 }
@@ -85,6 +89,22 @@ body {
 .userNav {
     margin-left: auto;
     margin-top: 50px;
+}
+
+.quantity {
+    margin-left: auto;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.quantityLabel {
+    float: left;
+    width: 70px;
+}
+
+.selectContainer {
+    float: left;
+    overflow: hidden;
 }
 
 label {
