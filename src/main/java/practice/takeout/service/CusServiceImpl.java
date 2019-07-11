@@ -6,6 +6,7 @@ import practice.takeout.dataProvider.SystemDefaults;
 import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
 import practice.takeout.model.ErrorMsg;
+import practice.takeout.model.Order;
 import practice.takeout.repository.CusRepository;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -144,5 +145,10 @@ public class CusServiceImpl implements CusService {
   @Override
   public long getCusSessionId(HttpSession session) {
     return (long) session.getAttribute("CUS_SESSION_ID");
+  }
+
+  @Override
+  public void addOrderToCus(long id, Order order) {
+    repository.findById(id).get().addOrder(order);
   }
 }
