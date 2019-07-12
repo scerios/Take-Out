@@ -10,25 +10,25 @@
         <div>
             <label>Post code:</label>
             <div>
-                <input type="number" name="postcode" th:field="*{cusDetails.postCode}" autofocus min="1000" max="1999" required>
+                <input type="number" name="postcode" th:value="*{cusDetails.postCode}" autofocus min="1000" max="1999" required>
                 <span class="star">*</span>
             </div>
             <label>Address:</label>
             <div>
-                <input type="text" name="addressName" th:field="*{cusDetails.addressName}" placeholder="Name" required>
+                <input type="text" name="addressName" th:value="*{cusDetails.addressName}" placeholder="Name" required>
                 <span class="star">*</span>
-                <input type="text" name="addressType" th:field="*{cusDetails.addressType}" placeholder="road/street/lane" required>
+                <input type="text" name="addressType" th:value="*{cusDetails.addressType}" placeholder="road/street/lane" required>
                 <span class="star">*</span>
             </div>
             <label>Number:</label>
             <div>
-                <input type="number" name="door" th:field="*{cusDetails.door}" min="1" max="500" placeholder="number" required>
+                <input type="number" name="door" th:value="*{cusDetails.door}" min="1" max="500" placeholder="number" required>
                 <span class="star">*</span>
-                <input type="text" name="bell" th:field="*{cusDetails.bell}" placeholder="bell (optional)">
+                <input type="text" name="bell" th:value="*{cusDetails.bell}" placeholder="bell (optional)">
             </div>
             <div>
                 <label>Reference name:</label>
-                <input id="reference" type="text" name="nickname" th:value="*{cusDetails.nickname}" placeholder="home/work" required>
+                <input id="reference" type="text" name="nickname" th:field="*{cusDetails.nickname}" placeholder="home/work" required>
                 <span class="star">*</span>
                 <p id="error" th:if="${alreadyRegistered == 'alreadyRegistered'}">You already have an address with this reference! Choose another one!</p>
             </div>
