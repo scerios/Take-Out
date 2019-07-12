@@ -16,6 +16,7 @@ public class CusDetails {
   private String addressType;
   private int door;
   private String bell;
+  private String nickname;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "cus_id", nullable = false)
@@ -70,6 +71,14 @@ public class CusDetails {
 
   public void setBell(String bell) {
     this.bell = bell;
+  }
+
+  public String getNickname() {
+    return nickname;
+  }
+
+  public void setNickname(String nickname) {
+    this.nickname = nickname;
   }
 
   public Cus getCus() {

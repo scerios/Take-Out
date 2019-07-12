@@ -26,6 +26,10 @@
                 <span class="star">*</span>
                 <input type="text" name="bell" th:field="*{cusDetails.bell}" placeholder="bell (optional)">
             </div>
+            <div>
+                <label>Reference name:</label>
+                <input id="reference" type="text" name="nickname" th:value="*{cusDetails.nickname}" placeholder="home/work" required>
+            </div>
         </div>
         <button id="submit" type="submit">Register</button>
         <a href="profile" id="cancel">Cancel</a>
