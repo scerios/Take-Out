@@ -2,6 +2,7 @@ package practice.takeout.service;
 
 import practice.takeout.model.CusDetails;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 public interface CusDetailsService {
   void addDetails(CusDetails cusDetails);
@@ -15,4 +16,6 @@ public interface CusDetailsService {
   boolean isCusHasAccessToDetails(long cusId, long cusDetailsId);
 
   CusDetails giveTempCusDetailsValues(HttpSession session);
+
+  List<String> getListOfNicknamesFromDbByQuery(long cusId);
 }

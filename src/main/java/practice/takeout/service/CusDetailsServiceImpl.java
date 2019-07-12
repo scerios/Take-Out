@@ -84,4 +84,30 @@ public class CusDetailsServiceImpl implements CusDetailsService {
     cusDetails.setBell((String) session.getAttribute("TEMP_SESSION_CUS_ADDRESS_BELL"));
     return cusDetails;
   }
+
+  @Override
+  public List<String> getListOfNicknamesFromDbByQuery(long cusId) {
+    final String query = "SELECT details_id, nickname FROM customer_details WHERE cus_id = " + "\"" + cusId + "\"";
+    List<String> listOfNicknames = new ArrayList<>();
+    PreparedStatement ps;
+    Connection conn;
+    try {
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USERNAME, PWD);
+      ps = conn.prepareStatement(query);
+      ResultSet rs = ps.executeQuery(query);
+      while (rs.next()) {
+        listOfNicknames.add(rs.getString("nickname"));
+      }
+      ps.close();
+      conn.close();
+    } catch (ClassNotFoundException CNFe) {
+      throw new RuntimeException("JDBC Driver cannot be found.");
+    } catch (SQLException SQLe) {
+      throw new RuntimeException("SQL Database cannot be found.");
+    } catch (Exception e) {
+      throw new RuntimeException("Cannot identify the problem.");
+    }
+    return listOfNicknames;
+  }
 }
