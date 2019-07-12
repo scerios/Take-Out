@@ -22,24 +22,16 @@
             <a href="addNewAddress" id="newAddress" class="buttons">Add new address</a>
         </div>
         <div class="container">
-            <table>
+            <table id="referenceTable">
                 <thead>
                 <tr>
-                    <th>PostCode</th>
-                    <th>Address Name</th>
-                    <th>Type</th>
-                    <th>Door</th>
-                    <th>Bell</th>
+                    <th>Nickname</th>
                     <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="cusDetails : ${details}" th:object="${cusDetails}">
-                    <td><span th:text="*{getPostCode()}"></span></td>
-                    <td><span th:text="*{getAddressName()}"></span></td>
-                    <td><span th:text="*{getAddressType()}"></span></td>
-                    <td><span th:text="*{getDoor()}"></span></td>
-                    <td><span th:text="*{getBell()}"></span></td>
+                    <td><span th:text="*{getNickname()}"></span></td>
                     <td><a th:href="@{/confirmDel/{id}(id=${cusDetails.getId()})}" id="delete" class="buttons">Delete</a>
                     </td>
                 </tr>
