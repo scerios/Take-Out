@@ -1,4 +1,4 @@
-body{
+body {
     size: 100%;
     background-image: url(https://images.wallpaperscraft.com/image/burger_hamburger_buns_meat_knife_116170_1920x1080.jpg);
 }
@@ -19,36 +19,15 @@ body{
     text-align: center;
 }
 
-p {
-    color: rgb(209, 2, 2);
-    -webkit-animation: pulsate 3s ease-out;
-    -webkit-animation-iteration-count: infinite;
-    opacity: 0.5;
+#reglink:hover {
+    color: black;
+    background-color: rgb(29, 255, 29);
 }
 
-@-webkit-keyframes pulsate {
-    0% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 1.0;
-    }
-    100% {
-        opacity: 0.5;
-    }
-}
-
-.note {
-    font-size: 16px;
-    color: rgb(29, 255, 29);
-}
-
-input {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 2px 5px;
-    border-radius: 3px;
-    border-color: rgb(29, 255, 29);
+#submit:hover {
+    color: black;
+    background-color: rgb(29, 255, 29);
+    cursor: pointer;
 }
 
 #submit {
@@ -77,13 +56,34 @@ input {
     text-decoration: none;
 }
 
-#reglink:hover {
-    color: black;
-    background-color: rgb(29, 255, 29);
+.note {
+    font-size: 16px;
+    color: rgb(29, 255, 29);
 }
 
-#submit:hover {
-    color: black;
-    background-color: rgb(29, 255, 29);
-    cursor: pointer;
+input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    border-color: rgb(29, 255, 29);
+}
+
+p {
+    color: rgb(209, 2, 2);
+    -webkit-animation: pulsate 3s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.5;
+}
+
+@-webkit-keyframes pulsate {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: 0.5;
+    }
 }

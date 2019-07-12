@@ -60,6 +60,10 @@ body {
     margin-top: 10px;
 }
 
+#referenceTable {
+    width: 300px;
+}
+
 .cusName {
     font-size: 30px;
 }
@@ -107,18 +111,18 @@ body {
     overflow: hidden;
 }
 
+.first {
+    display: inline-block;
+    float: left;
+    margin-left: 30px;
+}
+
 label {
     display: inline-block;
     float: left;
     clear: left;
     width: 30px;
     text-align: left;
-}
-
-.first {
-    display: inline-block;
-    float: left;
-    margin-left: 30px;
 }
 
 ul {

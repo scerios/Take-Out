@@ -1,4 +1,4 @@
-body{
+body {
     size: 100%;
     background-image: url(https://images.wallpaperscraft.com/image/burger_hamburger_buns_meat_knife_116170_1920x1080.jpg);
 }
@@ -23,57 +23,6 @@ body{
     -webkit-animation: pulsate 3s ease-out;
     -webkit-animation-iteration-count: infinite;
     opacity: 0.5;
-}
-
-label {
-    color: rgb(29, 255, 29);
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type="number"] {
-    -moz-appearance:textfield;
-}
-
-input {
-    margin-bottom: 5px;
-    padding: 2px 5px;
-    border-radius: 3px;
-    border-color: rgb(29, 255, 29);
-    width: 140px;
-    display: inline-block;
-}
-
-label {
-    display: inline-block;
-    float: left;
-    clear: left;
-    width: 120px;
-    text-align: left;
-}
-
-.extraNote {
-    color: rgb(23, 185, 23);
-    -webkit-animation: pulsate 3s ease-out;
-    -webkit-animation-iteration-count: infinite;
-    opacity: 0.5;
-}
-
-.star {
-    color: rgb(255, 0, 34);
-}
-
-.noteContainer {
-    margin-top: 1550px;
-}
-
-.note {
-    margin-top: 50px;
-    color: rgb(29, 255, 29);
 }
 
 #submit {
@@ -114,6 +63,57 @@ label {
 #cancel:hover {
     color: black;
     background-color: rgb(29, 255, 29);
+}
+
+.extraNote {
+    color: rgb(23, 185, 23);
+    -webkit-animation: pulsate 3s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.5;
+}
+
+.star {
+    color: rgb(255, 0, 34);
+}
+
+.noteContainer {
+    margin-top: 1550px;
+}
+
+.note {
+    margin-top: 50px;
+    color: rgb(29, 255, 29);
+}
+
+label {
+    color: rgb(29, 255, 29);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input {
+    margin-bottom: 5px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    border-color: rgb(29, 255, 29);
+    width: 140px;
+    display: inline-block;
+}
+
+label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 120px;
+    text-align: left;
 }
 
 @-webkit-keyframes pulsate {
