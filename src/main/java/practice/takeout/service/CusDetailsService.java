@@ -20,4 +20,6 @@ public interface CusDetailsService {
   List<String> getListOfNicknamesFromDbByQuery(long cusId);
 
   long getDetailsIdByCusIdAndNickname(long cusId, String nickname);
+
+  void giveSessionTempDetails(CusDetails cusDetails, HttpSession session);
 }

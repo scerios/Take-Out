@@ -16,13 +16,13 @@ public interface CusService {
 
   void addDetailsToCus(long id, CusDetails cusDetails);
 
-  void giveCusSessionById(long id, HttpServletRequest request);
+  void giveCusSessionById(long id, HttpSession session);
 
-  void giveCusTempSessionToRegister(Cus cus, CusDetails cusDetails, HttpServletRequest request);
+  void giveCusTempSessionToRegister(Cus cus, CusDetails cusDetails, HttpSession session);
 
   Cus giveTempCusValues(HttpSession session);
 
-  void endCusSession(HttpServletRequest request);
+  void endCusSession(HttpSession session);
 
   String[] getDataFromDbByQuery(String email);
 

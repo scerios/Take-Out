@@ -10,7 +10,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.takeout.model.*;
 import practice.takeout.service.CusDetailsServiceImpl;
 import practice.takeout.service.CusServiceImpl;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -38,20 +37,26 @@ public class IndexController {
   }
 
   @GetMapping("/register")
-  public String getRegisterPage(Model model, HttpSession session, HttpServletRequest request) {
-    if (request.getSession().getMaxInactiveInterval() == 1800 || request.getSession().getMaxInactiveInterval() == 600) {
+  public String getRegisterPage(Model model, HttpSession session) {
+    if (session.getMaxInactiveInterval() == 1800 || session.getMaxInactiveInterval() == 600) {
       return "register";
     } else {
       model.addAttribute("cus", cusService.giveTempCusValues(session));
       model.addAttribute("cusDetails", cusDetailsService.giveTempCusDetailsValues(session));
-      request.getSession().invalidate();
+      session.invalidate();
       return "register";
     }
   }
 
   @GetMapping("/addNewAddress")
-  public String getAddNewAddressPage(HttpSession session, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+  public String getAddNewAddressPage(HttpSession session, ErrorMsg errorMsg, RedirectAttributes redirectAttributes,
+                                     Model model) {
     if (cusService.isCusHasAccess(session)) {
+      if (session.getMaxInactiveInterval() == 599) {
+        model.addAttribute(cusDetailsService.giveTempCusDetailsValues(session));
+        session.setMaxInactiveInterval(600);
+        return "addNewAddress";
+      }
       return "addNewAddress";
     } else {
       cusService.accessDenied(errorMsg, redirectAttributes);

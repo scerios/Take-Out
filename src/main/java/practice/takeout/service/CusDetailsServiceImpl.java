@@ -137,4 +137,14 @@ public class CusDetailsServiceImpl implements CusDetailsService {
     }
     return extractedId;
   }
+
+  @Override
+  public void giveSessionTempDetails(CusDetails cusDetails, HttpSession session) {
+    session.setAttribute("TEMP_SESSION_CUS_POSTCODE", cusDetails.getPostCode());
+    session.setAttribute("TEMP_SESSION_CUS_ADDRESS_NAME", cusDetails.getAddressName());
+    session.setAttribute("TEMP_SESSION_CUS_ADDRESS_TYPE", cusDetails.getAddressType());
+    session.setAttribute("TEMP_SESSION_CUS_ADDRESS_NUMBER", cusDetails.getDoor());
+    session.setAttribute("TEMP_SESSION_CUS_ADDRESS_BELL", cusDetails.getBell());
+    session.setMaxInactiveInterval(599);
+  }
 }

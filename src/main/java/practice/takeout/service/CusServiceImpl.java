@@ -49,22 +49,22 @@ public class CusServiceImpl implements CusService {
   }
 
   @Override
-  public void giveCusSessionById(long id, HttpServletRequest request) {
-    request.getSession().setAttribute("CUS_SESSION_ID", id);
-    request.getSession().setMaxInactiveInterval(600);
+  public void giveCusSessionById(long id, HttpSession session) {
+    session.setAttribute("CUS_SESSION_ID", id);
+    session.setMaxInactiveInterval(600);
   }
 
   @Override
-  public void giveCusTempSessionToRegister(Cus cus, CusDetails cusDetails, HttpServletRequest request) {
-    request.getSession().setAttribute("TEMP_SESSION_CUS_FIRST_NAME", cus.getFirstName());
-    request.getSession().setAttribute("TEMP_SESSION_CUS_LAST_NAME", cus.getLastName());
-    request.getSession().setAttribute("TEMP_SESSION_CUS_PHONE_NUMBER", cus.getPhoneNumber());
-    request.getSession().setAttribute("TEMP_SESSION_CUS_POSTCODE", cusDetails.getPostCode());
-    request.getSession().setAttribute("TEMP_SESSION_CUS_ADDRESS_NAME", cusDetails.getAddressName());
-    request.getSession().setAttribute("TEMP_SESSION_CUS_ADDRESS_TYPE", cusDetails.getAddressType());
-    request.getSession().setAttribute("TEMP_SESSION_CUS_ADDRESS_NUMBER", cusDetails.getDoor());
-    request.getSession().setAttribute("TEMP_SESSION_CUS_ADDRESS_BELL", cusDetails.getBell());
-    request.getSession().setMaxInactiveInterval(120);
+  public void giveCusTempSessionToRegister(Cus cus, CusDetails cusDetails, HttpSession session) {
+    session.setAttribute("TEMP_SESSION_CUS_FIRST_NAME", cus.getFirstName());
+    session.setAttribute("TEMP_SESSION_CUS_LAST_NAME", cus.getLastName());
+    session.setAttribute("TEMP_SESSION_CUS_PHONE_NUMBER", cus.getPhoneNumber());
+    session.setAttribute("TEMP_SESSION_CUS_POSTCODE", cusDetails.getPostCode());
+    session.setAttribute("TEMP_SESSION_CUS_ADDRESS_NAME", cusDetails.getAddressName());
+    session.setAttribute("TEMP_SESSION_CUS_ADDRESS_TYPE", cusDetails.getAddressType());
+    session.setAttribute("TEMP_SESSION_CUS_ADDRESS_NUMBER", cusDetails.getDoor());
+    session.setAttribute("TEMP_SESSION_CUS_ADDRESS_BELL", cusDetails.getBell());
+    session.setMaxInactiveInterval(120);
   }
 
   @Override
@@ -77,8 +77,8 @@ public class CusServiceImpl implements CusService {
   }
 
   @Override
-  public void endCusSession(HttpServletRequest request) {
-    request.getSession().invalidate();
+  public void endCusSession(HttpSession session) {
+    session.invalidate();
   }
 
   @Override
