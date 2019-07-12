@@ -29,7 +29,8 @@
             <div>
                 <label>Reference name:</label>
                 <input id="reference" type="text" name="nickname" th:value="*{cusDetails.nickname}" placeholder="home/work" required>
-                <p id="error" th:if="${alreadyRegistered == 'alreadyRegistered'}">This email has been already registered! Choose another one!</p>
+                <span class="star">*</span>
+                <p id="error" th:if="${alreadyRegistered == 'alreadyRegistered'}">You already have an address with this reference! Choose another one!</p>
             </div>
         </div>
         <button id="submit" type="submit">Register</button>
