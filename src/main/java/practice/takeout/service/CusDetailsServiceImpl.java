@@ -110,4 +110,31 @@ public class CusDetailsServiceImpl implements CusDetailsService {
     }
     return listOfNicknames;
   }
+
+  @Override
+  public long getDetailsIdByCusIdAndNickname(long cusId, String nickname) {
+    final String query = "SELECT details_id FROM customer_details WHERE cus_id = " + "\"" + cusId + "\""
+        + "AND nickname = "  + "\"" + nickname + "\"";
+    long extractedId = 0;
+    PreparedStatement ps;
+    Connection conn;
+    try {
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USERNAME, PWD);
+      ps = conn.prepareStatement(query);
+      ResultSet rs = ps.executeQuery(query);
+      while (rs.next()) {
+        extractedId = rs.getLong("details_id");
+      }
+      ps.close();
+      conn.close();
+    } catch (ClassNotFoundException CNFe) {
+      throw new RuntimeException("JDBC Driver cannot be found.");
+    } catch (SQLException SQLe) {
+      throw new RuntimeException("SQL Database cannot be found.");
+    } catch (Exception e) {
+      throw new RuntimeException("Cannot identify the problem.");
+    }
+    return extractedId;
+  }
 }
