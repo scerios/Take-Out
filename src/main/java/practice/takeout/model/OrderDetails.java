@@ -12,6 +12,8 @@ public class OrderDetails {
   private long id;
   @Column(name = "order_id")
   private long orderId;
+  @Column(name = "customer_detail_id")
+  private long cusDetailId;
   @Column(name = "burger_id")
   private long burgerId;
   private int quantity;
@@ -33,6 +35,14 @@ public class OrderDetails {
 
   public void setOrderId(long orderId) {
     this.orderId = orderId;
+  }
+
+  public long getCusDetailId() {
+    return cusDetailId;
+  }
+
+  public void setCusDetailId(long cusDetailId) {
+    this.cusDetailId = cusDetailId;
   }
 
   public long getBurgerId() {
