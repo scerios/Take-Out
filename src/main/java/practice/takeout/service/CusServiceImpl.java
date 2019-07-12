@@ -83,7 +83,7 @@ public class CusServiceImpl implements CusService {
 
   @Override
   public String[] getDataFromDbByQuery(String email) {
-    final String query = "SELECT * FROM customers WHERE email = " + "\"" + email + "\"";
+    final String query = "SELECT id, email, pwd FROM customers WHERE email = " + "\"" + email + "\"";
     String[] dataByQuery = new String[3];
     PreparedStatement ps;
     Connection conn;
@@ -93,12 +93,9 @@ public class CusServiceImpl implements CusService {
       ps = conn.prepareStatement(query);
       ResultSet rs = ps.executeQuery(query);
       while (rs.next()) {
-        String extractedId = Integer.toString(rs.getInt("id"));
-        dataByQuery[0] = extractedId;
-        String extractedEmail = rs.getString("email");
-        dataByQuery[1] = extractedEmail;
-        String extractedPwd = rs.getString("pwd");
-        dataByQuery[2] = extractedPwd;
+        dataByQuery[0] = Integer.toString(rs.getInt("id"));
+        dataByQuery[1] = rs.getString("email");
+        dataByQuery[2] = rs.getString("pwd");
       }
       ps.close();
       conn.close();
