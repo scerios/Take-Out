@@ -87,7 +87,7 @@ public class CusDetailsServiceImpl implements CusDetailsService {
 
   @Override
   public List<String> getListOfNicknamesFromDbByQuery(long cusId) {
-    final String query = "SELECT details_id, nickname FROM customer_details WHERE cus_id = " + "\"" + cusId + "\"";
+    final String query = "SELECT nickname FROM customer_details WHERE cus_id = " + "\"" + cusId + "\"";
     List<String> listOfNicknames = new ArrayList<>();
     PreparedStatement ps;
     Connection conn;
