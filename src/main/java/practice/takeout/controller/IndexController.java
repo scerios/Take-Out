@@ -50,7 +50,7 @@ public class IndexController {
   }
 
   @GetMapping("/addNewAddress")
-  public String getAddNewAddressPage(HttpSession session, ErrorMsg errorMsg, RedirectAttributes redirectAttributes,
+  public String getAddNewAddressPage(HttpSession session, PopUpMsq popUpMsq, RedirectAttributes redirectAttributes,
                                      Model model) {
     if (cusService.isCusHasAccess(session)) {
       if (session.getMaxInactiveInterval() == 599) {
@@ -60,70 +60,70 @@ public class IndexController {
       }
       return "addNewAddress";
     } else {
-      cusService.accessDenied(errorMsg, redirectAttributes);
+      cusService.accessDenied(popUpMsq, redirectAttributes);
       return "redirect:/";
     }
   }
 
   @GetMapping("/homepage")
-  public String getHomePage(Model model, HttpSession session, ErrorMsg errorMsg,
+  public String getHomePage(Model model, HttpSession session, PopUpMsq popUpMsq,
                             RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session)) {
       model.addAttribute("cus", cusService.getCusById(cusService.getCusSessionId(session)));
       return "homepage";
     } else {
-      cusService.accessDenied(errorMsg, redirectAttributes);
+      cusService.accessDenied(popUpMsq, redirectAttributes);
       return "redirect:/";
     }
   }
 
   @GetMapping("/profile")
-  public String getProfilePage(Model model, HttpSession session, ErrorMsg errorMsg,
+  public String getProfilePage(Model model, HttpSession session, PopUpMsq popUpMsq,
                                RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session)) {
       model.addAttribute("cus", cusService.getCusById(cusService.getCusSessionId(session)));
       model.addAttribute("details", cusDetailsService.findAllByCus_Id(cusService.getCusSessionId(session)));
       return "profile";
     } else {
-      cusService.accessDenied(errorMsg, redirectAttributes);
+      cusService.accessDenied(popUpMsq, redirectAttributes);
       return "redirect:/";
     }
   }
 
   @GetMapping("/confirmDel/{id}")
-  public String getConfirmDelPage(@PathVariable long id, Model model, HttpSession session, ErrorMsg errorMsg,
+  public String getConfirmDelPage(@PathVariable long id, Model model, HttpSession session, PopUpMsq popUpMsq,
                                   RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session) &&
         cusDetailsService.isCusHasAccessToDetails((long) session.getAttribute("CUS_SESSION_ID"), id)) {
       model.addAttribute("cusDetails", cusDetailsService.getDetailsById(id));
       return "confirmDel";
     } else if (cusService.isCusHasAccess(session)) {
-      cusService.accessDenied(errorMsg, redirectAttributes);
+      cusService.accessDenied(popUpMsq, redirectAttributes);
       return "redirect:/profile";
     } else {
-      cusService.accessDenied(errorMsg, redirectAttributes);
+      cusService.accessDenied(popUpMsq, redirectAttributes);
       return "redirect:/";
     }
   }
 
   @GetMapping("/editContact")
-  public String getEditContactPage(Model model, HttpSession session, ErrorMsg errorMsg,
+  public String getEditContactPage(Model model, HttpSession session, PopUpMsq popUpMsq,
                                    RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session)) {
       model.addAttribute("cus", cusService.getCusById((long) session.getAttribute("CUS_SESSION_ID")));
       return "editContact";
     } else {
-      cusService.accessDenied(errorMsg, redirectAttributes);
+      cusService.accessDenied(popUpMsq, redirectAttributes);
       return "redirect:/";
     }
   }
 
   @GetMapping("/order")
-  public String getOrderPage(HttpSession session, ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
+  public String getOrderPage(HttpSession session, PopUpMsq popUpMsq, RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session)) {
       return "order";
     } else {
-      cusService.accessDenied(errorMsg, redirectAttributes);
+      cusService.accessDenied(popUpMsq, redirectAttributes);
       return "redirect:/";
     }
   }

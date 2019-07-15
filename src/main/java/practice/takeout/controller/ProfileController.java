@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
-import practice.takeout.model.ErrorMsg;
+import practice.takeout.model.PopUpMsq;
 import practice.takeout.service.CusDetailsServiceImpl;
 import practice.takeout.service.CusServiceImpl;
 import javax.servlet.http.HttpSession;
@@ -24,11 +24,11 @@ public class ProfileController {
   }
 
   @PostMapping("/register")
-  public String register(Cus cus, CusDetails cusDetails, ErrorMsg errorMsg, HttpSession session,
+  public String register(Cus cus, CusDetails cusDetails, PopUpMsq popUpMsq, HttpSession session,
                          RedirectAttributes redirectAttributes) {
     String[] dataByQuery = cusService.getDataFromDbByQuery(cus.getEmail());
     if (cus.getEmail().equals(dataByQuery[1])) {
-      cusService.setAlreadyRegistered(errorMsg, redirectAttributes);
+      cusService.setAlreadyRegistered(popUpMsq, redirectAttributes);
       cusService.giveCusTempSessionToRegister(cus, cusDetails, session);
       return "redirect:/register";
     } else {
@@ -40,16 +40,16 @@ public class ProfileController {
   }
 
   @GetMapping("/login")
-  public String logIn(Cus cus, ErrorMsg errorMsg, RedirectAttributes redirectAttributes, HttpSession session) {
+  public String logIn(Cus cus, PopUpMsq popUpMsq, RedirectAttributes redirectAttributes, HttpSession session) {
     String[] dataByQuery = cusService.getDataFromDbByQuery(cus.getEmail());
     if (dataByQuery[1] == null) {
-      cusService.setWrongEmail(errorMsg, redirectAttributes);
+      cusService.setWrongEmail(popUpMsq, redirectAttributes);
       return "redirect:/";
     } else if (dataByQuery[2].equals(cus.getPwd())) {
       cusService.giveCusSessionById(Long.parseLong(dataByQuery[0]), session);
       return "redirect:/homepage";
     } else {
-      cusService.setWrongPwd(errorMsg, redirectAttributes);
+      cusService.setWrongPwd(popUpMsq, redirectAttributes);
       return "redirect:/";
     }
   }
@@ -61,12 +61,12 @@ public class ProfileController {
   }
 
   @PostMapping("/addNewAddress")
-  public String addNewAddress(CusDetails cusDetails, HttpSession session, ErrorMsg errorMsg,
+  public String addNewAddress(CusDetails cusDetails, HttpSession session, PopUpMsq popUpMsq,
                               RedirectAttributes redirectAttributes) {
     List<String> nicknames = cusDetailsService.getListOfNicknamesFromDbByQuery(cusService.getCusSessionId(session));
     for (int i = 0; i < nicknames.size(); i++) {
       if (nicknames.get(i).equals(cusDetails.getNickname())) {
-        cusService.setAlreadyRegistered(errorMsg, redirectAttributes);
+        cusService.setAlreadyRegistered(popUpMsq, redirectAttributes);
         cusDetailsService.giveSessionTempDetails(cusDetails, session);
         return "redirect:/addNewAddress";
       }

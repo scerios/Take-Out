@@ -4,7 +4,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.takeout.model.Cart;
 import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
-import practice.takeout.model.ErrorMsg;
+import practice.takeout.model.PopUpMsq;
 import javax.servlet.http.HttpSession;
 
 public interface CusService {
@@ -26,15 +26,15 @@ public interface CusService {
 
   String[] getDataFromDbByQuery(String email);
 
-  void setAlreadyRegistered(ErrorMsg errorMsg, RedirectAttributes redirectAttributes);
+  void setAlreadyRegistered(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes);
 
-  void setWrongEmail(ErrorMsg errorMsg, RedirectAttributes redirectAttributes);
+  void setWrongEmail(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes);
 
-  void setWrongPwd(ErrorMsg errorMsg, RedirectAttributes redirectAttributes);
+  void setWrongPwd(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes);
 
   boolean isCusHasAccess(HttpSession session);
 
-  void accessDenied(ErrorMsg errorMsg, RedirectAttributes redirectAttributes);
+  void accessDenied(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes);
 
   long getCusSessionId(HttpSession session);
 

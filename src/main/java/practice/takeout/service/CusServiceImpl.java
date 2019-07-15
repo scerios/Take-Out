@@ -6,7 +6,7 @@ import practice.takeout.dataProvider.SystemDefaults;
 import practice.takeout.model.Cart;
 import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
-import practice.takeout.model.ErrorMsg;
+import practice.takeout.model.PopUpMsq;
 import practice.takeout.repository.CusRepository;
 import javax.servlet.http.HttpSession;
 import java.sql.*;
@@ -110,21 +110,21 @@ public class CusServiceImpl implements CusService {
   }
 
   @Override
-  public void setAlreadyRegistered(ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
-    errorMsg.setAlreadyRegistered("alreadyRegistered");
-    redirectAttributes.addFlashAttribute("alreadyRegistered", errorMsg.getAlreadyRegistered());
+  public void setAlreadyRegistered(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes) {
+    popUpMsq.setAlreadyRegistered("alreadyRegistered");
+    redirectAttributes.addFlashAttribute("alreadyRegistered", popUpMsq.getAlreadyRegistered());
   }
 
   @Override
-  public void setWrongEmail(ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
-    errorMsg.setWrongEmail("wrongEmail");
-    redirectAttributes.addFlashAttribute("wrongEmail", errorMsg.getWrongEmail());
+  public void setWrongEmail(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes) {
+    popUpMsq.setWrongEmail("wrongEmail");
+    redirectAttributes.addFlashAttribute("wrongEmail", popUpMsq.getWrongEmail());
   }
 
   @Override
-  public void setWrongPwd(ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
-    errorMsg.setWrongPwd("wrongPwd");
-    redirectAttributes.addFlashAttribute("wrongPwd", errorMsg.getWrongPwd());
+  public void setWrongPwd(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes) {
+    popUpMsq.setWrongPwd("wrongPwd");
+    redirectAttributes.addFlashAttribute("wrongPwd", popUpMsq.getWrongPwd());
   }
 
   @Override
@@ -133,9 +133,9 @@ public class CusServiceImpl implements CusService {
   }
 
   @Override
-  public void accessDenied(ErrorMsg errorMsg, RedirectAttributes redirectAttributes) {
-    errorMsg.setAccess("accessDenied");
-    redirectAttributes.addFlashAttribute("access", errorMsg.getAccess());
+  public void accessDenied(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes) {
+    popUpMsq.setAccess("accessDenied");
+    redirectAttributes.addFlashAttribute("access", popUpMsq.getAccess());
   }
 
   @Override

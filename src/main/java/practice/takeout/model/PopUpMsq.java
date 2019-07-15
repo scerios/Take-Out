@@ -1,13 +1,13 @@
 package practice.takeout.model;
 
-public class ErrorMsg {
+public class PopUpMsq {
   private String alreadyRegistered;
   private String alreadyLoggedIn;
   private String wrongEmail;
   private String wrongPwd;
   private String access;
 
-  public ErrorMsg() {
+  public PopUpMsq() {
   }
 
   public String getAlreadyRegistered() {
