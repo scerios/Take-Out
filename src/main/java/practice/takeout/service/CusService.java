@@ -4,7 +4,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
 import practice.takeout.model.ErrorMsg;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public interface CusService {
