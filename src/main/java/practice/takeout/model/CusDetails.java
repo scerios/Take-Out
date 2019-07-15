@@ -3,12 +3,12 @@ package practice.takeout.model;
 import javax.persistence.*;
 
 @Entity
-@SequenceGenerator(name = "DETAILS_SEQUENCE", sequenceName = "DETAILS_SEQ")
+@SequenceGenerator(name = "CUSTOMER_DETAILS_SEQUENCE", sequenceName = "CUSTOMER_DETAILS_SEQ")
 @Table(name = "customer_details")
 public class CusDetails {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "DETAILS_SEQ")
+  @GeneratedValue(strategy = GenerationType.AUTO, generator = "CUSTOMER_DETAILS_SEQ")
   @Column(name = "details_id")
   private long id;
   private int postCode;
