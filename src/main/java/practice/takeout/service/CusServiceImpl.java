@@ -3,6 +3,7 @@ package practice.takeout.service;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.takeout.dataProvider.SystemDefaults;
+import practice.takeout.model.Cart;
 import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
 import practice.takeout.model.ErrorMsg;
@@ -140,5 +141,10 @@ public class CusServiceImpl implements CusService {
   @Override
   public long getCusSessionId(HttpSession session) {
     return (long) session.getAttribute("CUS_SESSION_ID");
+  }
+
+  @Override
+  public void addCartToCus(long id, Cart cart) {
+    repository.findById(id).get().addToCart(cart);
   }
 }
