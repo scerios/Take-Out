@@ -20,6 +20,9 @@ public class Cus {
   @OneToMany(mappedBy = "cus", cascade = CascadeType.ALL)
   private List<CusDetails> cusDetailsList;
 
+  @OneToMany(mappedBy = "cus", cascade = CascadeType.ALL)
+  private List<Cart> cartList;
+
   public Cus() {
   }
 
@@ -85,5 +88,21 @@ public class Cus {
     }
     cusDetails.setCus(this);
     cusDetailsList.add(cusDetails);
+  }
+
+  public List<Cart> getCartList() {
+    return cartList;
+  }
+
+  public void setCartList(List<Cart> cartList) {
+    this.cartList = cartList;
+  }
+
+  public void addToCart(Cart cart) {
+    if (cartList == null) {
+      cartList = new ArrayList<>();
+    }
+    cart.setCus(this);
+    cartList.add(cart);
   }
 }
