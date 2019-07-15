@@ -4,6 +4,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
 import practice.takeout.model.ErrorMsg;
+import practice.takeout.model.Order;
+
 import javax.servlet.http.HttpSession;
 
 public interface CusService {
@@ -36,4 +38,6 @@ public interface CusService {
   void accessDenied(ErrorMsg errorMsg, RedirectAttributes redirectAttributes);
 
   long getCusSessionId(HttpSession session);
+
+  void addOrderToCus(long id, Order order);
 }
