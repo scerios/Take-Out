@@ -10,13 +10,15 @@ public class OrderDetails {
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "ORDER_DETAILS_SEQ")
   @Column(name = "order_details_id")
   private long id;
-  @Column(name = "order_id")
-  private long orderId;
   @Column(name = "customer_detail_id")
   private long cusDetailId;
   @Column(name = "burger_id")
   private long burgerId;
   private int quantity;
+
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "order_id", nullable = false)
+  private Order order;
 
   public OrderDetails() {
   }
@@ -27,14 +29,6 @@ public class OrderDetails {
 
   public void setId(long id) {
     this.id = id;
-  }
-
-  public long getOrderId() {
-    return orderId;
-  }
-
-  public void setOrderId(long orderId) {
-    this.orderId = orderId;
   }
 
   public long getCusDetailId() {
@@ -59,5 +53,13 @@ public class OrderDetails {
 
   public void setQuantity(int quantity) {
     this.quantity = quantity;
+  }
+
+  public Order getOrder() {
+    return order;
+  }
+
+  public void setOrder(Order order) {
+    this.order = order;
   }
 }

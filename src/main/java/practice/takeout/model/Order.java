@@ -2,7 +2,9 @@ package practice.takeout.model;
 
 import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @SequenceGenerator(name = "ORDER_SEQUENCE", sequenceName = "ORDER_SEQ")
@@ -19,6 +21,9 @@ public class Order {
   @CreationTimestamp
   @Column(name = "time_of_status_set")
   private Date timeOfStatusSet;
+
+  @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+  private List<OrderDetails> orderDetailsList;
 
   public Order() {
   }
@@ -53,5 +58,21 @@ public class Order {
 
   public void setTimeOfStatusSet(Date timeOfStatusSet) {
     this.timeOfStatusSet = timeOfStatusSet;
+  }
+
+  public List<OrderDetails> getOrderDetailsList() {
+    return orderDetailsList;
+  }
+
+  public void setOrderDetailsList(List<OrderDetails> orderDetailsList) {
+    this.orderDetailsList = orderDetailsList;
+  }
+
+  public void addOrderDetails(OrderDetails orderDetails) {
+    if (orderDetailsList == null) {
+      orderDetailsList = new ArrayList<>();
+    }
+    orderDetails.setOrder(this);
+    orderDetailsList.add(orderDetails);
   }
 }
