@@ -164,6 +164,13 @@ table, th, td {
     font-size: 17px;
 }
 
+p {
+    color: rgb(29, 255, 29);
+    -webkit-animation: pulsate 3s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.5;
+}
+
 @-webkit-keyframes pulsate {
     0% {
         opacity: 0.5;
