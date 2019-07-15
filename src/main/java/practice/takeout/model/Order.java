@@ -21,8 +21,8 @@ public class Order {
   private Date timeOfStatusSet;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "cus_id", nullable = false)
-  private Cus cus;
+  @JoinColumn(name = "customer_details_id", nullable = false)
+  private CusDetails cusDetails;
 
   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
   private List<OrderDetails> orderDetailsList;
@@ -54,12 +54,12 @@ public class Order {
     this.timeOfStatusSet = timeOfStatusSet;
   }
 
-  public Cus getCus() {
-    return cus;
+  public CusDetails getCusDetails() {
+    return cusDetails;
   }
 
-  public void setCus(Cus cus) {
-    this.cus = cus;
+  public void setCusDetails(CusDetails cusDetails) {
+    this.cusDetails = cusDetails;
   }
 
   public List<OrderDetails> getOrderDetailsList() {

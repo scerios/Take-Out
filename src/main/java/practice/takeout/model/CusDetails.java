@@ -1,6 +1,8 @@
 package practice.takeout.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @SequenceGenerator(name = "CUSTOMER_DETAILS_SEQUENCE", sequenceName = "CUSTOMER_DETAILS_SEQ")
@@ -21,6 +23,9 @@ public class CusDetails {
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "cus_id", nullable = false)
   private Cus cus;
+
+  @OneToMany(mappedBy = "cus", cascade = CascadeType.ALL)
+  private List<Order> orderList;
 
   public CusDetails() {
   }
@@ -87,5 +92,21 @@ public class CusDetails {
 
   public void setCus(Cus cus) {
     this.cus = cus;
+  }
+
+  public List<Order> getOrderList() {
+    return orderList;
+  }
+
+  public void setOrderList(List<Order> orderList) {
+    this.orderList = orderList;
+  }
+
+  public void addOrder(Order order) {
+    if (orderList == null) {
+      orderList = new ArrayList<>();
+    }
+    order.setCusDetails(this);
+    orderList.add(order);
   }
 }

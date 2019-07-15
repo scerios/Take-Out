@@ -10,8 +10,6 @@ public class OrderDetails {
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "ORDER_DETAILS_SEQ")
   @Column(name = "order_details_id")
   private long id;
-  @Column(name = "customer_detail_id")
-  private long cusDetailId;
   @Column(name = "burger_id")
   private long burgerId;
   private int quantity;
@@ -29,14 +27,6 @@ public class OrderDetails {
 
   public void setId(long id) {
     this.id = id;
-  }
-
-  public long getCusDetailId() {
-    return cusDetailId;
-  }
-
-  public void setCusDetailId(long cusDetailId) {
-    this.cusDetailId = cusDetailId;
   }
 
   public long getBurgerId() {

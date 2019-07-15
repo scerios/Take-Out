@@ -1,6 +1,8 @@
 package practice.takeout.service;
 
 import practice.takeout.model.CusDetails;
+import practice.takeout.model.Order;
+
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -22,4 +24,6 @@ public interface CusDetailsService {
   long getDetailsIdByCusIdAndNickname(long cusId, String nickname);
 
   void giveSessionTempDetails(CusDetails cusDetails, HttpSession session);
+
+  void addOrderToDetails(long id, Order order);
 }

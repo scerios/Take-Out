@@ -3,6 +3,7 @@ package practice.takeout.service;
 import org.springframework.stereotype.Service;
 import practice.takeout.dataProvider.SystemDefaults;
 import practice.takeout.model.CusDetails;
+import practice.takeout.model.Order;
 import practice.takeout.repository.CusDetailsRepository;
 import javax.servlet.http.HttpSession;
 import java.sql.*;
@@ -146,5 +147,10 @@ public class CusDetailsServiceImpl implements CusDetailsService {
     session.setAttribute("TEMP_SESSION_CUS_ADDRESS_NUMBER", cusDetails.getDoor());
     session.setAttribute("TEMP_SESSION_CUS_ADDRESS_BELL", cusDetails.getBell());
     session.setMaxInactiveInterval(599);
+  }
+
+  @Override
+  public void addOrderToDetails(long id, Order order) {
+    repository.findById(id).get().addOrder(order);
   }
 }
