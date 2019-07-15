@@ -11,7 +11,7 @@ public class CusDetails {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "CUSTOMER_DETAILS_SEQ")
-  @Column(name = "details_id")
+  @Column(name = "customer_details_id")
   private long id;
   private int postCode;
   private String addressName;
@@ -24,7 +24,7 @@ public class CusDetails {
   @JoinColumn(name = "cus_id", nullable = false)
   private Cus cus;
 
-  @OneToMany(mappedBy = "cus", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "cusDetails", cascade = CascadeType.ALL)
   private List<Order> orderList;
 
   public CusDetails() {

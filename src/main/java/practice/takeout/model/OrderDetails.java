@@ -10,7 +10,6 @@ public class OrderDetails {
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "ORDER_DETAILS_SEQ")
   @Column(name = "order_details_id")
   private long id;
-  @Column(name = "burger_id")
   private long burgerId;
   private int quantity;
 
