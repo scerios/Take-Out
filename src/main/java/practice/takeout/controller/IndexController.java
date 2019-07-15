@@ -29,6 +29,7 @@ public class IndexController {
     model.addAttribute("cusDetails", new CusDetails());
     model.addAttribute("orderDetails", new OrderDetails());
     model.addAttribute("burger", new Burger());
+    model.addAttribute("cart", new Cart());
   }
 
   @GetMapping("/")
