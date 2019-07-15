@@ -6,7 +6,7 @@ public class PopUpMsq {
   private String wrongEmail;
   private String wrongPwd;
   private String access;
-  private String burgerAdded;
+  private String addedToCart;
 
   public PopUpMsq() {
   }
@@ -51,11 +51,11 @@ public class PopUpMsq {
     this.access = access;
   }
 
-  public String getBurgerAdded() {
-    return burgerAdded;
+  public String getAddedToCart() {
+    return addedToCart;
   }
 
-  public void setBurgerAdded(String burgerAdded) {
-    this.burgerAdded = burgerAdded;
+  public void setAddedToCart(String addedToCart) {
+    this.addedToCart = addedToCart;
   }
 }
