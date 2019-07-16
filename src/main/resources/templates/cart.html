@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navigation.css}">
+    <meta charset="UTF-8">
+    <title>Cart</title>
+</head>
+<body>
+<div>
+    <ul>
+        <li><a href="homepage">Home</a></li>
+        <li><a href="profile">My profile</a></li>
+        <li><a href="order">Order</a></li>
+        <li><a href="cart">Cart</a></li>
+    </ul>
+</div>
+<form th:action="@{/cart}" method="post">
+    <div class="container">
+        <table id="referenceTable">
+            <thead>
+            <tr>
+                <th>Bun</th>
+                <th>Meat</th>
+                <th>Cheese</th>
+                <th>Sauce</th>
+                <th>Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cartBurgerDto : ${dto}" th:object="${cartBurgerDto}">
+                <td><span th:text="*{getBun()}"></span></td>
+                <td><span th:text="*{getMeat()}"></span></td>
+                <td><span th:text="*{getCheese()}"></span></td>
+                <td><span th:text="*{getSauce()}"></span></td>
+                <td><span th:text="*{getQuantity()}"></span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
+</body>
+</html>
