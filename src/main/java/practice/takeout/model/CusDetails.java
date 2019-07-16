@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@SequenceGenerator(name = "CUSTOMER_DETAILS_SEQUENCE", sequenceName = "CUSTOMER_DETAILS_SEQ")
+@SequenceGenerator(name = "CUSTOMER_DETAIL_SEQUENCE", sequenceName = "CUSTOMER_DETAIL_SEQ")
 @Table(name = "customer_details")
 public class CusDetails {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "CUSTOMER_DETAILS_SEQ")
+  @GeneratedValue(strategy = GenerationType.AUTO, generator = "CUSTOMER_DETAIL_SEQ")
   @Column(name = "customer_details_id")
   private long id;
-  private int postCode;
+  private int postcode;
   private String addressName;
   private String addressType;
   private int door;
@@ -38,12 +38,12 @@ public class CusDetails {
     this.id = id;
   }
 
-  public int getPostCode() {
-    return postCode;
+  public int getPostcode() {
+    return postcode;
   }
 
-  public void setPostCode(int postCode) {
-    this.postCode = postCode;
+  public void setPostcode(int postcode) {
+    this.postcode = postcode;
   }
 
   public String getAddressName() {
