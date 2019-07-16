@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import practice.takeout.dto.CartBurgerDto;
 import practice.takeout.model.*;
+import practice.takeout.service.BurgerServiceImpl;
+import practice.takeout.service.CartServiceImpl;
 import practice.takeout.service.CusDetailsServiceImpl;
 import practice.takeout.service.CusServiceImpl;
 import javax.servlet.http.HttpSession;
@@ -16,11 +19,16 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
   private CusServiceImpl cusService;
   private CusDetailsServiceImpl cusDetailsService;
+  private CartServiceImpl cartService;
+  private BurgerServiceImpl burgerService;
 
   @Autowired
-  public IndexController(CusServiceImpl cusService, CusDetailsServiceImpl cusDetailsService) {
+  public IndexController(CusServiceImpl cusService, CusDetailsServiceImpl cusDetailsService, CartServiceImpl cartService,
+                         BurgerServiceImpl burgerService) {
     this.cusService = cusService;
     this.cusDetailsService = cusDetailsService;
+    this.cartService = cartService;
+    this.burgerService = burgerService;
   }
 
   @ModelAttribute
@@ -30,6 +38,7 @@ public class IndexController {
     model.addAttribute("orderDetails", new OrderDetails());
     model.addAttribute("burger", new Burger());
     model.addAttribute("cart", new Cart());
+    model.addAttribute("cartBurgerDto", new CartBurgerDto());
   }
 
   @GetMapping("/")
@@ -122,6 +131,17 @@ public class IndexController {
   public String getOrderPage(HttpSession session, PopUpMsq popUpMsq, RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session)) {
       return "order";
+    } else {
+      cusService.accessDenied(popUpMsq, redirectAttributes);
+      return "redirect:/";
+    }
+  }
+
+  @GetMapping("/cart")
+  public String getCartPage(Model model, HttpSession session, PopUpMsq popUpMsq, RedirectAttributes redirectAttributes) {
+    if (cusService.isCusHasAccess(session)) {
+      model.addAttribute("dto", cartService.findAllByCus_Id(cusService.getCusSessionId(session)));
+      return "cart";
     } else {
       cusService.accessDenied(popUpMsq, redirectAttributes);
       return "redirect:/";
