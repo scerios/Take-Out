@@ -6,5 +6,4 @@ import practice.takeout.model.Cart;
 
 @Repository
 public interface CartRepository extends CrudRepository<Cart, Long> {
-  Iterable<Cart> findAllByCus_Id(long id);
 }
