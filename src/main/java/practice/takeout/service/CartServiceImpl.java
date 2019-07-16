@@ -2,13 +2,23 @@ package practice.takeout.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import practice.takeout.dataProvider.SystemDefaults;
+import practice.takeout.dto.CartBurgerDto;
 import practice.takeout.model.Cart;
 import practice.takeout.model.PopUpMsq;
 import practice.takeout.repository.CartRepository;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CartServiceImpl implements CartService {
+  private SystemDefaults defaults = new SystemDefaults();
   private CartRepository repository;
+  private final String JDBC_DRIVER = defaults.getJdbcDriver();
+  private final String DB_URL = defaults.getDbUrl();
+  private final String USERNAME = defaults.getUserName();
+  private final String PWD = defaults.getPwd();
 
   public CartServiceImpl(CartRepository repository) {
     this.repository = repository;
@@ -28,7 +38,34 @@ public class CartServiceImpl implements CartService {
   }
 
   @Override
-  public Iterable<Cart> findAllByCus_Id(long id) {
-    return repository.findAllByCus_Id(id);
+  public List<CartBurgerDto> findAllByCus_Id(long id) {
+    final String query = "SELECT bun, cheese, meat, sauce, quantity FROM CART INNER JOIN burgers ON cart.burger_id = burgers.burger_id WHERE cus_id = " + "\"" + id + "\"";
+    List<CartBurgerDto> cartIterable = new ArrayList<>();
+    PreparedStatement ps;
+    Connection conn;
+    try {
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USERNAME, PWD);
+      ps = conn.prepareStatement(query);
+      ResultSet rs = ps.executeQuery(query);
+      while (rs.next()) {
+        CartBurgerDto cartBurgerDto = new CartBurgerDto();
+        cartBurgerDto.setBun(rs.getString("bun"));
+        cartBurgerDto.setMeat(rs.getString("meat"));
+        cartBurgerDto.setCheese(rs.getString("cheese"));
+        cartBurgerDto.setSauce(rs.getString("sauce"));
+        cartBurgerDto.setQuantity(rs.getInt("quantity"));
+        cartIterable.add(cartBurgerDto);
+      }
+      ps.close();
+      conn.close();
+    } catch (ClassNotFoundException CNFe) {
+      throw new RuntimeException("JDBC Driver cannot be found.");
+    } catch (SQLException SQLe) {
+      throw new RuntimeException("SQL Database cannot be found.");
+    } catch (Exception e) {
+      throw new RuntimeException("Cannot identify the problem.");
+    }
+    return cartIterable;
   }
 }
