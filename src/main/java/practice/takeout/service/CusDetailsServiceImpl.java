@@ -45,7 +45,7 @@ public class CusDetailsServiceImpl implements CusDetailsService {
 
   @Override
   public boolean isCusHasAccessToDetails(long cusId, long cusDetailsId) {
-    final String query = "SELECT details_id FROM customer_details WHERE cus_id = " + "\"" + cusId + "\"";
+    final String query = "SELECT customer_details_id FROM customer_details WHERE cus_id = " + "\"" + cusId + "\"";
     List<Integer> dataByQuery = new ArrayList<>();
     PreparedStatement ps;
     Connection conn;
@@ -55,7 +55,7 @@ public class CusDetailsServiceImpl implements CusDetailsService {
       ps = conn.prepareStatement(query);
       ResultSet rs = ps.executeQuery(query);
       while (rs.next()) {
-        int extractedId = rs.getInt("details_id");
+        int extractedId = rs.getInt("customer_details_id");
         dataByQuery.add(extractedId);
       }
       ps.close();
