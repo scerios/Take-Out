@@ -59,7 +59,7 @@ public class CusServiceImpl implements CusService {
     session.setAttribute("TEMP_SESSION_CUS_FIRST_NAME", cus.getFirstName());
     session.setAttribute("TEMP_SESSION_CUS_LAST_NAME", cus.getLastName());
     session.setAttribute("TEMP_SESSION_CUS_PHONE_NUMBER", cus.getPhoneNumber());
-    session.setAttribute("TEMP_SESSION_CUS_POSTCODE", cusDetails.getPostCode());
+    session.setAttribute("TEMP_SESSION_CUS_POSTCODE", cusDetails.getPostcode());
     session.setAttribute("TEMP_SESSION_CUS_ADDRESS_NAME", cusDetails.getAddressName());
     session.setAttribute("TEMP_SESSION_CUS_ADDRESS_TYPE", cusDetails.getAddressType());
     session.setAttribute("TEMP_SESSION_CUS_ADDRESS_NUMBER", cusDetails.getDoor());

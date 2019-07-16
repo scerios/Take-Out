@@ -78,7 +78,7 @@ public class CusDetailsServiceImpl implements CusDetailsService {
   @Override
   public CusDetails giveTempCusDetailsValues(HttpSession session) {
     CusDetails cusDetails = new CusDetails();
-    cusDetails.setPostCode((int) session.getAttribute("TEMP_SESSION_CUS_POSTCODE"));
+    cusDetails.setPostcode((int) session.getAttribute("TEMP_SESSION_CUS_POSTCODE"));
     cusDetails.setAddressName((String) session.getAttribute("TEMP_SESSION_CUS_ADDRESS_NAME"));
     cusDetails.setAddressType((String) session.getAttribute("TEMP_SESSION_CUS_ADDRESS_TYPE"));
     cusDetails.setDoor((int) session.getAttribute("TEMP_SESSION_CUS_ADDRESS_NUMBER"));
@@ -141,7 +141,7 @@ public class CusDetailsServiceImpl implements CusDetailsService {
 
   @Override
   public void giveSessionTempDetails(CusDetails cusDetails, HttpSession session) {
-    session.setAttribute("TEMP_SESSION_CUS_POSTCODE", cusDetails.getPostCode());
+    session.setAttribute("TEMP_SESSION_CUS_POSTCODE", cusDetails.getPostcode());
     session.setAttribute("TEMP_SESSION_CUS_ADDRESS_NAME", cusDetails.getAddressName());
     session.setAttribute("TEMP_SESSION_CUS_ADDRESS_TYPE", cusDetails.getAddressType());
     session.setAttribute("TEMP_SESSION_CUS_ADDRESS_NUMBER", cusDetails.getDoor());
