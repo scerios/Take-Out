@@ -3,10 +3,11 @@ package practice.takeout.model;
 import javax.persistence.*;
 
 @Entity
+@SequenceGenerator(name = "CART_SEQUENCE", sequenceName = "CART_SEQ")
 public class Cart {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.AUTO, generator = "CART_SEQ")
   private long id;
   private long burgerId;
   private int quantity;
