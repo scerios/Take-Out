@@ -8,4 +8,6 @@ public interface CartService {
   void addBurgerToCart(Cart cart, long burgerId, int quantity);
 
   void setBurgerAdded(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes);
+
+  Iterable<Cart> findAllByCus_Id(long id);
 }

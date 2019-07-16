@@ -26,4 +26,9 @@ public class CartServiceImpl implements CartService {
     popUpMsq.setAddedToCart("addedToCart");
     redirectAttributes.addFlashAttribute("addedToCart", popUpMsq.getAddedToCart());
   }
+
+  @Override
+  public Iterable<Cart> findAllByCus_Id(long id) {
+    return repository.findAllByCus_Id(id);
+  }
 }
