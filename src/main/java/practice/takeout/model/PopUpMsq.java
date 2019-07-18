@@ -7,6 +7,7 @@ public class PopUpMsq {
   private String wrongPwd;
   private String access;
   private String addedToCart;
+  private String orderSent;
 
   public PopUpMsq() {
   }
@@ -57,5 +58,13 @@ public class PopUpMsq {
 
   public void setAddedToCart(String addedToCart) {
     this.addedToCart = addedToCart;
+  }
+
+  public String getOrderSent() {
+    return orderSent;
+  }
+
+  public void setOrderSent(String orderSent) {
+    this.orderSent = orderSent;
   }
 }
