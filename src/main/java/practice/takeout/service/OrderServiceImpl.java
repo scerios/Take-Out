@@ -1,6 +1,7 @@
 package practice.takeout.service;
 
 import org.springframework.stereotype.Service;
+import practice.takeout.model.CusDetails;
 import practice.takeout.model.Order;
 import practice.takeout.model.OrderDetails;
 import practice.takeout.repository.OrderRepository;
@@ -14,10 +15,12 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  public void addOrder() {
+  public Order addOrder(CusDetails cusDetails) {
     Order order = new Order();
+    order.setCusDetails(cusDetails);
     order.setStatus("ordered");
     repository.save(order);
+    return order;
   }
 
   @Override

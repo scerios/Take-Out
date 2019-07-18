@@ -1,9 +1,11 @@
 package practice.takeout.service;
 
+import practice.takeout.model.CusDetails;
+import practice.takeout.model.Order;
 import practice.takeout.model.OrderDetails;
 
 public interface OrderService {
-  void addOrder();
+  Order addOrder(CusDetails cusDetails);
 
   void addDetailsToOrder(long id, OrderDetails orderDetails);
 }
