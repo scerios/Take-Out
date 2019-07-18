@@ -6,6 +6,7 @@ import practice.takeout.model.CusDetails;
 import practice.takeout.model.Cus;
 import practice.takeout.model.PopUpMsq;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 public interface CusService {
   void addCus(Cus cus);
@@ -39,4 +40,6 @@ public interface CusService {
   long getCusSessionId(HttpSession session);
 
   void addCartToCus(long id, Cart cart);
+
+  List<CusDetails> getCusDetailsListBySession(HttpSession session);
 }

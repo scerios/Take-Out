@@ -10,6 +10,7 @@ import practice.takeout.model.PopUpMsq;
 import practice.takeout.repository.CusRepository;
 import javax.servlet.http.HttpSession;
 import java.sql.*;
+import java.util.List;
 
 @Service
 public class CusServiceImpl implements CusService {
@@ -146,5 +147,10 @@ public class CusServiceImpl implements CusService {
   @Override
   public void addCartToCus(long id, Cart cart) {
     repository.findById(id).get().addToCart(cart);
+  }
+
+  @Override
+  public List<CusDetails> getCusDetailsListBySession(HttpSession session) {
+    return getCusById(getCusSessionId(session)).getCusDetailsList();
   }
 }
