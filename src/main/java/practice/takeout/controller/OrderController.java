@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import practice.takeout.model.Burger;
-import practice.takeout.model.Cart;
-import practice.takeout.model.PopUpMsq;
+import practice.takeout.model.*;
 import practice.takeout.service.*;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -15,15 +15,18 @@ public class OrderController {
   private OrderServiceImpl orderService;
   private OrderDetailsServiceImpl orderDetailsService;
   private CusServiceImpl cusService;
+  private CusDetailsServiceImpl cusDetailsService;
   private BurgerServiceImpl burgerService;
   private CartServiceImpl cartService;
 
   @Autowired
   public OrderController(OrderServiceImpl orderService, OrderDetailsServiceImpl orderDetailsService,
-                         CusServiceImpl cusService, BurgerServiceImpl burgerService, CartServiceImpl cartService) {
+                         CusServiceImpl cusService, CusDetailsServiceImpl cusDetailsService,
+                         BurgerServiceImpl burgerService, CartServiceImpl cartService) {
     this.orderService = orderService;
     this.orderDetailsService = orderDetailsService;
     this.cusService = cusService;
+    this.cusDetailsService = cusDetailsService;
     this.burgerService = burgerService;
     this.cartService = cartService;
   }
@@ -40,5 +43,13 @@ public class OrderController {
     cartService.addBurgerToCart(cart, burgerId, cart.getQuantity());
     cartService.setBurgerAdded(popUpMsq, redirectAttributes);
     return "redirect:/order";
+  }
+
+  @PostMapping("/cart")
+  public String sendOrder(CusDetails cusDetails, PopUpMsq popUpMsq, RedirectAttributes redirectAttributes) {
+    cusDetailsService.addOrderToDetails(cusDetails.getId(),
+        orderService.addOrder(cusDetailsService.getDetailsById(cusDetails.getId())));
+    cusService.setOrderSent(popUpMsq, redirectAttributes);
+    return "redirect:/homepage";
   }
 }
