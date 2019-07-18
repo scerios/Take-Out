@@ -8,4 +8,6 @@ public interface OrderService {
   Order addOrder(CusDetails cusDetails);
 
   void addDetailsToOrder(long id, OrderDetails orderDetails);
+
+  Order getLastOrderByCusDetailsId(long id);
 }
