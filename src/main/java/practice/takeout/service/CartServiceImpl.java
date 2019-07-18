@@ -3,6 +3,7 @@ package practice.takeout.service;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.takeout.dataProvider.SystemDefaults;
+import practice.takeout.dto.BurgerQuantityDto;
 import practice.takeout.dto.CartBurgerDto;
 import practice.takeout.model.Cart;
 import practice.takeout.model.PopUpMsq;
@@ -70,9 +71,9 @@ public class CartServiceImpl implements CartService {
   }
 
   @Override
-  public List<Integer> getBurgerIdsFromCartByCusId(long id) {
-    final String query = "SELECT burger_id FROM CART WHERE cus_id = " + "\"" + id + "\"";
-    List<Integer> burgerIds = new ArrayList<>();
+  public List<BurgerQuantityDto> getBurgerIdsAndQuantitiesFromCartByCusId(long id) {
+    final String query = "SELECT burger_id, quantity FROM CART WHERE cus_id = " + "\"" + id + "\"";
+    List<BurgerQuantityDto> burgerQuantities = new ArrayList<>();
     PreparedStatement ps;
     Connection conn;
     try {
@@ -81,7 +82,10 @@ public class CartServiceImpl implements CartService {
       ps = conn.prepareStatement(query);
       ResultSet rs = ps.executeQuery(query);
       while (rs.next()) {
-        burgerIds.add(rs.getInt("burger_id"));
+        BurgerQuantityDto burgerQuantityDto = new BurgerQuantityDto();
+        burgerQuantityDto.setBurgerId(rs.getLong("burger_id"));
+        burgerQuantityDto.setQuantity(rs.getInt("quantity"));
+        burgerQuantities.add(burgerQuantityDto);
       }
       ps.close();
       conn.close();
@@ -92,6 +96,6 @@ public class CartServiceImpl implements CartService {
     } catch (Exception e) {
       throw new RuntimeException("Cannot identify the problem.");
     }
-    return burgerIds;
+    return burgerQuantities;
   }
 }

@@ -1,6 +1,7 @@
 package practice.takeout.service;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import practice.takeout.dto.BurgerQuantityDto;
 import practice.takeout.dto.CartBurgerDto;
 import practice.takeout.model.Cart;
 import practice.takeout.model.PopUpMsq;
@@ -13,5 +14,5 @@ public interface CartService {
 
   List<CartBurgerDto> findAllByCus_Id(long id);
 
-  List<Integer> getBurgerIdsFromCartByCusId(long id);
+  List<BurgerQuantityDto> getBurgerIdsAndQuantitiesFromCartByCusId(long id);
 }
