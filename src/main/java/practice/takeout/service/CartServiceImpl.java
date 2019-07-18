@@ -68,4 +68,30 @@ public class CartServiceImpl implements CartService {
     }
     return cartIterable;
   }
+
+  @Override
+  public List<Integer> getBurgerIdsFromCartByCusId(long id) {
+    final String query = "SELECT burger_id FROM CART WHERE cus_id = " + "\"" + id + "\"";
+    List<Integer> burgerIds = new ArrayList<>();
+    PreparedStatement ps;
+    Connection conn;
+    try {
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USERNAME, PWD);
+      ps = conn.prepareStatement(query);
+      ResultSet rs = ps.executeQuery(query);
+      while (rs.next()) {
+        burgerIds.add(rs.getInt("burger_id"));
+      }
+      ps.close();
+      conn.close();
+    } catch (ClassNotFoundException CNFe) {
+      throw new RuntimeException("JDBC Driver cannot be found.");
+    } catch (SQLException SQLe) {
+      throw new RuntimeException("SQL Database cannot be found.");
+    } catch (Exception e) {
+      throw new RuntimeException("Cannot identify the problem.");
+    }
+    return burgerIds;
+  }
 }

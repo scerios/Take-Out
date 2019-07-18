@@ -12,4 +12,6 @@ public interface CartService {
   void setBurgerAdded(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes);
 
   List<CartBurgerDto> findAllByCus_Id(long id);
+
+  List<Integer> getBurgerIdsFromCartByCusId(long id);
 }
