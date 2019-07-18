@@ -16,7 +16,7 @@
 </div>
 <form th:action="@{/cart}" method="post">
     <div class="container">
-        <table id="referenceTable">
+        <table id="cartTable">
             <thead>
             <tr>
                 <th>Bun</th>
@@ -36,6 +36,13 @@
             </tr>
             </tbody>
         </table>
+    </div>
+    <div>
+        <span>Select where to deliver: </span>
+        <select th:field="*{cus.cusDetailsList}">
+            <option value=""> -- </option>
+            <option th:each="cusDetails : ${details}" th:value="${cusDetails.id}" th:utext="${cusDetails.nickname}"></option>
+        </select>
     </div>
 </form>
 </body>
