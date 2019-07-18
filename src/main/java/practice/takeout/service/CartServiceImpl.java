@@ -39,7 +39,7 @@ public class CartServiceImpl implements CartService {
   }
 
   @Override
-  public List<CartBurgerDto> findAllByCus_Id(long id) {
+  public List<CartBurgerDto> findAllByCusId(long id) {
     final String query = "SELECT bun, cheese, meat, sauce, quantity FROM CART INNER JOIN burgers ON cart.burger_id = burgers.burger_id WHERE cus_id = " + "\"" + id + "\"";
     List<CartBurgerDto> cartIterable = new ArrayList<>();
     PreparedStatement ps;

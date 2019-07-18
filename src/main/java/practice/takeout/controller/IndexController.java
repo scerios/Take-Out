@@ -141,7 +141,7 @@ public class IndexController {
   @GetMapping("/cart")
   public String getCartPage(Model model, HttpSession session, PopUpMsq popUpMsq, RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session)) {
-      model.addAttribute("dto", cartService.findAllByCus_Id(cusService.getCusSessionId(session)));
+      model.addAttribute("dto", cartService.findAllByCusId(cusService.getCusSessionId(session)));
       model.addAttribute("details", cusService.getCusDetailsListBySession(session));
       return "cart";
     } else {
