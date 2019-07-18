@@ -153,4 +153,10 @@ public class CusServiceImpl implements CusService {
   public List<CusDetails> getCusDetailsListBySession(HttpSession session) {
     return getCusById(getCusSessionId(session)).getCusDetailsList();
   }
+
+  @Override
+  public void setOrderSent(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes) {
+    popUpMsq.setOrderSent("orderSent");
+    redirectAttributes.addFlashAttribute("orderSent", popUpMsq.getOrderSent());
+  }
 }
