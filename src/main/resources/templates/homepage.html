@@ -17,6 +17,9 @@
     <form th:action="@{/homepage}" th:object="${cus}" method="get">
         <h1 id="greeting">Hello <span class="cusName" th:text="*{getLastName()}"></span>!</h1>
     </form>
+    <div>
+        <p id="error" th:if="${orderSent == 'orderSent'}">We received your order, it's under preparation!</p>
+    </div>
     <div class="userNav">
         <form th:action="@{/endSession}" method="post">
             <button type="submit" id="submit" class="buttons">Farewell</button>

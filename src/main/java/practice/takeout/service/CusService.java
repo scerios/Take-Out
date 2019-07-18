@@ -42,4 +42,6 @@ public interface CusService {
   void addCartToCus(long id, Cart cart);
 
   List<CusDetails> getCusDetailsListBySession(HttpSession session);
+
+  void setOrderSent(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes);
 }
