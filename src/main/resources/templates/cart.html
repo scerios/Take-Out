@@ -39,11 +39,11 @@
     </div>
     <div>
         <span>Select where to deliver: </span>
-        <select th:field="*{cus.cusDetailsList}">
-            <option value=""> -- </option>
-            <option th:each="cusDetails : ${details}" th:value="${cusDetails.id}" th:utext="${cusDetails.nickname}"></option>
+        <select th:field="*{cusDetails.id}">
+            <option th:each="cusDetails : ${details}" th:value="*{cusDetails.id}" th:utext="${cusDetails.nickname}"></option>
         </select>
     </div>
+    <button id="submit" class="buttons" type="submit">Send order!</button>
 </form>
 </body>
 </html>
