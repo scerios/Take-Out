@@ -14,6 +14,7 @@ import practice.takeout.service.CartServiceImpl;
 import practice.takeout.service.CusDetailsServiceImpl;
 import practice.takeout.service.CusServiceImpl;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class IndexController {
@@ -141,6 +142,7 @@ public class IndexController {
   public String getCartPage(Model model, HttpSession session, PopUpMsq popUpMsq, RedirectAttributes redirectAttributes) {
     if (cusService.isCusHasAccess(session)) {
       model.addAttribute("dto", cartService.findAllByCus_Id(cusService.getCusSessionId(session)));
+      model.addAttribute("details", cusService.getCusDetailsListBySession(session));
       return "cart";
     } else {
       cusService.accessDenied(popUpMsq, redirectAttributes);
