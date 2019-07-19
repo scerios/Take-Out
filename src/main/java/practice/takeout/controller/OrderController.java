@@ -46,6 +46,10 @@ public class OrderController {
   @PostMapping("/cart")
   public String sendOrder(CusDetails cusDetails, PopUpMsq popUpMsq, RedirectAttributes redirectAttributes,
                           HttpSession session) {
+    if (cartService.getBurgerIdsAndQuantitiesFromCartByCusId(cusService.getCusSessionId(session)).size() == 0) {
+      cartService.setCartIsEmpty(popUpMsq, redirectAttributes);
+      return "redirect:/cart";
+    }
     cusDetailsService.addOrderToDetails(cusDetails.getId(),
         orderService.addOrder(cusDetailsService.getDetailsById(cusDetails.getId())));
     orderDetailsService.addOrderDetails(orderService.getLastOrderByCusDetailsId(cusDetails.getId()),
