@@ -107,23 +107,40 @@ body {
 }
 
 .selectContainer {
-    float: left;
-    overflow: hidden;
+    margin-left: 80px;
 }
 
 .first {
     display: inline-block;
+    position: fixed;
     float: left;
-    margin-left: 30px;
+    margin-left: 60px;
+}
+
+.second {
+    display: inline-block;
+    position: fixed;
+    float: left;
+    margin-left: 200px;
+}
+
+.third {
+    display: inline-block;
+    position: fixed;
+    float: left;
+    margin-left: 380px;
+}
+
+.fourth {
+    margin-left: 530px;
 }
 
 label {
     display: inline-block;
+    position: absolute;
     float: left;
-    clear: left;
-    width: 30px;
-    text-align: left;
-}
+
+ }
 
 ul {
     list-style-type: none;

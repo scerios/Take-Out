@@ -18,31 +18,63 @@
         <div class="container">
             <div class="ingredients">
                 <label>Bun:</label>
+                <div class="first">
                 <input name="bun" required type="radio" value="Ciabatta" th:field="*{burger.bun}"><span>Ciabatta - $1</span>
+                </div>
+                <div class="second">
                 <input name="bun" type="radio" value="Wheat-Rye" th:field="*{burger.bun}"><span>Wheat-Rye - $1.2</span>
+                </div>
+                <div class="third">
                 <input name="bun" type="radio" value="Wholemeal" th:field="*{burger.bun}"><span>Wholemeal - $1.2</span>
+                </div>
+                <div class="fourth">
                 <input name="bun" type="radio" value="Gluten Free" th:field="*{burger.bun}"><span>Gluten Free - $1.5</span>
+                </div>
             </div>
             <div class="ingredients">
                 <label>Meat:</label>
+                <div class="first">
                 <input name="meat" required type="radio" value="Classic Beef" th:field="*{burger.meat}"><span>Classic Beef - $3</span>
+                </div>
+                <div class="second">
                 <input name="meat" type="radio" value="Chicken" th:field="*{burger.meat}"><span>Chicken - $2</span>
+                </div>
+                <div class="third">
                 <input name="meat" type="radio" value="Pulled Pork" th:field="*{burger.meat}"><span>Pulled Pork - $2.5</span>
+                </div>
+                <div class="fourth">
                 <input name="meat" type="radio" value="Tofu" th:field="*{burger.meat}"><span>Tofu - $1.5</span>
+                </div>
             </div>
             <div class="ingredients">
                 <label>Cheese:</label>
+                <div class="first">
                 <input name="cheese" required type="radio" value="Cheddar" th:field="*{burger.cheese}"><span>Cheddar - $2</span>
+                </div>
+                <div class="second">
                 <input name="cheese" type="radio" value="Camembert" th:field="*{burger.cheese}"><span>Camembert - $2.3</span>
+                </div>
+                <div class="third">
                 <input name="cheese" type="radio" value="Gorgonzola" th:field="*{burger.cheese}"><span>Gorgonzola - $2.6</span>
+                </div>
+                <div class="fourth">
                 <input name="cheese" type="radio" value="Smoked Mozzarella" th:field="*{burger.cheese}"><span>Smoked Mozzarella - $2</span>
+                </div>
             </div>
             <div class="ingredients">
                 <label>Sauce:</label>
+                <div class="first">
                 <input name="sauce" required type="radio" value="BBQ" th:field="*{burger.sauce}"><span>BBQ</span>
+                </div>
+                <div class="second">
                 <input name="sauce" type="radio" value="Wasabi-Pickle Mayo" th:field="*{burger.sauce}"><span>Wasabi-Pickle Mayo</span>
+                </div>
+                <div class="third">
                 <input name="sauce" type="radio" value="Truffle Mayo" th:field="*{burger.sauce}"><span>Truffle Mayo</span>
+                </div>
+                <div class="fourth">
                 <input name="sauce" type="radio" value="Chili" th:field="*{burger.sauce}"><span>Chili</span>
+                </div>
             </div>
             <div class="quantity">
                 <div class="quantityLabel">
@@ -60,7 +92,7 @@
             </div>
         </div>
         <button id="submit" class="buttons" type="submit">Add to cart</button>
-        <p id="addedToCart" th:if="${addedToCart == 'addedToCart'}">Burger(s) added to your cart successfully!</p>
+        <p id="addedToCart" th:if="${addedToCart == 'addedToCart'}">Burger(s) added to your cart!</p>
     </form>
 </body>
 </html>
