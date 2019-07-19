@@ -8,6 +8,7 @@ public class PopUpMsq {
   private String access;
   private String addedToCart;
   private String orderSent;
+  private String cartIsEmpty;
 
   public PopUpMsq() {
   }
@@ -66,5 +67,13 @@ public class PopUpMsq {
 
   public void setOrderSent(String orderSent) {
     this.orderSent = orderSent;
+  }
+
+  public String getCartIsEmpty() {
+    return cartIsEmpty;
+  }
+
+  public void setCartIsEmpty(String cartIsEmpty) {
+    this.cartIsEmpty = cartIsEmpty;
   }
 }
