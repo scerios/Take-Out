@@ -15,4 +15,6 @@ public interface CartService {
   List<CartBurgerDto> findAllByCusId(long id);
 
   List<BurgerQuantityDto> getBurgerIdsAndQuantitiesFromCartByCusId(long id);
+
+  void deleteAllByCus_Id(long id);
 }

@@ -98,4 +98,9 @@ public class CartServiceImpl implements CartService {
     }
     return burgerQuantities;
   }
+
+  @Override
+  public void deleteAllByCus_Id(long id) {
+    repository.deleteAllByCus_Id(id);
+  }
 }
