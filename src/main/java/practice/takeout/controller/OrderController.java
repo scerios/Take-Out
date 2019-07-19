@@ -50,6 +50,7 @@ public class OrderController {
         orderService.addOrder(cusDetailsService.getDetailsById(cusDetails.getId())));
     orderDetailsService.addOrderDetails(orderService.getLastOrderByCusDetailsId(cusDetails.getId()),
         cartService.getBurgerIdsAndQuantitiesFromCartByCusId(cusService.getCusSessionId(session)));
+    cartService.deleteAllByCus_Id(cusService.getCusSessionId(session));
     cusService.setOrderSent(popUpMsq, redirectAttributes);
     return "redirect:/homepage";
   }
