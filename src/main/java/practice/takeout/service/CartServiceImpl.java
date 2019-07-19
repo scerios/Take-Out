@@ -103,4 +103,10 @@ public class CartServiceImpl implements CartService {
   public void deleteAllByCus_Id(long id) {
     repository.deleteAllByCus_Id(id);
   }
+
+  @Override
+  public void setCartIsEmpty(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes) {
+    popUpMsq.setCartIsEmpty("cartIsEmpty");
+    redirectAttributes.addFlashAttribute("cartIsEmpty", popUpMsq.getCartIsEmpty());
+  }
 }

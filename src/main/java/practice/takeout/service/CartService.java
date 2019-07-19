@@ -17,4 +17,6 @@ public interface CartService {
   List<BurgerQuantityDto> getBurgerIdsAndQuantitiesFromCartByCusId(long id);
 
   void deleteAllByCus_Id(long id);
+
+  void setCartIsEmpty(PopUpMsq popUpMsq, RedirectAttributes redirectAttributes);
 }
