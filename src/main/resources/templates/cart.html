@@ -37,8 +37,8 @@
             </tbody>
         </table>
     </div>
-    <div>
-        <span>Select where to deliver: </span>
+    <div class="whereTo">
+        <span>Select where to deliver:</span>
         <select th:field="*{cusDetails.id}">
             <option th:each="cusDetails : ${details}" th:value="*{cusDetails.id}" th:utext="${cusDetails.nickname}"></option>
         </select>
